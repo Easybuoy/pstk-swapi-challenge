@@ -2,25 +2,33 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { getMovies } from '../../actions';
+import { getMovies, selectMovie, getMovie } from '../../actions';
+import StyledMovieListDropdown from './StyledMovieListDropdown';
 
-const MovieListDropdown = props => {
+const MovieListDropdown = ({
+  movies,
+  selectMovie,
+  getMovies,
+  getMovie,
+}) => {
   const [movieValue, setMovieValue] = useState('');
 
-  const { movies } = props;
-
   useEffect(() => {
-    props.getMovies();
+    getMovies();
     setMovieValue('Select Movie');
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleChange = e => {
-    setMovieValue(e.target.value);
+    const { value } = e.target;
+    console.log(value)
+    setMovieValue(value);
+    selectMovie(value);
+    getMovie(value);
   };
 
   return (
-    <div>
+    <StyledMovieListDropdown>
       <select value={movieValue} onChange={handleChange}>
         <option value="Select Movie" disabled>
           Select Movie
@@ -29,16 +37,12 @@ const MovieListDropdown = props => {
         {movies
           .sort((a, b) => new Date(a.release_date) - new Date(b.release_date))
           .map((movie, i) => (
-            <option
-              key={movie.title}
-              value={movie.episode_id}
-              onChange={handleChange}
-            >
+            <option key={movie.title} value={movie.url} onChange={handleChange}>
               {movie.title}
             </option>
           ))}
       </select>
-    </div>
+    </StyledMovieListDropdown>
   );
 };
 
@@ -51,10 +55,12 @@ MovieListDropdown.propTypes = {
 const mapStateToProps = state => ({
   loading: state.loading,
   error: state.error,
-  movies: state.swapi.movies
+  movies: state.swapi.movies,
+  movie: state.swapi.movie,
+  selectedMovie: state.swapi.selectedMovie
 });
 
 export default connect(
   mapStateToProps,
-  { getMovies }
+  { getMovies, selectMovie, getMovie }
 )(MovieListDropdown);

@@ -1,13 +1,12 @@
 import axios from 'axios';
-import { LOADING, ERROR, SET_MOVIES } from './types';
-
-export const getPeople = () => dispatch => {
-  dispatch({ type: LOADING });
-  axios
-    .get('https://swapi.co/api/people/')
-    .then(res => console.log(res))
-    .catch(err => console.log(err));
-};
+import {
+  LOADING,
+  ERROR,
+  SET_MOVIES,
+  SELECT_MOVIE,
+  SET_MOVIE,
+  SET_CHARACTERS
+} from './types';
 
 export const getMovies = () => dispatch => {
   dispatch({ type: LOADING });
@@ -16,4 +15,34 @@ export const getMovies = () => dispatch => {
     .then(res => dispatch({ type: SET_MOVIES, payload: res.data.results }))
     .catch(err => dispatch({ type: ERROR, payload: err.response.data }))
     .finally(() => dispatch({ type: LOADING }));
+};
+
+export const getMovie = movie_url => dispatch => {
+  dispatch({ type: LOADING });
+  axios
+    .get(`https://cors-anywhere.herokuapp.com/${movie_url}`)
+    .then(res => {
+      dispatch({ type: SET_MOVIE, payload: res.data })
+      dispatch(getCharacter(res.data.characters))
+    })
+    .catch(err => dispatch({ type: ERROR, payload: err.response.data }))
+    .finally(() => dispatch({ type: LOADING }));
+};
+
+export const getCharacter = character_urls => dispatch => {
+  dispatch({ type: LOADING });
+  Promise.all(
+    character_urls.map(url =>
+      axios
+        .get(`https://cors-anywhere.herokuapp.com/${url}`)
+        .then(data => data.data)
+    )
+  )
+    .then(res => dispatch({ type: SET_CHARACTERS, payload: res }))
+    .catch(err => dispatch({ type: ERROR, payload: err.response.data }))
+    .finally(() => dispatch({ type: LOADING }));
+};
+
+export const selectMovie = movie => {
+  return { type: SELECT_MOVIE, payload: movie };
 };
