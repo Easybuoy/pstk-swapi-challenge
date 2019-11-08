@@ -13,13 +13,13 @@ const CharacterList = () =>{
 CharacterList.propTypes = {
     loading: PropTypes.object.isRequired,
     error: PropTypes.object.isRequired,
-    getMovies: PropTypes.func.isRequired
   };
   
   const mapStateToProps = state => ({
     loading: state.loading,
     error: state.error,
-    movies: state.swapi.movies
+    movies: state.swapi.movies,
+    selectedMovie: state.swapi.selectedMovie
   });
   
   export default connect(
