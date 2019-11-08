@@ -8,8 +8,7 @@ const MovieListDropdown = props => {
   const [movieValue, setMovieValue] = useState('');
 
   const { movies } = props;
-  console.log(movieValue);
-  console.log(movies);
+
   useEffect(() => {
     props.getMovies();
     setMovieValue('Select Movie');
