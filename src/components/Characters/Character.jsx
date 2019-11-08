@@ -20,20 +20,17 @@ const Character = ({ characters }) => {
   return <div>Loading...</div>;
 };
 
-// Character.propTypes = {
-//   loading: PropTypes.object.isRequired,
-//   error: PropTypes.object.isRequired,
-//   movie: PropTypes.object.isRequired,
-//   movies: PropTypes.array.isRequired,
-//   selectedMovie: PropTypes.string.isRequired
-// };
+Character.propTypes = {
+  loading: PropTypes.object.isRequired,
+  error: PropTypes.object.isRequired,
+  characters: PropTypes.array.isRequired,
+  movies: PropTypes.array.isRequired,
+  selectedMovie: PropTypes.string.isRequired
+};
 
 const mapStateToProps = state => ({
   loading: state.loading,
   error: state.error,
-  movies: state.swapi.movies,
-  movie: state.swapi.movie,
-  selectedMovie: state.swapi.selectedMovie,
   characters: state.swapi.characters
 });
 
