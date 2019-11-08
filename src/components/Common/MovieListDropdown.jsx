@@ -28,7 +28,7 @@ const MovieListDropdown = props => {
         </option>
 
         {movies
-          .sort((a, b) => new Date(b.release_date) - new Date(a.release_date))
+          .sort((a, b) => new Date(a.release_date) - new Date(b.release_date))
           .map((movie, i) => (
             <option
               key={movie.title}
