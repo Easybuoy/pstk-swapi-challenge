@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
+import { LineLoader } from '../../styles'
+
 const Character = ({ characters }) => {
   if (characters.length > 0) {
     return (
@@ -17,7 +19,7 @@ const Character = ({ characters }) => {
     );
   }
 
-  return <div>Loading...</div>;
+  return <LineLoader />;
 };
 
 Character.propTypes = {
