@@ -1,17 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { getCharacter } from '../../actions';
-
-const Character = ({ characterUrls, getCharacter, characters }) => {
-//   console.log(characters);
-//   useEffect(() => {
-//     getCharacter(characterUrls);
-
-//     // eslint-disable-next-line react-hooks/exhaustive-deps
-//   }, []);
-
+const Character = ({ characters }) => {
   if (characters.length > 0) {
     return (
       <div>
@@ -46,7 +37,4 @@ const mapStateToProps = state => ({
   characters: state.swapi.characters
 });
 
-export default connect(
-  mapStateToProps,
-  { getCharacter }
-)(Character);
+export default connect(mapStateToProps)(Character);
