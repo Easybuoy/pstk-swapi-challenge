@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { getMovies, selectMovie } from '../../actions';
+import StyledMovieListDropdown from './StyledMovieListDropdown';
 
 const MovieListDropdown = props => {
   const [movieValue, setMovieValue] = useState('');
@@ -10,20 +11,20 @@ const MovieListDropdown = props => {
   const { movies } = props;
 
   useEffect(() => {
-    props.getMovies();
+    // props.getMovies();
     setMovieValue('Select Movie');
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleChange = e => {
     const { value } = e.target;
-    console.log(value)
+    console.log(value);
     setMovieValue(value);
     props.selectMovie(value);
   };
-console.log(props)
+  console.log(props);
   return (
-    <div>
+    <StyledMovieListDropdown>
       <select value={movieValue} onChange={handleChange}>
         <option value="Select Movie" disabled>
           Select Movie
@@ -41,7 +42,7 @@ console.log(props)
             </option>
           ))}
       </select>
-    </div>
+    </StyledMovieListDropdown>
   );
 };
 
