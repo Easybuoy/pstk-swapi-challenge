@@ -5,24 +5,23 @@ import PropTypes from 'prop-types';
 import { getMovies, selectMovie } from '../../actions';
 import StyledMovieListDropdown from './StyledMovieListDropdown';
 
-const MovieListDropdown = props => {
+const MovieListDropdown = ({movies, selectMovie, getMovies}) => {
   const [movieValue, setMovieValue] = useState('');
 
-  const { movies } = props;
 
   useEffect(() => {
-    // props.getMovies();
+    getMovies();
     setMovieValue('Select Movie');
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleChange = e => {
     const { value } = e.target;
-    console.log(value);
+
     setMovieValue(value);
-    props.selectMovie(value);
+    selectMovie(value);
   };
-  console.log(props);
+
   return (
     <StyledMovieListDropdown>
       <select value={movieValue} onChange={handleChange}>
