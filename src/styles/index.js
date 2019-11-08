@@ -5,7 +5,7 @@ const LineLoader = styled.div`
   width: 100%;
   position: relative;
   overflow: hidden;
-  background-color: yellow;
+  background-color: #ffffff;
   padding: 5rem 0;
   &:before {
     display: block;

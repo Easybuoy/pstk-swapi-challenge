@@ -2,22 +2,64 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { LineLoader } from '../../styles'
+import StyledCharacter from './StyledCharacter';
+import { formatGender } from '../../utils';
+import { LineLoader } from '../../styles';
 
 const Character = ({ characters }) => {
   if (characters.length > 0) {
+    console.log(characters);
     return (
-      <div>
-        {characters.map((character, i) => {
-          return (
-            <div key={character.name}>
-              <p>{character.name}</p>
-            </div>
-          );
-        })}
-      </div>
+      <StyledCharacter>
+        <table className="fl-table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Gender</th>
+              <th>Height</th>
+            </tr>
+          </thead>
+          <tbody>
+            {characters.map((character, i) => {
+              return (
+                <tr key={character.name}>
+                  <td>{character.name}</td>
+                  <td>{formatGender(character.gender)}</td>
+                  <td>{character.height}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </StyledCharacter>
     );
   }
+
+  //   return (
+  //     <StyledCharacter>
+  //       <table className="fl-table">
+  //         <thead>
+  //           <tr>
+  //             <th>Header 1</th>
+  //             <th>Header 2</th>
+  //             <th>Header 3</th>
+  //             <th>Header 4</th>
+  //             <th>Header 5</th>
+  //           </tr>
+  //         </thead>
+
+  //         <tbody>
+  //           <tr>
+  //             <td>Content 3</td>
+  //             <td>Content 3</td>
+  //             <td>Content 3</td>
+  //             <td>Content 3</td>
+  //             <td>Content 3</td>
+  //           </tr>
+  //         </tbody>
+  //       </table>
+  //     </StyledCharacter>
+  //   );
 
   return <LineLoader />;
 };
