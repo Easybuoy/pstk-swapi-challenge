@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { LOADING, ERROR, SET_MOVIES, SELECT_MOVIE } from './types';
+import { LOADING, ERROR, SET_MOVIES, SELECT_MOVIE, SET_MOVIE } from './types';
 
 export const getPeople = () => dispatch => {
   dispatch({ type: LOADING });
@@ -18,7 +18,16 @@ export const getMovies = () => dispatch => {
     .finally(() => dispatch({ type: LOADING }));
 };
 
+export const getMovie = (movie_url) => dispatch => {
+
+    dispatch({ type: LOADING });
+    axios
+      .get(`https://cors-anywhere.herokuapp.com/${movie_url}`)
+      .then(res => dispatch({ type: SET_MOVIE, payload: res.data }))
+      .catch(err => dispatch({ type: ERROR, payload: err.response.data }))
+      .finally(() => dispatch({ type: LOADING }));
+  };
+
 export const selectMovie = movie => {
-    console.log(movie, 'mm')
   return { type: SELECT_MOVIE, payload: movie };
 };

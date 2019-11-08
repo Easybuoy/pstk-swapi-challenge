@@ -2,12 +2,17 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { getMovies, selectMovie } from '../../actions';
+import { getMovies, selectMovie, getMovie } from '../../actions';
 import StyledMovieListDropdown from './StyledMovieListDropdown';
 
-const MovieListDropdown = ({movies, selectMovie, getMovies}) => {
+const MovieListDropdown = ({
+  movies,
+  selectMovie,
+  getMovies,
+  getMovie,
+  selectedMovie
+}) => {
   const [movieValue, setMovieValue] = useState('');
-
 
   useEffect(() => {
     getMovies();
@@ -20,6 +25,7 @@ const MovieListDropdown = ({movies, selectMovie, getMovies}) => {
 
     setMovieValue(value);
     selectMovie(value);
+    getMovie(value);
   };
 
   return (
@@ -32,11 +38,7 @@ const MovieListDropdown = ({movies, selectMovie, getMovies}) => {
         {movies
           .sort((a, b) => new Date(a.release_date) - new Date(b.release_date))
           .map((movie, i) => (
-            <option
-              key={movie.title}
-              value={movie.episode_id}
-              onChange={handleChange}
-            >
+            <option key={movie.title} value={movie.url} onChange={handleChange}>
               {movie.title}
             </option>
           ))}
@@ -55,10 +57,11 @@ const mapStateToProps = state => ({
   loading: state.loading,
   error: state.error,
   movies: state.swapi.movies,
+  movie: state.swapi.movie,
   selectedMovie: state.swapi.selectedMovie
 });
 
 export default connect(
   mapStateToProps,
-  { getMovies, selectMovie }
+  { getMovies, selectMovie, getMovie }
 )(MovieListDropdown);

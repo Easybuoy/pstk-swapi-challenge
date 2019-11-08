@@ -1,18 +1,26 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+
+import { getMovie } from '../../actions';
 import StarWarsImage from '../../assets/images/star-wars.png';
 
-const CharacterList = ({ selectedMovie }) => {
+const CharacterList = ({ selectedMovie, getMovie }) => {
   console.log(selectedMovie);
   if (!selectedMovie) {
     console.log('eee');
     return (
       <div>
-        <img src={StarWarsImage} style={{width: '500px', height: '500px'}} alt="Star Wars" />
+        <img
+          src={StarWarsImage}
+          style={{ width: '500px', height: '500px' }}
+          alt="Star Wars"
+        />
       </div>
     );
   }
+
+//   getMovie();
   return <div>Character List</div>;
 };
 
@@ -29,6 +37,6 @@ const mapStateToProps = state => ({
 });
 
 export default connect(
-  mapStateToProps
-  // { getMovies }
+  mapStateToProps,
+  { getMovie }
 )(CharacterList);

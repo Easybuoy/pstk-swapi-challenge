@@ -1,7 +1,8 @@
-import { SET_MOVIES, SELECT_MOVIE } from '../actions/types';
+import { SET_MOVIES, SELECT_MOVIE, SET_MOVIE } from '../actions/types';
 
 const initialState = {
   movies: [],
+  movie: {},
   selectedMovie: ''
 };
 
@@ -11,6 +12,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         movies: action.payload
+      };
+    case SET_MOVIE:
+      return {
+        ...state,
+        movie: action.payload
       };
     case SELECT_MOVIE:
       return {
