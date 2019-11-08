@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import StyledCharacter from './StyledCharacter';
 import { formatGender, calculateHeights, formatHeight } from '../../utils';
-import { LineLoader } from '../../styles';
+import PreLoader from '../Common/PreLoader';
 
 const Character = ({ characters }) => {
   if (characters.length > 0) {
@@ -40,33 +40,8 @@ const Character = ({ characters }) => {
     );
   }
 
-  //   return (
-  //     <StyledCharacter>
-  //       <table className="fl-table">
-  //         <thead>
-  //           <tr>
-  //             <th>Header 1</th>
-  //             <th>Header 2</th>
-  //             <th>Header 3</th>
-  //             <th>Header 4</th>
-  //             <th>Header 5</th>
-  //           </tr>
-  //         </thead>
 
-  //         <tbody>
-  //           <tr>
-  //             <td>Content 3</td>
-  //             <td>Content 3</td>
-  //             <td>Content 3</td>
-  //             <td>Content 3</td>
-  //             <td>Content 3</td>
-  //           </tr>
-  //         </tbody>
-  //       </table>
-  //     </StyledCharacter>
-  //   );
-
-  return <LineLoader />;
+  return <PreLoader />;
 };
 
 Character.propTypes = {
