@@ -5,13 +5,15 @@ import PropTypes from 'prop-types';
 import { getMovies } from '../../actions';
 
 const MovieListDropdown = props => {
-  console.log(props.movies);
   const [movieValue, setMovieValue] = useState('');
+
+  const { movies } = props;
   console.log(movieValue);
+  console.log(movies);
   useEffect(() => {
-    // Update the document title using the browser API
-    // props.getMovies();
+    props.getMovies();
     setMovieValue('Select Movie');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleChange = e => {
@@ -24,9 +26,18 @@ const MovieListDropdown = props => {
         <option value="Select Movie" disabled>
           Select Movie
         </option>
-        <option value="me" onChange={handleChange}>
-          Me
-        </option>
+
+        {movies
+          .sort((a, b) => new Date(b.release_date) - new Date(a.release_date))
+          .map((movie, i) => (
+            <option
+              key={movie.title}
+              value={movie.episode_id}
+              onChange={handleChange}
+            >
+              {movie.title}
+            </option>
+          ))}
       </select>
     </div>
   );
@@ -34,13 +45,13 @@ const MovieListDropdown = props => {
 
 MovieListDropdown.propTypes = {
   loading: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired,
+  error: PropTypes.object.isRequired,
   getMovies: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
   loading: state.loading,
-  errors: state.errors,
+  error: state.error,
   movies: state.swapi.movies
 });
 
