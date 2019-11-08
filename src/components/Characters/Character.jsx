@@ -25,7 +25,7 @@ const Character = ({ characters }) => {
                 <tr key={character.name}>
                   <td>{character.name}</td>
                   <td>{formatGender(character.gender)}</td>
-                  <td>{`${character.height}cm (${calculateFeet}ft/${calculateInches}in)`}</td>
+                  <td>{`${character.height}cm (${calculateFeet(character.height)}ft/${calculateInches(character.height)}in)`}</td>
                 </tr>
               );
             })}
