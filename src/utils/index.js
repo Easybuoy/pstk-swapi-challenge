@@ -13,6 +13,6 @@ export const formatGender = gender => {
 export const calculateHeight = (array) => {
   return array.reduce((a, b) =>{
     console.log(a, b)
-    return a + b.height
+    return a + parseInt(b.height)
   }, 0)
 }
