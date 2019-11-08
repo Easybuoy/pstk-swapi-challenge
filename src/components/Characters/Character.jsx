@@ -32,7 +32,7 @@ const Character = ({ characters }) => {
             <tr>
               <td></td>
               <td></td>
-              <td>{calculateHeights(characters)}</td>
+              <td>{`Total: ${calculateHeights(characters)}`}</td>
             </tr>
           </tbody>
         </table>
@@ -48,8 +48,6 @@ Character.propTypes = {
   loading: PropTypes.object.isRequired,
   error: PropTypes.object.isRequired,
   characters: PropTypes.array.isRequired,
-  movies: PropTypes.array.isRequired,
-  selectedMovie: PropTypes.string.isRequired
 };
 
 const mapStateToProps = state => ({
