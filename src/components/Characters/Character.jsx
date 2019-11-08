@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import StyledCharacter from './StyledCharacter';
-import { formatGender, calculateHeights, calculateFeet, calculateInches, formatHeight } from '../../utils';
+import { formatGender, calculateHeights, formatHeight } from '../../utils';
 import { LineLoader } from '../../styles';
 
 const Character = ({ characters }) => {

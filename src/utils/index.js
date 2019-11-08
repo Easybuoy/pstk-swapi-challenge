@@ -17,7 +17,7 @@ export const calculateHeights = array => {
 };
 
 export const calculateFeet = height => {
-  return Math.round(height / 30.48);
+  return parseInt(height / 30.48);
 };
 
 export const calculateInches = height => {
