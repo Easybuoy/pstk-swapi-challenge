@@ -17,11 +17,11 @@ export const calculateHeights = array => {
 };
 
 export const calculateFeet = height => {
-  return height * 30.48;
+  return Math.round(height / 30.48);
 };
 
 export const calculateInches = height => {
-  return height / 2.54;
+  return Math.round(height / 2.54).toFixed(2);
 };
 
 export const formatHeight = height => {
