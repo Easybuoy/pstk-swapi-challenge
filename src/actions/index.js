@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { LOADING, ERROR, SET_MOVIES } from './types';
+import { LOADING, ERROR, SET_MOVIES, SELECT_MOVIE } from './types';
 
 export const getPeople = () => dispatch => {
   dispatch({ type: LOADING });
@@ -16,4 +16,9 @@ export const getMovies = () => dispatch => {
     .then(res => dispatch({ type: SET_MOVIES, payload: res.data.results }))
     .catch(err => dispatch({ type: ERROR, payload: err.response.data }))
     .finally(() => dispatch({ type: LOADING }));
+};
+
+export const selectMovie = movie => {
+    console.log(movie, 'mm')
+  return { type: SELECT_MOVIE, payload: movie };
 };

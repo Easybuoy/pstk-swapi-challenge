@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { getMovies } from '../../actions';
+import { getMovies, selectMovie } from '../../actions';
 
 const MovieListDropdown = props => {
   const [movieValue, setMovieValue] = useState('');
@@ -16,9 +16,12 @@ const MovieListDropdown = props => {
   }, []);
 
   const handleChange = e => {
-    setMovieValue(e.target.value);
+    const { value } = e.target;
+    console.log(value)
+    setMovieValue(value);
+    props.selectMovie(value);
   };
-
+console.log(props)
   return (
     <div>
       <select value={movieValue} onChange={handleChange}>
@@ -51,10 +54,11 @@ MovieListDropdown.propTypes = {
 const mapStateToProps = state => ({
   loading: state.loading,
   error: state.error,
-  movies: state.swapi.movies
+  movies: state.swapi.movies,
+  selectedMovie: state.swapi.selectedMovie
 });
 
 export default connect(
   mapStateToProps,
-  { getMovies }
+  { getMovies, selectMovie }
 )(MovieListDropdown);
