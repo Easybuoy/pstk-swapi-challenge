@@ -10,7 +10,6 @@ const MovieListDropdown = ({
   selectMovie,
   getMovies,
   getMovie,
-  selectedMovie
 }) => {
   const [movieValue, setMovieValue] = useState('');
 
@@ -22,7 +21,7 @@ const MovieListDropdown = ({
 
   const handleChange = e => {
     const { value } = e.target;
-
+    console.log(value)
     setMovieValue(value);
     selectMovie(value);
     getMovie(value);

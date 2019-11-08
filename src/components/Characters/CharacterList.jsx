@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import StarWarsImage from '../../assets/images/star-wars.png';
+import Character from './Character';
 
 const CharacterList = ({ selectedMovie, movie }) => {
   if (!selectedMovie) {
@@ -16,22 +17,28 @@ const CharacterList = ({ selectedMovie, movie }) => {
       </div>
     );
   }
+  if (movie.characters) {
+    return (
+      <div>
+        Character List
+        <Character characterUrls={movie.characters} />
+      </div>
+    );
+  }
 
-  return <div>Character List</div>;
+  return <p>Loading</p>;
 };
 
 CharacterList.propTypes = {
   loading: PropTypes.object.isRequired,
   error: PropTypes.object.isRequired,
   movie: PropTypes.object.isRequired,
-  movies: PropTypes.array.isRequired,
   selectedMovie: PropTypes.string.isRequired
 };
 
 const mapStateToProps = state => ({
   loading: state.loading,
   error: state.error,
-  movies: state.swapi.movies,
   movie: state.swapi.movie,
   selectedMovie: state.swapi.selectedMovie
 });

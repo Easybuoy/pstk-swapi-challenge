@@ -1,9 +1,15 @@
-import { SET_MOVIES, SELECT_MOVIE, SET_MOVIE } from '../actions/types';
+import {
+  SET_MOVIES,
+  SELECT_MOVIE,
+  SET_MOVIE,
+  SET_CHARACTERS
+} from '../actions/types';
 
 const initialState = {
   movies: [],
   movie: {},
-  selectedMovie: ''
+  selectedMovie: '',
+  characters: []
 };
 
 export default (state = initialState, action) => {
@@ -22,6 +28,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         selectedMovie: action.payload
+      };
+    case SET_CHARACTERS:
+      return {
+        ...state,
+        characters: action.payload
       };
     default:
       return state;
