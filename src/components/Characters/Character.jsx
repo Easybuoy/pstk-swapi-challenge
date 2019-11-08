@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import StyledCharacter from './StyledCharacter';
-import { formatGender, calculateHeights, calculateFeet, calculateInches } from '../../utils';
+import { formatGender, calculateHeights, calculateFeet, calculateInches, formatHeight } from '../../utils';
 import { LineLoader } from '../../styles';
 
 const Character = ({ characters }) => {
@@ -25,7 +25,7 @@ const Character = ({ characters }) => {
                 <tr key={character.name}>
                   <td>{character.name}</td>
                   <td>{formatGender(character.gender)}</td>
-                  <td>{`${character.height}cm (${calculateFeet(character.height)}ft/${calculateInches(character.height)}in)`}</td>
+                  <td>{formatHeight(character.height)}</td>
                 </tr>
               );
             })}
