@@ -21,7 +21,7 @@ const CharacterList = ({ selectedMovie, movie }) => {
     return (
       <div>
         Character List
-        <Character characterUrls={movie.characters} />
+        <Character />
       </div>
     );
   }
