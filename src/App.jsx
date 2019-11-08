@@ -1,10 +1,10 @@
 import React from 'react';
-import './App.css';
+import MovieListDropdown from './components/Common/MovieListDropdown';
 
 function App() {
   return (
-    <div className="App">
-     Pstk
+    <div>
+      <MovieListDropdown />
     </div>
   );
 }

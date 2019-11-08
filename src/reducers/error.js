@@ -1,15 +1,15 @@
-import { LOADING } from '../actions/types';
+import { ERROR } from '../actions/types';
 
 const initialState = {
-  loading: false
+  error: {}
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case LOADING:
+    case ERROR:
       return {
         ...state,
-        loading: !state.loading
+        error: action.payload
       };
     default:
       return state;

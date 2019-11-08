@@ -1,15 +1,15 @@
-import { LOADING } from '../actions/types';
+import { SET_MOVIES } from '../actions/types';
 
 const initialState = {
-  loading: false
+  movies: []
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case LOADING:
+    case SET_MOVIES:
       return {
         ...state,
-        loading: !state.loading
+        movies: action.payload
       };
     default:
       return state;
