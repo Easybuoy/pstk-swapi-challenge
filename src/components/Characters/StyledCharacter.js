@@ -1,10 +1,9 @@
 import styled from 'styled-components';
 
 const Character = styled.div`
-  /* .table-wrapper { */
-    margin: 10px 70px 70px;
-    box-shadow: 0px 35px 50px rgba(0, 0, 0, 0.2);
-  /* } */
+  margin: 10px 70px 70px;
+  box-shadow: 0px 35px 50px rgba(0, 0, 0, 0.2);
+  font-family: 'Open Sans', sans-serif;
 
   .fl-table {
     border-radius: 5px;

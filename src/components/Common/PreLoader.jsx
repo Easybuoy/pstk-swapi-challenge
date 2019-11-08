@@ -1,5 +1,5 @@
 import React from 'react';
-import { Triple } from 'react-preloading-component';
+import { Pulse } from 'react-preloading-component';
 import styled from 'styled-components';
 
 const StyledPreLoader = styled.div`
@@ -10,7 +10,7 @@ const StyledPreLoader = styled.div`
 export default function PreLoader() {
   return (
     <StyledPreLoader>
-      <Triple color="#CC0000" size={80} />
+      <Pulse color="#CC0000" size={20} />
     </StyledPreLoader>
   );
 }
