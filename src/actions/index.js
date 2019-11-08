@@ -13,7 +13,6 @@ import {
 export const getMovies = () => dispatch => {
   dispatch({ type: LOADING });
   axios
-    //  http://anyorigin.com/go?url=https://swapi.co/api/films
     .get('https://cors-anywhere.herokuapp.com/https://swapi.co/api/films')
     .then(res => dispatch({ type: SET_MOVIES, payload: res.data.results }))
     .catch(err => {
