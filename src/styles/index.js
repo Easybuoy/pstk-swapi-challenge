@@ -51,10 +51,10 @@ const MovieListDropdown = styled.div`
     text-align: center;
     font-family: 'Supermercado One', cursive;
     font-size: 3rem;
-    text-shadow: -1px -1px 0 yellow,  
-    2px -1px 0 yellow,
-    -1px 1px 0 yellow,
-     1px 1px 0 yellow;
+    text-shadow: -1px -1px 0 #f7e523,  
+    2px -1px 0 #f7e523,
+    -1px 1px 0 #f7e523,
+     1px 1px 0 #f7e523;
   }
 
   select {
@@ -144,13 +144,13 @@ const Character = styled.div`
   }
 
   .fl-table thead th {
-    color: #ffffff;
-    background: #4fc3a1;
+    color: #000;
+    background: #f7e523;
   }
 
   .fl-table thead th:nth-child(odd) {
-    color: #ffffff;
-    background: #324960;
+    color: #f7e523;
+    background: #000;
   }
 
   .fl-table tr:nth-child(even) {
