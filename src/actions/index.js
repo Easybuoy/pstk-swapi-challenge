@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { toast } from 'react-toastify';
 
 import {
   LOADING,
@@ -9,6 +8,7 @@ import {
   SET_MOVIE,
   SET_CHARACTERS
 } from './types';
+import { toast } from 'react-toastify';
 
 export const getMovies = () => dispatch => {
   dispatch({ type: LOADING });
@@ -16,14 +16,14 @@ export const getMovies = () => dispatch => {
     .get('https://cors-anywhere.herokuapp.com/https://swapi.co/api/films')
     .then(res => dispatch({ type: SET_MOVIES, payload: res.data.results }))
     .catch(err => {
-      if (typeof err.message == 'string') {
-        dispatch({ type: ERROR, payload: err.message });
-        toast.error(err.message)
+      if (err.response) {
+        dispatch({ type: ERROR, payload: err.response.data.detail });
+        toast.error(err.response.data.detail);
       } else {
-        dispatch({ type: ERROR, payload: err.response.data });
+        dispatch({ type: ERROR, payload: err.message });
+        toast.error(err.message);
       }
     })
-
     .finally(() => dispatch({ type: LOADING }));
 };
 
@@ -35,7 +35,15 @@ export const getMovie = movie_url => dispatch => {
       dispatch({ type: SET_MOVIE, payload: res.data });
       dispatch(getCharacter(res.data.characters));
     })
-    .catch(err => dispatch({ type: ERROR, payload: err.response.data }))
+    .catch(err => {
+      if (err.response) {
+        dispatch({ type: ERROR, payload: err.response.data.detail });
+        toast.error(err.response.data.detail);
+      } else {
+        dispatch({ type: ERROR, payload: err.message });
+        toast.error(err.message);
+      }
+    })
     .finally(() => dispatch({ type: LOADING }));
 };
 
@@ -49,7 +57,15 @@ export const getCharacter = character_urls => dispatch => {
     )
   )
     .then(res => dispatch(setCharacters(res)))
-    .catch(err => dispatch({ type: ERROR, payload: err.response.data }))
+    .catch(err => {
+      if (err.response) {
+        dispatch({ type: ERROR, payload: err.response.data.detail });
+        toast.error(err.response.data.detail);
+      } else {
+        dispatch({ type: ERROR, payload: err.message });
+        toast.error(err.message);
+      }
+    })
     .finally(() => dispatch({ type: LOADING }));
 };
 

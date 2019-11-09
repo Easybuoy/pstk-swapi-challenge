@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -12,7 +12,8 @@ import {
   sortHeight,
   sortName,
   calculateFeet,
-  calculateInches
+  calculateInches,
+  sortGender
 } from '../../utils';
 import PreLoader from '../Common/PreLoader';
 
@@ -30,6 +31,19 @@ export const sortArrow = order => {
 const Character = ({ movie, characters, setCharacters }) => {
   const [heightOrder, setHeightOrder] = useState(undefined);
   const [nameOrder, setNameOrder] = useState(undefined);
+  const [genderValue] = useState('Select Gender');
+  const [stateCharacters, setStateCharacters] = useState([]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (characters.length > 0) {
+        setStateCharacters(characters);
+      }
+    }, 3000);
+    return () => clearTimeout(timer);
+    // setStateCharacters(characters);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  });
 
   const sortNameField = array => {
     let sorted = [];
@@ -61,6 +75,11 @@ const Character = ({ movie, characters, setCharacters }) => {
     setCharacters(sorted);
   };
 
+  const sortGenderField = (array, letter) => {
+    const sorted = sortGender(array, letter);
+    setCharacters(sorted);
+  };
+
   if (characters.length > 0) {
     const totalHeight = calculateHeights(characters);
     return (
@@ -76,7 +95,21 @@ const Character = ({ movie, characters, setCharacters }) => {
               >
                 Name {sortArrow(nameOrder)}
               </th>
-              <th>Gender</th>
+              <th className="toggle-gender">
+                Gender
+                <select
+                  value={genderValue}
+                  onChange={e =>
+                    sortGenderField(stateCharacters, e.target.value)
+                  }
+                >
+                  <option defaultValue="Select Gender" disabled>
+                    Select Gender
+                  </option>
+                  <option value="M">M</option>
+                  <option value="F">F</option>
+                </select>
+              </th>
               <th
                 onDoubleClick={() => sortHeightField(characters)}
                 className="toggle"

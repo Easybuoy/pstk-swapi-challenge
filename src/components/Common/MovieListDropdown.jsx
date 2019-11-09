@@ -2,8 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
+import PreLoader from '../Common/PreLoader';
 import { getMovies, selectMovie, getMovie } from '../../actions';
-import { MovieListDropdown as StyledMovieListDropdown } from '../../styles';
+import {
+  MovieListDropdown as StyledMovieListDropdown,
+  Select
+} from '../../styles';
 
 const MovieListDropdown = ({ movies, selectMovie, getMovies, getMovie }) => {
   const [movieValue, setMovieValue] = useState('');
@@ -25,7 +29,7 @@ const MovieListDropdown = ({ movies, selectMovie, getMovies, getMovie }) => {
 
   if (movies.length > 0) {
     dropDownItems = (
-      <select value={movieValue} onChange={handleChange}>
+      <Select value={movieValue} onChange={handleChange}>
         <option value="Select Movie" disabled>
           Select Star Wars Movie
         </option>
@@ -37,8 +41,10 @@ const MovieListDropdown = ({ movies, selectMovie, getMovies, getMovie }) => {
               {movie.title}
             </option>
           ))}
-      </select>
+      </Select>
     );
+  } else {
+    dropDownItems = <PreLoader />;
   }
 
   return (
@@ -51,14 +57,14 @@ const MovieListDropdown = ({ movies, selectMovie, getMovies, getMovie }) => {
 };
 
 MovieListDropdown.propTypes = {
-  loading: PropTypes.object.isRequired,
-  error: PropTypes.object.isRequired,
+  loading: PropTypes.bool.isRequired,
+  error: PropTypes.string.isRequired,
   getMovies: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
-  loading: state.loading,
-  error: state.error,
+  loading: state.loading.loading,
+  error: state.error.error,
   movies: state.swapi.movies,
   movie: state.swapi.movie,
   selectedMovie: state.swapi.selectedMovie

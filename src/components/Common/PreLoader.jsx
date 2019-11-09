@@ -7,7 +7,7 @@ import { PreLoader as StyledPreLoader } from '../../styles'
 export default function PreLoader() {
   return (
     <StyledPreLoader>
-      <Pulse color="#f7e523" size={20} />
+      <Pulse color="#f7e523" size={15} />
     </StyledPreLoader>
   );
 }
