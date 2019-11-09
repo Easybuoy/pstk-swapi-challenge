@@ -65,6 +65,25 @@ const Select = styled.select`
   background-size: 3em auto, 100%;
   border-color: black;
 
+  @media (max-width: 1100px) {
+    width: 30%;
+  }
+
+  @media (max-width: 820px) {
+    width: 40%;
+  }
+
+  @media (max-width: 600px) {
+    width: 50%;
+  }
+
+  @media (max-width: 500px) {
+    width: 65%;
+  }
+
+  @media (max-width: 375px) {
+    width: 85%;
+  }
   &:hover {
     cursor: pointer;
     -webkit-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.75);
@@ -109,6 +128,30 @@ const CharacterList = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+
+  @media (max-width: 800px) {
+    img {
+      width: 600px;
+    }
+  }
+
+  @media (max-width: 650px) {
+    img {
+      width: 500px;
+    }
+  }
+
+  @media (max-width: 550px) {
+    img {
+      width: 400px;
+    }
+  }
+
+  @media (max-width: 430px) {
+    img {
+      display: none;
+    }
+  }
 `;
 
 const Character = styled.div`
@@ -116,6 +159,9 @@ const Character = styled.div`
   font-family: 'Open Sans', sans-serif;
   width: 100%;
 
+  @media (max-width: 750px) {
+    margin: 0;
+  }
   .fl-table {
     border-radius: 5px;
     font-size: 12px;
@@ -133,7 +179,8 @@ const Character = styled.div`
     .toggle-gender {
       display: flex;
       justify-content: space-evenly;
-
+        
+      
       select {
         display: block;
         font-family: 'Open Sans', sans-serif;
@@ -157,6 +204,9 @@ const Character = styled.div`
         background-size: 3em auto, 100%;
         border-color: black;
 
+        @media (max-width: 750px) {
+          width: 75%;
+        }
         &:hover {
           cursor: pointer;
           -webkit-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.75);
@@ -210,75 +260,6 @@ const Character = styled.div`
   .fl-table tr:nth-child(even) {
     background: #f8f8f8;
   }
-
-  /* Responsive */
-
-  @media (max-width: 767px) {
-    .fl-table {
-      display: block;
-      width: 100%;
-    }
-    .table-wrapper:before {
-      content: 'Scroll horizontally >';
-      display: block;
-      text-align: right;
-      font-size: 11px;
-      color: white;
-      padding: 0 0 10px;
-    }
-    .fl-table thead,
-    .fl-table tbody,
-    .fl-table thead th {
-      display: block;
-    }
-    .fl-table thead th:last-child {
-      border-bottom: none;
-    }
-    .fl-table thead {
-      float: left;
-    }
-    .fl-table tbody {
-      width: auto;
-      position: relative;
-      overflow-x: auto;
-    }
-    .fl-table td,
-    .fl-table th {
-      padding: 20px 0.625em 0.625em 0.625em;
-      height: 60px;
-      vertical-align: middle;
-      box-sizing: border-box;
-      overflow-x: hidden;
-      overflow-y: auto;
-      width: 120px;
-      font-size: 13px;
-      text-overflow: ellipsis;
-    }
-    .fl-table thead th {
-      text-align: left;
-      border-bottom: 1px solid #f7f7f9;
-    }
-    .fl-table tbody tr {
-      display: table-cell;
-    }
-    .fl-table tbody tr:nth-child(odd) {
-      background: none;
-    }
-    .fl-table tr:nth-child(even) {
-      background: transparent;
-    }
-    .fl-table tr td:nth-child(odd) {
-      background: #f8f8f8;
-      border-right: 1px solid #e6e4e4;
-    }
-    .fl-table tr td:nth-child(even) {
-      border-right: 1px solid #e6e4e4;
-    }
-    .fl-table tbody td {
-      display: block;
-      text-align: center;
-    }
-  }
 `;
 
 const PreLoader = styled.div`
@@ -300,13 +281,19 @@ const MovieDetails = styled.div`
     display: flex;
     flex-wrap: wrap;
 
+    @media (max-width: 820px) {
+      height: auto;
+    }
+
     .content-details {
       display: flex;
       flex-wrap: wrap;
       width: 100%;
       justify-content: space-evenly;
       padding: 2rem;
-
+      @media (max-width: 820px) {
+        padding: 0;
+      }
       .item {
         display: flex;
         flex-direction: column;
@@ -337,7 +324,6 @@ const Navigation = styled.nav`
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  padding: 0.5rem;
   background-color: #000;
   padding-left: 1rem;
   img {

@@ -41,7 +41,6 @@ const Character = ({ movie, characters, setCharacters }) => {
       }
     }, 3000);
     return () => clearTimeout(timer);
-    // setStateCharacters(characters);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   });
 
@@ -104,7 +103,7 @@ const Character = ({ movie, characters, setCharacters }) => {
                   }
                 >
                   <option defaultValue="Select Gender" disabled>
-                    Select Gender
+                    Filter
                   </option>
                   <option value="M">M</option>
                   <option value="F">F</option>
