@@ -21,7 +21,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --watchAll --update-snapshot",
+    "test": "react-scripts test --update-snapshot",
     "eject": "react-scripts eject",
     "coverage": "react-scripts test --update-snapshot --env=jsdom --watchAll=false --coverage",
     "coveralls": "npm run coverage && cat coverage/lcov.info | coveralls"
@@ -31,6 +31,10 @@
       "enzyme-to-json/serializer"
     ]
   },
+  "testMatch": [
+    "<rootDir>/src/**/*.(test).{js,jsx,ts,tsx}",
+    "<rootDir>/src/**/?(*.)(spec|test).{js,jsx,ts,tsx}"
+  ],
   "eslintConfig": {
     "extends": "react-app"
   },
