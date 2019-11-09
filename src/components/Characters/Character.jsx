@@ -31,7 +31,7 @@ export const sortArrow = order => {
 const Character = ({ movie, characters, setCharacters }) => {
   const [heightOrder, setHeightOrder] = useState(undefined);
   const [nameOrder, setNameOrder] = useState(undefined);
-  const [genderValue] = useState('Select Gender');
+  const [genderValue] = useState('Filter');
   const [stateCharacters, setStateCharacters] = useState([]);
 
   useEffect(() => {
