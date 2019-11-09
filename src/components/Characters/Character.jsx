@@ -1,38 +1,41 @@
-import React,  {useState} from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { setCharacters } from '../../actions';
 import StyledCharacter from './StyledCharacter';
-import { formatGender, calculateHeights, formatHeight } from '../../utils';
+import {
+  formatGender,
+  calculateHeights,
+  formatHeight,
+  sortHeight
+} from '../../utils';
 import PreLoader from '../Common/PreLoader';
 
-
-
 const Character = ({ characters, setCharacters }) => {
-    const [heightOrder, setheightOrder] = useState(0)
+  const [heightOrder, setheightOrder] = useState(0);
 
-    const sortNameField = array => {
-        console.log(array);
-      };
-      
-      const sortHeightField = array => {
-          if (heightOrder == 0) {
-              
-          }
-        const sorted = array.sort((a, b) => {
-          return a.height - b.height;
-        });
-        console.log(sorted);
-        setCharacters([])
-        setCharacters(sorted)
-        return sorted;
-      
-        // array.sort((a, b) => b - a); // For descending sort
-      };
+  const sortNameField = array => {
+    console.log(array);
+  };
+
+  const sortHeightField = array => {
+    let sorted = [];
+    if (heightOrder === 0) {
+      sorted = sortHeight(array, 'asc');
+      setheightOrder(1);
+    }
+
+    if (heightOrder === 1) {
+      sorted = sortHeight(array, 'dsc');
+      setheightOrder(0);
+    }
+    setCharacters([]);
+    setCharacters(sorted);
+    return sorted;
+  };
 
   if (characters.length > 0) {
-
     console.log(characters);
     return (
       <StyledCharacter>
