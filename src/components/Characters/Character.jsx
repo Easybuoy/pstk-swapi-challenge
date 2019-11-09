@@ -29,7 +29,6 @@ export const sortArrow = order => {
 const Character = ({ characters, setCharacters }) => {
   const [heightOrder, setHeightOrder] = useState(undefined);
   const [nameOrder, setNameOrder] = useState(undefined);
-  const [genderOrder, setGenderOrder] = useState(undefined);
 
   const sortNameField = array => {
     let sorted = [];
@@ -61,21 +60,6 @@ const Character = ({ characters, setCharacters }) => {
     setCharacters(sorted);
   };
 
-  const sortGenderField = array => {
-    let sorted = [];
-    if (genderOrder === 0 || genderOrder === undefined) {
-      sorted = sortName(array, 'asc');
-      setGenderOrder(1);
-    }
-
-    if (genderOrder === 1) {
-      sorted = sortName(array, 'dsc');
-      setGenderOrder(0);
-    }
-    setCharacters([]);
-    setCharacters(sorted);
-  };
-
   if (characters.length > 0) {
     const totalHeight = calculateHeights(characters);
     return (
@@ -83,22 +67,11 @@ const Character = ({ characters, setCharacters }) => {
         <table className="fl-table">
           <thead>
             <tr>
-              <th
-                onDoubleClick={() => sortNameField(characters)}
-                className="toggle"
-              >
+              <th onDoubleClick={() => sortNameField(characters)} className="toggle">
                 Name {sortArrow(nameOrder)}
               </th>
-              <th
-                onDoubleClick={() => sortGenderField(characters)}
-                className="toggle"
-              >
-                Gender {sortArrow(genderOrder)}
-              </th>
-              <th
-                onDoubleClick={() => sortHeightField(characters)}
-                className="toggle"
-              >
+              <th>Gender</th>
+              <th onDoubleClick={() => sortHeightField(characters)} className="toggle">
                 Height {sortArrow(heightOrder)}
               </th>
             </tr>
