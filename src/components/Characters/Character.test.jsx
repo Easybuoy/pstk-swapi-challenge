@@ -4,14 +4,16 @@ import { shallow, mount } from 'enzyme';
 import mock from '../../__mocks__/mock';
 import { Character } from './Character';
 
-const { getMovieMock, getMoviesMock } = mock;
+const { getMovieMock, getMoviesMock, getCharactersMock } = mock;
 describe('<Character />', () => {
   const props = {
     movie: getMovieMock,
+    characters: getCharactersMock,
     movies: getMoviesMock,
     getMovies: jest.fn(),
     selectMovie: jest.fn(),
-    getMovie: jest.fn()
+    getMovie: jest.fn(),
+    setCharacters: jest.fn()
   };
 
   it('renders the Character component correctly', () => {
@@ -23,6 +25,16 @@ describe('<Character />', () => {
     const wrapper = mount(<Character {...props} />);
 
     wrapper.find('select').simulate('change', { preventDefault() {} });
-    expect(props.getMovie).toBeCalled();
+    expect(wrapper).toMatchSnapshot();
+    expect(props.setCharacters).toBeCalled();
   });
+
+  it('should call the mock onDOubleCLick function', () => {
+    const wrapper = mount(<Character {...props} />);
+
+    wrapper.find('select').simulate('click', { preventDefault() {} });
+    expect(wrapper).toMatchSnapshot();
+    expect(props.setCharacters).toBeCalled();
+  });
+  
 });

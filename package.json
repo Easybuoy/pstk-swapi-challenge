@@ -30,7 +30,7 @@
     "snapshotSerializers": [
       "enzyme-to-json/serializer"
     ],
-    "coveragePathIgnorePatterns": ["__mocks__", "src/serviceWorker.js", "src/index.js", "src/store.js"]
+    "coveragePathIgnorePatterns": ["__mocks__", "src/serviceWorker.js", "src/index.js", "src/store.js", "src/App.jsx"]
   },
   "testMatch": [
     "<rootDir>/src/**/*.(test).{js,jsx,ts,tsx}",

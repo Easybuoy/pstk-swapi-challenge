@@ -125,5 +125,6 @@ export default {
       url: 'https://swapi.co/api/films/2/'
     }
   ],
-  getNetworkErrorMock: { message: 'Network Error' }
+  getNetworkErrorMock: { message: 'Network Error' },
+  getCharactersMock: [{name: 'Eze', gender: 'male', height: "300"}]
 };
