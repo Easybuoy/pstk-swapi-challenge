@@ -9,7 +9,9 @@ import {
   calculateHeights,
   formatHeight,
   sortHeight,
-  sortName
+  sortName,
+  calculateFeet,
+  calculateInches
 } from '../../utils';
 import PreLoader from '../Common/PreLoader';
 
@@ -60,6 +62,7 @@ const Character = ({ characters, setCharacters }) => {
 
   if (characters.length > 0) {
     console.log(characters);
+    const totalHeight = calculateHeights(characters);
     return (
       <StyledCharacter>
         <table className="fl-table">
@@ -87,7 +90,7 @@ const Character = ({ characters, setCharacters }) => {
             <tr>
               <td></td>
               <td></td>
-              <td>{`Total: ${calculateHeights(characters)}`}</td>
+              <td>{`Total: ${totalHeight}cm (${calculateFeet(totalHeight)}ft/${calculateInches(totalHeight)}in)`}</td>
             </tr>
           </tbody>
         </table>
