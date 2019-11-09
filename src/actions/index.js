@@ -48,11 +48,15 @@ export const getCharacter = character_urls => dispatch => {
         .then(data => data.data)
     )
   )
-    .then(res => dispatch({ type: SET_CHARACTERS, payload: res }))
+    .then(res => dispatch(setCharacters(res)))
     .catch(err => dispatch({ type: ERROR, payload: err.response.data }))
     .finally(() => dispatch({ type: LOADING }));
 };
 
 export const selectMovie = movie => {
   return { type: SELECT_MOVIE, payload: movie };
+};
+
+export const setCharacters = characters => {
+  return { type: SET_CHARACTERS, payload: characters };
 };
