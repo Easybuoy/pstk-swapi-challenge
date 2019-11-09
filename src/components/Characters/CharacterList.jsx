@@ -8,7 +8,6 @@ import { CharacterList as StyledCharacterList } from '../../styles';
 import Character from './Character';
 
 const CharacterList = ({ selectedMovie, movie }) => {
-  console.log(movie);
   if (!selectedMovie) {
     return (
       <StyledCharacterList>
