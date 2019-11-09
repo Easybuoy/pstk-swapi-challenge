@@ -5,7 +5,13 @@ const MovieListDropdown = styled.div`
   flex-wrap: wrap;
   width: 100%;
   justify-content: center;
-  /* background-color: red; */
+
+  h1 {
+    width: 100%;
+    text-align: center;
+    font-family: 'Supermercado One', cursive;
+    font-size: 3rem;
+  }
 
   select {
     margin: 2rem 0;
@@ -31,9 +37,15 @@ const MovieListDropdown = styled.div`
     background-repeat: no-repeat, repeat;
     background-position: right 0.7em top 50%, 0 0;
     background-size: 0.65em auto, 100%;
+    border-color: black;
 
     &:hover {
-      border-color: #888;
+      /* border-color: #F9F500; */
+      cursor: pointer;
+      -webkit-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.75);
+      -moz-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.75);
+      box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.75);
+      transition: all 0.3s ease-in-out;
     }
 
     &:-ms-expand {
@@ -41,15 +53,14 @@ const MovieListDropdown = styled.div`
     }
 
     &:focus {
-      border-color: #aaa;
-      box-shadow: 0 0 1px 3px rgba(59, 153, 252, 0.7);
-      box-shadow: 0 0 0 3px -moz-mac-focusring;
+      box-shadow: black;
+      /* box-shadow: 0 0 0 3px -moz-mac-focusring; */
       color: #222;
       outline: none;
     }
 
     option {
-      font-weight: normal;
+      font-weight: bold;
     }
   }
 `;

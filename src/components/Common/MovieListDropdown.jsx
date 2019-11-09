@@ -28,6 +28,7 @@ const MovieListDropdown = ({
 
   return (
     <StyledMovieListDropdown>
+      <h1>Star Wars</h1>
       <select value={movieValue} onChange={handleChange}>
         <option value="Select Movie" disabled>
           Select Movie
