@@ -89,7 +89,7 @@ const Character = ({ characters, setCharacters }) => {
             <tr>
               <td></td>
               <td></td>
-              <td>{`Total: ${totalHeight}cm (${calculateFeet(
+              <td className="total">{`Total: ${totalHeight}cm (${calculateFeet(
                 totalHeight
               )}ft/${calculateInches(totalHeight)}in)`}</td>
             </tr>

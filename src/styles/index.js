@@ -131,6 +131,10 @@ const Character = styled.div`
     .toggle {
       cursor: pointer;
     }
+
+    .total {
+      font-weight: bold;
+    }
   }
 
   .fl-table td,
