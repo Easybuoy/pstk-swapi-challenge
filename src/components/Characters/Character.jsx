@@ -146,7 +146,8 @@ const Character = ({ movie, characters, setCharacters }) => {
 Character.propTypes = {
   loading: PropTypes.object.isRequired,
   error: PropTypes.object.isRequired,
-  characters: PropTypes.array.isRequired
+  characters: PropTypes.array.isRequired,
+  setCharacters: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
