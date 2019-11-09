@@ -232,4 +232,9 @@ const Character = styled.div`
   }
 `;
 
-export { LineLoader, MovieListDropdown, Character, CharacterList };
+const PreLoader = styled.div`
+  text-align: center;
+  margin: 5rem 0;
+`;
+
+export { LineLoader, MovieListDropdown, Character, CharacterList, PreLoader };
