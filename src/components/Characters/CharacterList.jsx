@@ -6,8 +6,10 @@ import PreLoader from '../Common/PreLoader';
 import StarWarsImage from '../../assets/images/star-wars.png';
 import { CharacterList as StyledCharacterList } from '../../styles';
 import Character from './Character';
+import MovieDetails from '../Common/MovieDetails';
 
 const CharacterList = ({ selectedMovie, movie }) => {
+  console.log(movie)
   if (!selectedMovie) {
     return (
       <StyledCharacterList>
@@ -18,6 +20,7 @@ const CharacterList = ({ selectedMovie, movie }) => {
   if (movie.characters) {
     return (
       <StyledCharacterList>
+        <OpeningCrawl opening_crawl={movie.opening_crawl}/>
         <Character />
       </StyledCharacterList>
     );

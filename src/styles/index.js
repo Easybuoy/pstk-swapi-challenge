@@ -237,4 +237,16 @@ const PreLoader = styled.div`
   margin: 5rem 0;
 `;
 
-export { LineLoader, MovieListDropdown, Character, CharacterList, PreLoader };
+const OpeningCrawl = styled.div`
+  display: flex;
+  
+`;
+
+export {
+  LineLoader,
+  MovieListDropdown,
+  Character,
+  CharacterList,
+  PreLoader,
+  OpeningCrawl
+};
