@@ -4,7 +4,7 @@ exports[`<PreLoader /> renders the PreLoader component correctly 1`] = `
 <styled.div>
   <n
     color="#f7e523"
-    size={20}
+    size={15}
   />
 </styled.div>
 `;
