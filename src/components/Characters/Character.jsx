@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
+import MovieDetails from '../Common/MovieDetails';
 import { setCharacters } from '../../actions';
 import { Character as StyledCharacter } from '../../styles';
 import {
@@ -26,7 +27,7 @@ export const sortArrow = order => {
   }
 };
 
-const Character = ({ characters, setCharacters }) => {
+const Character = ({ movie, characters, setCharacters }) => {
   const [heightOrder, setHeightOrder] = useState(undefined);
   const [nameOrder, setNameOrder] = useState(undefined);
 
@@ -64,14 +65,22 @@ const Character = ({ characters, setCharacters }) => {
     const totalHeight = calculateHeights(characters);
     return (
       <StyledCharacter>
+        <MovieDetails movie={movie} />
+
         <table className="fl-table">
           <thead>
             <tr>
-              <th onDoubleClick={() => sortNameField(characters)} className="toggle">
+              <th
+                onDoubleClick={() => sortNameField(characters)}
+                className="toggle"
+              >
                 Name {sortArrow(nameOrder)}
               </th>
               <th>Gender</th>
-              <th onDoubleClick={() => sortHeightField(characters)} className="toggle">
+              <th
+                onDoubleClick={() => sortHeightField(characters)}
+                className="toggle"
+              >
                 Height {sortArrow(heightOrder)}
               </th>
             </tr>
