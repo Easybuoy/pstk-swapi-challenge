@@ -54,3 +54,14 @@ export const sortName = (array, order) => {
         return array;
   }
 };
+
+export const sortArrow = order => {
+  switch (order) {
+    case 0:
+        return {__html: '<span>&darr;</span>'};
+    case 1:
+        return {__html: '<span>&darr;</span>'};
+    default:
+        return 
+  }
+}

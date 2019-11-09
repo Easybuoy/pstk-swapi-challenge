@@ -13,13 +13,24 @@ import {
 } from '../../utils';
 import PreLoader from '../Common/PreLoader';
 
+export const sortArrow = order => {
+  switch (order) {
+    case 0:
+      return <span>&darr;</span>;
+    case 1:
+      return <span>&uarr;</span>;
+    default:
+      return '';
+  }
+};
+
 const Character = ({ characters, setCharacters }) => {
-  const [heightOrder, setHeightOrder] = useState(0);
-  const [nameOrder, setNameOrder] = useState(0);
+  const [heightOrder, setHeightOrder] = useState(undefined);
+  const [nameOrder, setNameOrder] = useState(undefined);
 
   const sortNameField = array => {
     let sorted = [];
-    if (nameOrder === 0) {
+    if (nameOrder === 0 || nameOrder === undefined) {
       sorted = sortName(array, 'asc');
       setNameOrder(1);
     }
@@ -34,7 +45,7 @@ const Character = ({ characters, setCharacters }) => {
 
   const sortHeightField = array => {
     let sorted = [];
-    if (heightOrder === 0) {
+    if (heightOrder === 0 || heightOrder === undefined) {
       sorted = sortHeight(array, 'asc');
       setHeightOrder(1);
     }
@@ -54,9 +65,13 @@ const Character = ({ characters, setCharacters }) => {
         <table className="fl-table">
           <thead>
             <tr>
-              <th onDoubleClick={() => sortNameField(characters)}>Name</th>
+              <th onDoubleClick={() => sortNameField(characters)}>
+                Name {sortArrow(nameOrder)}
+              </th>
               <th>Gender</th>
-              <th onDoubleClick={() => sortHeightField(characters)}>Height</th>
+              <th onDoubleClick={() => sortHeightField(characters)}>
+                Height {sortArrow(heightOrder)}
+              </th>
             </tr>
           </thead>
           <tbody>
