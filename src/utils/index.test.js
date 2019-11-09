@@ -5,7 +5,8 @@ import {
   calculateInches,
   formatHeight,
   sortHeight,
-  sortName
+  sortName,
+  sortGender
 } from './index';
 
 describe('Util', () => {
@@ -99,5 +100,37 @@ describe('Util', () => {
       { name: 'John', height: 20 },
       { name: 'Ezekiel', height: 10 }
     ]);
+  });
+
+  it('test default case for sortGender', () => {
+    const testArray = [
+      { name: 'John', height: 20, gender: 'male' },
+      { name: 'Ezekiel', height: 10, gender: 'female' }
+    ];
+    const response = sortGender(testArray, 'asc');
+    expect(response).toEqual([
+      { name: 'John', height: 20, gender: 'male' },
+      { name: 'Ezekiel', height: 10, gender: 'female' }
+    ]);
+  });
+
+  it('test female case for sortGender', () => {
+    const testArray = [
+      { name: 'John', height: 20, gender: 'male' },
+      { name: 'Ezekiel', height: 10, gender: 'female' }
+    ];
+    const response = sortGender(testArray, 'F');
+    expect(response).toEqual([
+      { name: 'Ezekiel', height: 10, gender: 'female' }
+    ]);
+  });
+
+  it('test male case for sortGender', () => {
+    const testArray = [
+      { name: 'Ezekiel', height: 10, gender: 'male' },
+      { name: 'John', height: 20, gender: 'female' }
+    ];
+    const response = sortGender(testArray, 'M');
+    expect(response).toEqual([{ name: 'Ezekiel', height: 10, gender: 'male' }]);
   });
 });
