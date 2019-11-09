@@ -1,0 +1,76 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<MovieDetails /> renders the MovieDetails component correctly 1`] = `
+<styled.div>
+  <div
+    className="content"
+  >
+    <div
+      className="content-details"
+    >
+      <div
+        className="item"
+      >
+        <h4>
+          Title
+        </h4>
+        <p>
+          The Empire Strikes Back
+        </p>
+      </div>
+      <div
+        className="item"
+      >
+        <h4>
+          Director
+        </h4>
+        <p>
+          Irvin Kershner
+        </p>
+      </div>
+      <div
+        className="item"
+      >
+        <h4>
+          Producer
+        </h4>
+        <p>
+          Gary Kurtz, Rick McCallum
+        </p>
+      </div>
+      <div
+        className="item"
+      >
+        <h4>
+          Release Date
+        </h4>
+        <p>
+          1980-05-17
+        </p>
+      </div>
+    </div>
+    <OpeningCrawl
+      opening_crawl="It is a dark time for the
+Rebellion. Although the Death
+Star has been destroyed,
+Imperial troops have driven the
+Rebel forces from their hidden
+base and pursued them across
+the galaxy.
+
+Evading the dreaded Imperial
+Starfleet, a group of freedom
+fighters led by Luke Skywalker
+has established a new secret
+base on the remote ice world
+of Hoth.
+
+The evil lord Darth Vader,
+obsessed with finding young
+Skywalker, has dispatched
+thousands of remote probes into
+the far reaches of space...."
+    />
+  </div>
+</styled.div>
+`;

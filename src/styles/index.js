@@ -114,7 +114,6 @@ const CharacterList = styled.div`
 
 const Character = styled.div`
   margin: 10px 70px 70px;
-  box-shadow: 0px 35px 50px rgba(0, 0, 0, 0.2);
   font-family: 'Open Sans', sans-serif;
   width: 100%;
 
@@ -237,4 +236,59 @@ const PreLoader = styled.div`
   margin: 5rem 0;
 `;
 
-export { LineLoader, MovieListDropdown, Character, CharacterList, PreLoader };
+const MovieDetails = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  margin: 2rem 0;
+
+  .content {
+    background-color: #000;
+    height: 300px;
+    width: 90%;
+    display: flex;
+    flex-wrap: wrap;
+
+    .content-details {
+      display: flex;
+      flex-wrap: wrap;
+      width: 100%;
+      justify-content: space-evenly;
+      padding: 2rem;
+
+      .item {
+        display: flex;
+        flex-direction: column;
+        margin: 1rem;
+        text-align: center;
+        h4 {
+          color: #f7e523;
+          font-family: 'Supermercado One', cursive;
+        }
+
+        p {
+          color: #ffffff;
+          font-family: 'Open Sans', sans-serif;
+          padding: 0;
+        }
+      }
+    }
+  }
+`;
+const OpeningCrawl = styled.div`
+  display: flex;
+  color: #f7e523;
+  padding: 2rem;
+  font-family: 'Supermercado One', cursive;
+`;
+
+export {
+  LineLoader,
+  MovieListDropdown,
+  Character,
+  CharacterList,
+  PreLoader,
+  OpeningCrawl,
+  MovieDetails
+};

@@ -18,7 +18,7 @@ const CharacterList = ({ selectedMovie, movie }) => {
   if (movie.characters) {
     return (
       <StyledCharacterList>
-        <Character />
+        <Character movie={movie} />
       </StyledCharacterList>
     );
   }
