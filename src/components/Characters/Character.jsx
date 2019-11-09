@@ -12,7 +12,8 @@ import {
   sortHeight,
   sortName,
   calculateFeet,
-  calculateInches
+  calculateInches,
+  sortGender
 } from '../../utils';
 import PreLoader from '../Common/PreLoader';
 
@@ -61,6 +62,13 @@ const Character = ({ movie, characters, setCharacters }) => {
     setCharacters(sorted);
   };
 
+  const sortGenderField = (array, letter) => {
+    const sorted = sortGender(array, letter);
+
+    setCharacters([]);
+    setCharacters(sorted);
+  };
+
   if (characters.length > 0) {
     const totalHeight = calculateHeights(characters);
     return (
@@ -76,7 +84,15 @@ const Character = ({ movie, characters, setCharacters }) => {
               >
                 Name {sortArrow(nameOrder)}
               </th>
-              <th>Gender</th>
+              <th style={{ display: 'flex' }}>
+                Gender
+                <select
+                  onChange={e => sortGenderField(characters, e.target.value)}
+                >
+                  <option value="M">M</option>
+                  <option value="F">F</option>
+                </select>
+              </th>
               <th
                 onDoubleClick={() => sortHeightField(characters)}
                 className="toggle"

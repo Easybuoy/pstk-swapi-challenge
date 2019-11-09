@@ -40,6 +40,54 @@ const LineLoader = styled.div`
   }
 `;
 
+const Select = styled.select`
+  margin: 2rem 0;
+  display: block;
+  font-size: 16px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  color: #444;
+  line-height: 1.3;
+  padding: 0.6em 1.4em 0.5em 0.8em;
+  width: 20%;
+  box-sizing: border-box;
+  border: 1px solid #aaa;
+  box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.04);
+  border-radius: 0.5em;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: #fff;
+  background-image: url('https://github.com/Easybuoy/pstk-swapi-challenge/blob/feature/sort-gender-169663235/src/assets/images/dropdown.png?raw=true'),
+    linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%);
+  background-repeat: no-repeat, repeat;
+  background-position: right 0.7em top 50%, 0 0;
+  background-size: 3em auto, 100%;
+  border-color: black;
+
+  &:hover {
+    cursor: pointer;
+    -webkit-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.75);
+    transition: all 0.3s ease-in-out;
+  }
+
+  &:-ms-expand {
+    display: none;
+  }
+
+  &:focus {
+    box-shadow: black;
+    color: #222;
+    outline: none;
+  }
+
+  option {
+    font-weight: bold;
+  }
+`;
+
 const MovieListDropdown = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -53,55 +101,6 @@ const MovieListDropdown = styled.div`
     font-size: 3rem;
     text-shadow: -1px -1px 0 #f7e523, 2px -1px 0 #f7e523, -1px 1px 0 #f7e523,
       1px 1px 0 #f7e523;
-  }
-
-  select {
-    margin: 2rem 0;
-
-    display: block;
-    font-size: 16px;
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 700;
-    color: #444;
-    line-height: 1.3;
-    padding: 0.6em 1.4em 0.5em 0.8em;
-    width: 20%;
-    box-sizing: border-box;
-    border: 1px solid #aaa;
-    box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.04);
-    border-radius: 0.5em;
-    -moz-appearance: none;
-    -webkit-appearance: none;
-    appearance: none;
-    background-color: #fff;
-    background-image: url('https://github.com/Easybuoy/pstk-swapi-challenge/blob/feature/sort-gender-169663235/src/assets/images/dropdown.png?raw=true'),
-      linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%);
-    background-repeat: no-repeat, repeat;
-    background-position: right 0.7em top 50%, 0 0;
-    background-size: 3em auto, 100%;
-    border-color: black;
-
-    &:hover {
-      cursor: pointer;
-      -webkit-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.75);
-      -moz-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.75);
-      box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.75);
-      transition: all 0.3s ease-in-out;
-    }
-
-    &:-ms-expand {
-      display: none;
-    }
-
-    &:focus {
-      box-shadow: black;
-      color: #222;
-      outline: none;
-    }
-
-    option {
-      font-weight: bold;
-    }
   }
 `;
 
@@ -291,7 +290,6 @@ const Navigation = styled.nav`
   background-color: #000;
   padding-left: 1rem;
   img {
-    /* width: 50px; */
     height: 50px;
   }
 `;
@@ -304,5 +302,6 @@ export {
   PreLoader,
   OpeningCrawl,
   MovieDetails,
-  Navigation
+  Navigation,
+  Select
 };

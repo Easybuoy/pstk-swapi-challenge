@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { toast } from 'react-toastify';
 
 import {
   LOADING,
@@ -9,18 +8,19 @@ import {
   SET_MOVIE,
   SET_CHARACTERS
 } from './types';
+import { toast } from 'react-toastify';
 
 export const getMovies = () => dispatch => {
   dispatch({ type: LOADING });
   axios
-    .get('https://cors-anywhere.herokuapp.com/https://swapi.co/api/films/20')
+    .get('https://cors-anywhere.herokuapp.com/https://swapi.co/api/films')
     .then(res => dispatch({ type: SET_MOVIES, payload: res.data.results }))
     .catch(err => {
       if (err.response) {
-        console.log('aaaa');
-        dispatch({ type: ERROR, payload: err.response.data });
+        dispatch({ type: ERROR, payload: err.response.data.detail });
+        toast.error(err.response.data.detail);
       } else {
-        dispatch({ type: ERROR, payload: err });
+        dispatch({ type: ERROR, payload: err.message });
         toast.error(err.message);
       }
     })
@@ -36,11 +36,12 @@ export const getMovie = movie_url => dispatch => {
       dispatch(getCharacter(res.data.characters));
     })
     .catch(err => {
-      if (typeof err.message == 'string') {
+      if (err.response) {
+        dispatch({ type: ERROR, payload: err.response.data.detail });
+        toast.error(err.response.data.detail);
+      } else {
         dispatch({ type: ERROR, payload: err.message });
         toast.error(err.message);
-      } else {
-        dispatch({ type: ERROR, payload: err.response.data });
       }
     })
     .finally(() => dispatch({ type: LOADING }));
@@ -57,11 +58,12 @@ export const getCharacter = character_urls => dispatch => {
   )
     .then(res => dispatch(setCharacters(res)))
     .catch(err => {
-      if (typeof err.message == 'string') {
+      if (err.response) {
+        dispatch({ type: ERROR, payload: err.response.data.detail });
+        toast.error(err.response.data.detail);
+      } else {
         dispatch({ type: ERROR, payload: err.message });
         toast.error(err.message);
-      } else {
-        dispatch({ type: ERROR, payload: err.response.data });
       }
     })
     .finally(() => dispatch({ type: LOADING }));

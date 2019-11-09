@@ -4,19 +4,14 @@ import PropTypes from 'prop-types';
 
 import PreLoader from '../Common/PreLoader';
 import { getMovies, selectMovie, getMovie } from '../../actions';
-import { MovieListDropdown as StyledMovieListDropdown } from '../../styles';
-import { toast } from 'react-toastify';
+import {
+  MovieListDropdown as StyledMovieListDropdown,
+  Select
+} from '../../styles';
 
-const MovieListDropdown = ({
-  movies,
-  selectMovie,
-  getMovies,
-  getMovie,
-  loading,
-  error
-}) => {
+const MovieListDropdown = ({ movies, selectMovie, getMovies, getMovie }) => {
   const [movieValue, setMovieValue] = useState('');
-  console.log(loading, 'llll');
+
   useEffect(() => {
     getMovies();
     setMovieValue('Select Movie');
@@ -34,7 +29,7 @@ const MovieListDropdown = ({
 
   if (movies.length > 0) {
     dropDownItems = (
-      <select value={movieValue} onChange={handleChange}>
+      <Select value={movieValue} onChange={handleChange}>
         <option value="Select Movie" disabled>
           Select Star Wars Movie
         </option>
@@ -46,15 +41,10 @@ const MovieListDropdown = ({
               {movie.title}
             </option>
           ))}
-      </select>
+      </Select>
     );
-  }
-  if (loading) {
-    return <PreLoader />;
-  }
-
-  if (error) {
-    return toast.error(error);
+  } else {
+    dropDownItems = <PreLoader />;
   }
 
   return (
@@ -68,7 +58,7 @@ const MovieListDropdown = ({
 
 MovieListDropdown.propTypes = {
   loading: PropTypes.bool.isRequired,
-  error: PropTypes.object.isRequired,
+  error: PropTypes.string.isRequired,
   getMovies: PropTypes.func.isRequired
 };
 
