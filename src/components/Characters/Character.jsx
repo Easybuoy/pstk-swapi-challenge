@@ -32,7 +32,6 @@ const Character = ({ characters, setCharacters }) => {
     }
     setCharacters([]);
     setCharacters(sorted);
-    return sorted;
   };
 
   if (characters.length > 0) {

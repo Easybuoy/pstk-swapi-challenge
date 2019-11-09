@@ -34,12 +34,12 @@ export const formatHeight = height => {
 };
 
 export const sortHeight = (array, order) => {
-  if (order === 'asc') {
-    return array.sort((a, b) => a.height - b.height);
+  switch (order) {
+    case 'asc':
+        return array.sort((a, b) => a.height - b.height);
+    case 'dsc':
+        return array.sort((a, b) => b.height - a.height);
+    default:
+        return array;
   }
-
-  if (order === 'dsc') {
-    return array.sort((a, b) => b.height - a.height);
-  }
-  return array;
 };
