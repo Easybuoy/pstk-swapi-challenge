@@ -43,3 +43,14 @@ export const sortHeight = (array, order) => {
         return array;
   }
 };
+
+export const sortName = (array, order) => {
+  switch (order) {
+    case 'asc':
+        return array.sort((a, b) => a.name.localeCompare(b.name))
+    case 'dsc':
+        return array.sort((a, b) => b.name.localeCompare(a.name))
+    default:
+        return array;
+  }
+};

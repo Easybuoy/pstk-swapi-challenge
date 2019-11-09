@@ -8,27 +8,40 @@ import {
   formatGender,
   calculateHeights,
   formatHeight,
-  sortHeight
+  sortHeight,
+  sortName
 } from '../../utils';
 import PreLoader from '../Common/PreLoader';
 
 const Character = ({ characters, setCharacters }) => {
-  const [heightOrder, setheightOrder] = useState(0);
+  const [heightOrder, setHeightOrder] = useState(0);
+  const [nameOrder, setNameOrder] = useState(0);
 
   const sortNameField = array => {
-    console.log(array);
+    let sorted = [];
+    if (nameOrder === 0) {
+      sorted = sortName(array, 'asc');
+      setNameOrder(1);
+    }
+
+    if (nameOrder === 1) {
+      sorted = sortName(array, 'dsc');
+      setNameOrder(0);
+    }
+    setCharacters([]);
+    setCharacters(sorted);
   };
 
   const sortHeightField = array => {
     let sorted = [];
     if (heightOrder === 0) {
       sorted = sortHeight(array, 'asc');
-      setheightOrder(1);
+      setHeightOrder(1);
     }
 
     if (heightOrder === 1) {
       sorted = sortHeight(array, 'dsc');
-      setheightOrder(0);
+      setHeightOrder(0);
     }
     setCharacters([]);
     setCharacters(sorted);
