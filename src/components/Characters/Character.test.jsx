@@ -6,7 +6,7 @@ import { Character } from './Character';
 
 const { getMovieMock, getMoviesMock, getCharactersMock } = mock;
 describe('<Character />', () => {
-  const props = {
+  let props = {
     movie: getMovieMock,
     characters: getCharactersMock,
     movies: getMoviesMock,
@@ -29,12 +29,27 @@ describe('<Character />', () => {
     expect(props.setCharacters).toBeCalled();
   });
 
-  it('should call the mock onDOubleCLick function', () => {
-    const wrapper = mount(<Character {...props} />);
+  it('should call the mock onDOubleCLick name function', () => {
+    const wrapper = shallow(<Character {...props} />);
 
-    wrapper.find('select').simulate('click', { preventDefault() {} });
+    wrapper.find('.name').simulate('dblclick', { preventDefault() {} });
     expect(wrapper).toMatchSnapshot();
     expect(props.setCharacters).toBeCalled();
   });
+
+  it('should call the mock onDOubleCLick name function', () => {
+    const wrapper = shallow(<Character {...props} />);
+
+    wrapper.find('.height').simulate('dblclick', { preventDefault() {} });
+    expect(wrapper).toMatchSnapshot();
+    expect(props.setCharacters).toBeCalled();
+  });
+
   
+  it('should call the mock onDOubleCLick name function', () => {
+    props.characters = [];
+    const wrapper = shallow(<Character {...props} />);
+
+    expect(wrapper).toMatchSnapshot();
+  });
 });

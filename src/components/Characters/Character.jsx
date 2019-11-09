@@ -90,7 +90,7 @@ export const Character = ({ movie, characters, setCharacters }) => {
             <tr>
               <th
                 onDoubleClick={() => sortNameField(characters)}
-                className="toggle"
+                className="toggle name"
               >
                 Name {sortArrow(nameOrder)}
               </th>
@@ -111,7 +111,7 @@ export const Character = ({ movie, characters, setCharacters }) => {
               </th>
               <th
                 onDoubleClick={() => sortHeightField(characters)}
-                className="toggle"
+                className="toggle height"
               >
                 Height {sortArrow(heightOrder)}
               </th>
