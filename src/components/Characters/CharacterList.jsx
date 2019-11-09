@@ -3,18 +3,15 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import StarWarsImage from '../../assets/images/star-wars.png';
+import { CharacterList as StyledCharacterList } from '../../styles';
 import Character from './Character';
 
 const CharacterList = ({ selectedMovie, movie }) => {
   if (!selectedMovie) {
     return (
-      <div>
-        <img
-          src={StarWarsImage}
-          style={{ width: '500px', height: '500px' }}
-          alt="Star Wars"
-        />
-      </div>
+      <StyledCharacterList>
+        <img src={StarWarsImage} alt="Star Wars" />
+      </StyledCharacterList>
     );
   }
   if (movie.characters) {

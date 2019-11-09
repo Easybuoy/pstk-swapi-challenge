@@ -21,9 +21,10 @@ const MovieListDropdown = ({ movies, selectMovie, getMovies, getMovie }) => {
     getMovie(value);
   };
 
-  return (
-    <StyledMovieListDropdown>
-      <h1>Star Wars</h1>
+  let dropDownItems = '';
+
+  if (movies.length > 0) {
+    dropDownItems = (
       <select value={movieValue} onChange={handleChange}>
         <option value="Select Movie" disabled>
           Select Star Wars Movie
@@ -31,12 +32,20 @@ const MovieListDropdown = ({ movies, selectMovie, getMovies, getMovie }) => {
 
         {movies
           .sort((a, b) => new Date(a.release_date) - new Date(b.release_date))
-          .map((movie, i) => (
+          .map(movie => (
             <option key={movie.title} value={movie.url} onChange={handleChange}>
               {movie.title}
             </option>
           ))}
       </select>
+    );
+  }
+
+  return (
+    <StyledMovieListDropdown>
+      <h1>Star Wars</h1>
+
+      {dropDownItems}
     </StyledMovieListDropdown>
   );
 };

@@ -51,6 +51,10 @@ const MovieListDropdown = styled.div`
     text-align: center;
     font-family: 'Supermercado One', cursive;
     font-size: 3rem;
+    text-shadow: -1px -1px 0 yellow,  
+    2px -1px 0 yellow,
+    -1px 1px 0 yellow,
+     1px 1px 0 yellow;
   }
 
   select {
@@ -101,6 +105,13 @@ const MovieListDropdown = styled.div`
       font-weight: bold;
     }
   }
+`;
+
+const CharacterList = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
 `;
 
 const Character = styled.div`
@@ -215,4 +226,4 @@ const Character = styled.div`
   }
 `;
 
-export { LineLoader, MovieListDropdown, Character };
+export { LineLoader, MovieListDropdown, Character, CharacterList };

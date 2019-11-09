@@ -10,7 +10,7 @@ const StyledPreLoader = styled.div`
 export default function PreLoader() {
   return (
     <StyledPreLoader>
-      <Pulse color="#CC0000" size={20} />
+      <Pulse color="#000" size={20} />
     </StyledPreLoader>
   );
 }
