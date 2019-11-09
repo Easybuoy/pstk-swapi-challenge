@@ -37,8 +37,8 @@ You need Nodejs Installed to be able to run this project on your machine.
 <br>
 <br>
 
-<ul><li>Change directory to pstk-swapi-challenge</li></ul>
-<pre><code>cd storemanager</code></pre>
+<ul><li>Change directory to Swapi Challenge</li></ul>
+<pre><code>cd pstk-swapi-challenge</code></pre>
 <br>
 <br>
 

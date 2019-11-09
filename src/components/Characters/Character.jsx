@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -26,11 +26,27 @@ export const sortArrow = order => {
     default:
       return '';
   }
-}; 
+};
 
 const Character = ({ movie, characters, setCharacters }) => {
   const [heightOrder, setHeightOrder] = useState(undefined);
   const [nameOrder, setNameOrder] = useState(undefined);
+  const [genderValue] = useState('Select Gender');
+  const [stateCharacters, setStateCharacters] = useState([]);
+  console.log(characters)
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+        console.log(characters, 'after')
+        console.log(stateCharacters, 'afterstate')
+        if (characters.length > 0) {
+            setStateCharacters(characters)
+        }
+    }, 7000)
+    // return () => clearTimeout(timer);
+    // setStateCharacters(characters);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const sortNameField = array => {
     let sorted = [];
@@ -63,10 +79,7 @@ const Character = ({ movie, characters, setCharacters }) => {
   };
 
   const sortGenderField = (array, letter) => {
-      console.log(array, letter)
     const sorted = sortGender(array, letter);
-    console.log(sorted, 'sorted')
-    // setCharacters([]);
     setCharacters(sorted);
   };
 
@@ -85,12 +98,15 @@ const Character = ({ movie, characters, setCharacters }) => {
               >
                 Name {sortArrow(nameOrder)}
               </th>
-              <th style={{ display: 'flex' }}>
+              <th className="toggle-gender">
                 Gender
                 <select
-                  onChange={e => sortGenderField(characters, e.target.value)}
+                  value={genderValue}
+                  onChange={e => sortGenderField(stateCharacters, e.target.value)}
                 >
-                  <option defaultValue="Select Gender">Select Gender</option>
+                  <option defaultValue="Select Gender" disabled>
+                    Select Gender
+                  </option>
                   <option value="M">M</option>
                   <option value="F">F</option>
                 </select>
