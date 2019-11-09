@@ -1,22 +1,79 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
+import { setCharacters } from '../../actions';
 import StyledCharacter from './StyledCharacter';
-import { formatGender, calculateHeights, formatHeight } from '../../utils';
+import {
+  formatGender,
+  calculateHeights,
+  formatHeight,
+  sortHeight,
+  sortName,
+  calculateFeet,
+  calculateInches
+} from '../../utils';
 import PreLoader from '../Common/PreLoader';
 
-const Character = ({ characters }) => {
+export const sortArrow = order => {
+  switch (order) {
+    case 0:
+      return <span>&darr;</span>;
+    case 1:
+      return <span>&uarr;</span>;
+    default:
+      return '';
+  }
+};
+
+const Character = ({ characters, setCharacters }) => {
+  const [heightOrder, setHeightOrder] = useState(undefined);
+  const [nameOrder, setNameOrder] = useState(undefined);
+
+  const sortNameField = array => {
+    let sorted = [];
+    if (nameOrder === 0 || nameOrder === undefined) {
+      sorted = sortName(array, 'asc');
+      setNameOrder(1);
+    }
+
+    if (nameOrder === 1) {
+      sorted = sortName(array, 'dsc');
+      setNameOrder(0);
+    }
+    setCharacters([]);
+    setCharacters(sorted);
+  };
+
+  const sortHeightField = array => {
+    let sorted = [];
+    if (heightOrder === 0 || heightOrder === undefined) {
+      sorted = sortHeight(array, 'asc');
+      setHeightOrder(1);
+    }
+
+    if (heightOrder === 1) {
+      sorted = sortHeight(array, 'dsc');
+      setHeightOrder(0);
+    }
+    setCharacters([]);
+    setCharacters(sorted);
+  };
+
   if (characters.length > 0) {
-    console.log(characters);
+    const totalHeight = calculateHeights(characters);
     return (
       <StyledCharacter>
         <table className="fl-table">
           <thead>
             <tr>
-              <th>Name</th>
+              <th onDoubleClick={() => sortNameField(characters)}>
+                Name {sortArrow(nameOrder)}
+              </th>
               <th>Gender</th>
-              <th>Height</th>
+              <th onDoubleClick={() => sortHeightField(characters)}>
+                Height {sortArrow(heightOrder)}
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -32,7 +89,7 @@ const Character = ({ characters }) => {
             <tr>
               <td></td>
               <td></td>
-              <td>{`Total: ${calculateHeights(characters)}`}</td>
+              <td>{`Total: ${totalHeight}cm (${calculateFeet(totalHeight)}ft/${calculateInches(totalHeight)}in)`}</td>
             </tr>
           </tbody>
         </table>
@@ -40,14 +97,13 @@ const Character = ({ characters }) => {
     );
   }
 
-
   return <PreLoader />;
 };
 
 Character.propTypes = {
   loading: PropTypes.object.isRequired,
   error: PropTypes.object.isRequired,
-  characters: PropTypes.array.isRequired,
+  characters: PropTypes.array.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -56,4 +112,7 @@ const mapStateToProps = state => ({
   characters: state.swapi.characters
 });
 
-export default connect(mapStateToProps)(Character);
+export default connect(
+  mapStateToProps,
+  { setCharacters }
+)(Character);

@@ -11,8 +11,10 @@ export const formatGender = gender => {
 
 export const calculateHeights = array => {
   return array.reduce((a, b) => {
-    console.log(a, b);
-    return a + parseInt(b.height);
+    if (b.height !== 'unknown') {
+      return a + parseInt(b.height);
+    }
+    return a;
   }, 0);
 };
 
@@ -29,7 +31,27 @@ export const formatHeight = height => {
     return '-';
   }
 
-  return `${height}cm (${calculateFeet(height)}ft/${calculateInches(
-    height
-  )}in)`;
+  return `${height}cm`;
+};
+
+export const sortHeight = (array, order) => {
+  switch (order) {
+    case 'asc':
+      return array.sort((a, b) => a.height - b.height);
+    case 'dsc':
+      return array.sort((a, b) => b.height - a.height);
+    default:
+      return array;
+  }
+};
+
+export const sortName = (array, order) => {
+  switch (order) {
+    case 'asc':
+      return array.sort((a, b) => a.name.localeCompare(b.name));
+    case 'dsc':
+      return array.sort((a, b) => b.name.localeCompare(a.name));
+    default:
+      return array;
+  }
 };
