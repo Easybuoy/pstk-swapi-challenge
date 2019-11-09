@@ -3,14 +3,9 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { getMovies, selectMovie, getMovie } from '../../actions';
-import StyledMovieListDropdown from './StyledMovieListDropdown';
+import { MovieListDropdown as StyledMovieListDropdown } from '../../styles';
 
-const MovieListDropdown = ({
-  movies,
-  selectMovie,
-  getMovies,
-  getMovie,
-}) => {
+const MovieListDropdown = ({ movies, selectMovie, getMovies, getMovie }) => {
   const [movieValue, setMovieValue] = useState('');
 
   useEffect(() => {
@@ -26,21 +21,31 @@ const MovieListDropdown = ({
     getMovie(value);
   };
 
-  return (
-    <StyledMovieListDropdown>
+  let dropDownItems = '';
+
+  if (movies.length > 0) {
+    dropDownItems = (
       <select value={movieValue} onChange={handleChange}>
         <option value="Select Movie" disabled>
-          Select Movie
+          Select Star Wars Movie
         </option>
 
         {movies
           .sort((a, b) => new Date(a.release_date) - new Date(b.release_date))
-          .map((movie, i) => (
+          .map(movie => (
             <option key={movie.title} value={movie.url} onChange={handleChange}>
               {movie.title}
             </option>
           ))}
       </select>
+    );
+  }
+
+  return (
+    <StyledMovieListDropdown>
+      <h1>Star Wars</h1>
+
+      {dropDownItems}
     </StyledMovieListDropdown>
   );
 };

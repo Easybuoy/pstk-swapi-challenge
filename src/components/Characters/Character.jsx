@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { setCharacters } from '../../actions';
-import StyledCharacter from './StyledCharacter';
+import { Character as StyledCharacter } from '../../styles';
 import {
   formatGender,
   calculateHeights,
@@ -67,11 +67,11 @@ const Character = ({ characters, setCharacters }) => {
         <table className="fl-table">
           <thead>
             <tr>
-              <th onDoubleClick={() => sortNameField(characters)}>
+              <th onDoubleClick={() => sortNameField(characters)} className="toggle">
                 Name {sortArrow(nameOrder)}
               </th>
               <th>Gender</th>
-              <th onDoubleClick={() => sortHeightField(characters)}>
+              <th onDoubleClick={() => sortHeightField(characters)} className="toggle">
                 Height {sortArrow(heightOrder)}
               </th>
             </tr>
@@ -89,7 +89,9 @@ const Character = ({ characters, setCharacters }) => {
             <tr>
               <td></td>
               <td></td>
-              <td>{`Total: ${totalHeight}cm (${calculateFeet(totalHeight)}ft/${calculateInches(totalHeight)}in)`}</td>
+              <td className="total">{`Total: ${totalHeight}cm (${calculateFeet(
+                totalHeight
+              )}ft/${calculateInches(totalHeight)}in)`}</td>
             </tr>
           </tbody>
         </table>
