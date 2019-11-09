@@ -283,6 +283,18 @@ const OpeningCrawl = styled.div`
   font-family: 'Supermercado One', cursive;
 `;
 
+const Navigation = styled.nav`
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0.5rem;
+  background-color: #000;
+  img {
+    width: 50px;
+    height: 50px;
+  }
+`;
+
 export {
   LineLoader,
   MovieListDropdown,
@@ -290,5 +302,6 @@ export {
   CharacterList,
   PreLoader,
   OpeningCrawl,
-  MovieDetails
+  MovieDetails,
+  Navigation
 };
