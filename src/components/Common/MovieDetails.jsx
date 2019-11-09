@@ -1,5 +1,6 @@
 import React from 'react';
 import OpeningCrawl from './OpeningCrawl';
+import PropTypes from 'prop-types';
 
 import { MovieDetails as StyledMovieDetails } from '../../styles';
 
@@ -30,5 +31,9 @@ function MovieDetails({ movie }) {
     </StyledMovieDetails>
   );
 }
+
+MovieDetails.propTypes = {
+  movie: PropTypes.object.isRequired,
+};
 
 export default MovieDetails;

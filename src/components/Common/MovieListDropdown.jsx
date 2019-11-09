@@ -59,7 +59,9 @@ const MovieListDropdown = ({ movies, selectMovie, getMovies, getMovie }) => {
 MovieListDropdown.propTypes = {
   loading: PropTypes.bool.isRequired,
   error: PropTypes.string.isRequired,
-  getMovies: PropTypes.func.isRequired
+  getMovies: PropTypes.func.isRequired,
+  selectMovie: PropTypes.func.isRequired,
+  getMovie: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
