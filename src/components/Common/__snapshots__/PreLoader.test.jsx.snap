@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<PreLoader /> renders the Cart component correctly 1`] = `
+exports[`<PreLoader /> renders the PreLoader component correctly 1`] = `
 <styled.div>
   <n
     color="#CC0000"
