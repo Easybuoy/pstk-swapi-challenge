@@ -61,7 +61,6 @@ const Character = ({ characters, setCharacters }) => {
   };
 
   if (characters.length > 0) {
-    console.log(characters);
     const totalHeight = calculateHeights(characters);
     return (
       <StyledCharacter>
