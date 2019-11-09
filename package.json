@@ -29,7 +29,8 @@
   "jest": {
     "snapshotSerializers": [
       "enzyme-to-json/serializer"
-    ]
+    ],
+    "coveragePathIgnorePatterns": ["__mocks__", "src/serviceWorker.js", "src/index.js", "src/store.js"]
   },
   "testMatch": [
     "<rootDir>/src/**/*.(test).{js,jsx,ts,tsx}",

@@ -2,10 +2,10 @@ import React from 'react';
 import { shallow, mount } from 'enzyme';
 
 import mock from '../../__mocks__/mock';
-import { MovieListDropdown } from './MovieListDropdown';
+import { Character } from './Character';
 
 const { getMovieMock, getMoviesMock } = mock;
-describe('<MovieListDropdown />', () => {
+describe('<Character />', () => {
   const props = {
     movie: getMovieMock,
     movies: getMoviesMock,
@@ -14,13 +14,13 @@ describe('<MovieListDropdown />', () => {
     getMovie: jest.fn()
   };
 
-  it('renders the MovieListDropdown component correctly', () => {
-    const wrapper = shallow(<MovieListDropdown {...props} />);
+  it('renders the Character component correctly', () => {
+    const wrapper = shallow(<Character {...props} />);
     expect(wrapper).toMatchSnapshot();
   });
 
   it('should call the mock onChange function', () => {
-    const wrapper = mount(<MovieListDropdown {...props} />);
+    const wrapper = mount(<Character {...props} />);
 
     wrapper.find('select').simulate('change', { preventDefault() {} });
     expect(props.getMovie).toBeCalled();
