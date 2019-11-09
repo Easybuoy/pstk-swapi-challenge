@@ -4,6 +4,9 @@
   "private": true,
   "dependencies": {
     "axios": "^0.19.0",
+    "coveralls": "^3.0.7",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.15.1",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
     "react-preloading-component": "0.0.5",
@@ -18,9 +21,20 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "test": "react-scripts test --update-snapshot",
+    "eject": "react-scripts eject",
+    "coverage": "react-scripts test --update-snapshot --env=jsdom --watchAll=false --coverage",
+    "coveralls": "npm run coverage && cat coverage/lcov.info | coveralls"
   },
+  "jest": {
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ]
+  },
+  "testMatch": [
+    "<rootDir>/src/**/*.(test).{js,jsx,ts,tsx}",
+    "<rootDir>/src/**/?(*.)(spec|test).{js,jsx,ts,tsx}"
+  ],
   "eslintConfig": {
     "extends": "react-app"
   },
@@ -35,5 +49,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "enzyme-to-json": "^3.4.3",
+    "sinon": "^7.5.0"
   }
 }

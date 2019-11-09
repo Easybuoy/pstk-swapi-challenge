@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<PreLoader /> renders the PreLoader component correctly 1`] = `
+<styled.div>
+  <n
+    color="#CC0000"
+    size={20}
+  />
+</styled.div>
+`;
