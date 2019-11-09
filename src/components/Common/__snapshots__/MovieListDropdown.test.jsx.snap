@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<MovieListDropdown /> renders the MovieListDropdown component correctly 1`] = `
+<styled.div>
+  <h1>
+    Star Wars
+  </h1>
+  <styled.select
+    onChange={[Function]}
+    value=""
+  >
+    <option
+      disabled={true}
+      value="Select Movie"
+    >
+      Select Star Wars Movie
+    </option>
+    <option
+      key="The Empire Strikes Back"
+      onChange={[Function]}
+      value="https://swapi.co/api/films/2/"
+    >
+      The Empire Strikes Back
+    </option>
+  </styled.select>
+</styled.div>
+`;

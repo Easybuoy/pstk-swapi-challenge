@@ -9,7 +9,7 @@ import {
   Select
 } from '../../styles';
 
-const MovieListDropdown = ({ movies, selectMovie, getMovies, getMovie }) => {
+export const MovieListDropdown = ({ movies, selectMovie, getMovies, getMovie }) => {
   const [movieValue, setMovieValue] = useState('');
 
   useEffect(() => {
@@ -57,8 +57,6 @@ const MovieListDropdown = ({ movies, selectMovie, getMovies, getMovie }) => {
 };
 
 MovieListDropdown.propTypes = {
-  loading: PropTypes.bool.isRequired,
-  error: PropTypes.string.isRequired,
   getMovies: PropTypes.func.isRequired,
   selectMovie: PropTypes.func.isRequired,
   getMovie: PropTypes.func.isRequired
