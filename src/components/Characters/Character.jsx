@@ -67,11 +67,11 @@ const Character = ({ characters, setCharacters }) => {
         <table className="fl-table">
           <thead>
             <tr>
-              <th onDoubleClick={() => sortNameField(characters)}>
+              <th onDoubleClick={() => sortNameField(characters)} className="toggle">
                 Name {sortArrow(nameOrder)}
               </th>
               <th>Gender</th>
-              <th onDoubleClick={() => sortHeightField(characters)}>
+              <th onDoubleClick={() => sortHeightField(characters)} className="toggle">
                 Height {sortArrow(heightOrder)}
               </th>
             </tr>

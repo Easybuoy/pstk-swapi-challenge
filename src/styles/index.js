@@ -51,10 +51,8 @@ const MovieListDropdown = styled.div`
     text-align: center;
     font-family: 'Supermercado One', cursive;
     font-size: 3rem;
-    text-shadow: -1px -1px 0 #f7e523,  
-    2px -1px 0 #f7e523,
-    -1px 1px 0 #f7e523,
-     1px 1px 0 #f7e523;
+    text-shadow: -1px -1px 0 #f7e523, 2px -1px 0 #f7e523, -1px 1px 0 #f7e523,
+      1px 1px 0 #f7e523;
   }
 
   select {
@@ -130,6 +128,9 @@ const Character = styled.div`
     max-width: 100%;
     white-space: nowrap;
     background-color: white;
+    .toggle {
+      cursor: pointer;
+    }
   }
 
   .fl-table td,
