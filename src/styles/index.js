@@ -246,7 +246,7 @@ const MovieDetails = styled.div`
   .content {
     background-color: #000;
     height: 300px;
-    width: 90%;
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
 
