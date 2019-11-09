@@ -2,12 +2,21 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
+import PreLoader from '../Common/PreLoader';
 import { getMovies, selectMovie, getMovie } from '../../actions';
 import { MovieListDropdown as StyledMovieListDropdown } from '../../styles';
+import { toast } from 'react-toastify';
 
-const MovieListDropdown = ({ movies, selectMovie, getMovies, getMovie }) => {
+const MovieListDropdown = ({
+  movies,
+  selectMovie,
+  getMovies,
+  getMovie,
+  loading,
+  error
+}) => {
   const [movieValue, setMovieValue] = useState('');
-
+  console.log(loading, 'llll');
   useEffect(() => {
     getMovies();
     setMovieValue('Select Movie');
@@ -40,6 +49,13 @@ const MovieListDropdown = ({ movies, selectMovie, getMovies, getMovie }) => {
       </select>
     );
   }
+  if (loading) {
+    return <PreLoader />;
+  }
+
+  if (error) {
+    return toast.error(error);
+  }
 
   return (
     <StyledMovieListDropdown>
@@ -51,14 +67,14 @@ const MovieListDropdown = ({ movies, selectMovie, getMovies, getMovie }) => {
 };
 
 MovieListDropdown.propTypes = {
-  loading: PropTypes.object.isRequired,
+  loading: PropTypes.bool.isRequired,
   error: PropTypes.object.isRequired,
   getMovies: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
-  loading: state.loading,
-  error: state.error,
+  loading: state.loading.loading,
+  error: state.error.error,
   movies: state.swapi.movies,
   movie: state.swapi.movie,
   selectedMovie: state.swapi.selectedMovie

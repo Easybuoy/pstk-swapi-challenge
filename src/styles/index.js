@@ -289,8 +289,9 @@ const Navigation = styled.nav`
   flex-wrap: wrap;
   padding: 0.5rem;
   background-color: #000;
+  padding-left: 1rem;
   img {
-    width: 50px;
+    /* width: 50px; */
     height: 50px;
   }
 `;
