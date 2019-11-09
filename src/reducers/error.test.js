@@ -10,7 +10,7 @@ describe('errorReducer', () => {
     expect(state).toEqual(INITIAL_STATE);
   });
 
-  it('should set product created', () => {
+  it('should set error state', () => {
     const action = {
       type: ERROR,
       payload: 'Network Error'

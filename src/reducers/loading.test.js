@@ -10,7 +10,7 @@ describe('loadingReducer', () => {
     expect(state).toEqual(INITIAL_STATE);
   });
 
-  it('should set product created', () => {
+  it('should set loading state', () => {
     const action = {
       type: LOADING
     };
