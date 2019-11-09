@@ -110,14 +110,15 @@ const MovieListDropdown = styled.div`
 const CharacterList = styled.div`
   width: 100%;
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
-
 `;
 
 const Character = styled.div`
   margin: 10px 70px 70px;
   box-shadow: 0px 35px 50px rgba(0, 0, 0, 0.2);
   font-family: 'Open Sans', sans-serif;
+  width: 100%;
 
   .fl-table {
     border-radius: 5px;

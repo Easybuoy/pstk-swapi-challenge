@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
+import PreLoader from '../Common/PreLoader';
 import StarWarsImage from '../../assets/images/star-wars.png';
 import { CharacterList as StyledCharacterList } from '../../styles';
 import Character from './Character';
@@ -16,14 +17,13 @@ const CharacterList = ({ selectedMovie, movie }) => {
   }
   if (movie.characters) {
     return (
-      <div>
-        Character List
+      <StyledCharacterList>
         <Character />
-      </div>
+      </StyledCharacterList>
     );
   }
 
-  return <p>Loading</p>;
+  return <PreLoader />;
 };
 
 CharacterList.propTypes = {
