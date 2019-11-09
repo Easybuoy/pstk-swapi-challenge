@@ -33,20 +33,17 @@ const Character = ({ movie, characters, setCharacters }) => {
   const [nameOrder, setNameOrder] = useState(undefined);
   const [genderValue] = useState('Select Gender');
   const [stateCharacters, setStateCharacters] = useState([]);
-  console.log(characters)
 
   useEffect(() => {
     const timer = setTimeout(() => {
-        console.log(characters, 'after')
-        console.log(stateCharacters, 'afterstate')
-        if (characters.length > 0) {
-            setStateCharacters(characters)
-        }
-    }, 7000)
-    // return () => clearTimeout(timer);
+      if (characters.length > 0) {
+        setStateCharacters(characters);
+      }
+    }, 3000);
+    return () => clearTimeout(timer);
     // setStateCharacters(characters);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  });
 
   const sortNameField = array => {
     let sorted = [];
@@ -102,7 +99,9 @@ const Character = ({ movie, characters, setCharacters }) => {
                 Gender
                 <select
                   value={genderValue}
-                  onChange={e => sortGenderField(stateCharacters, e.target.value)}
+                  onChange={e =>
+                    sortGenderField(stateCharacters, e.target.value)
+                  }
                 >
                   <option defaultValue="Select Gender" disabled>
                     Select Gender
