@@ -26,7 +26,7 @@ export const sortArrow = order => {
     default:
       return '';
   }
-};
+}; 
 
 const Character = ({ movie, characters, setCharacters }) => {
   const [heightOrder, setHeightOrder] = useState(undefined);
@@ -63,9 +63,10 @@ const Character = ({ movie, characters, setCharacters }) => {
   };
 
   const sortGenderField = (array, letter) => {
+      console.log(array, letter)
     const sorted = sortGender(array, letter);
-
-    setCharacters([]);
+    console.log(sorted, 'sorted')
+    // setCharacters([]);
     setCharacters(sorted);
   };
 
@@ -89,6 +90,7 @@ const Character = ({ movie, characters, setCharacters }) => {
                 <select
                   onChange={e => sortGenderField(characters, e.target.value)}
                 >
+                  <option defaultValue="Select Gender">Select Gender</option>
                   <option value="M">M</option>
                   <option value="F">F</option>
                 </select>
