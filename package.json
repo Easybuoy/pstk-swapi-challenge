@@ -25,7 +25,8 @@
     "test": "react-scripts test --update-snapshot",
     "eject": "react-scripts eject",
     "coverage": "react-scripts test --update-snapshot --env=jsdom --watchAll=false --coverage",
-    "coveralls": "npm run coverage && cat coverage/lcov.info | coveralls"
+    "coveralls": "npm run coverage && cat coverage/lcov.info | coveralls",
+    "lint": "eslint --ext .js --ext .jsx ."
   },
   "jest": {
     "snapshotSerializers": [

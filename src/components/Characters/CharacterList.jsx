@@ -15,6 +15,7 @@ export const CharacterList = ({ selectedMovie, movie }) => {
       </StyledCharacterList>
     );
   }
+
   if (movie.characters) {
     return (
       <StyledCharacterList>
