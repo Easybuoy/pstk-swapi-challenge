@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CharacterList /> renders the CharacterList component correctly 1`] = `
+<styled.div>
+  <img
+    alt="Star Wars"
+    src="star-wars.png"
+  />
+</styled.div>
+`;
+
+exports[`<CharacterList /> renders the CharacterList component correctly 2`] = `
+<styled.div>
+  <img
+    alt="Star Wars"
+    src="star-wars.png"
+  />
+</styled.div>
+`;

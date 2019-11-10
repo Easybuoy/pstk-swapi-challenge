@@ -7,7 +7,7 @@ import StarWarsImage from '../../assets/images/star-wars.png';
 import { CharacterList as StyledCharacterList } from '../../styles';
 import Character from './Character';
 
-const CharacterList = ({ selectedMovie, movie }) => {
+export const CharacterList = ({ selectedMovie, movie }) => {
   if (!selectedMovie) {
     return (
       <StyledCharacterList>
@@ -27,8 +27,6 @@ const CharacterList = ({ selectedMovie, movie }) => {
 };
 
 CharacterList.propTypes = {
-  loading: PropTypes.object.isRequired,
-  error: PropTypes.object.isRequired,
   movie: PropTypes.object.isRequired,
   selectedMovie: PropTypes.string.isRequired
 };

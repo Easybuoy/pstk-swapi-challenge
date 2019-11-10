@@ -28,7 +28,7 @@ export const sortArrow = order => {
   }
 };
 
-const Character = ({ movie, characters, setCharacters }) => {
+export const Character = ({ movie, characters, setCharacters }) => {
   const [heightOrder, setHeightOrder] = useState(undefined);
   const [nameOrder, setNameOrder] = useState(undefined);
   const [genderValue] = useState('Filter');
@@ -90,7 +90,7 @@ const Character = ({ movie, characters, setCharacters }) => {
             <tr>
               <th
                 onDoubleClick={() => sortNameField(characters)}
-                className="toggle"
+                className="toggle name"
               >
                 Name {sortArrow(nameOrder)}
               </th>
@@ -111,7 +111,7 @@ const Character = ({ movie, characters, setCharacters }) => {
               </th>
               <th
                 onDoubleClick={() => sortHeightField(characters)}
-                className="toggle"
+                className="toggle height"
               >
                 Height {sortArrow(heightOrder)}
               </th>
@@ -144,9 +144,8 @@ const Character = ({ movie, characters, setCharacters }) => {
 };
 
 Character.propTypes = {
-  loading: PropTypes.object.isRequired,
-  error: PropTypes.object.isRequired,
-  characters: PropTypes.array.isRequired
+  characters: PropTypes.array.isRequired,
+  setCharacters: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({

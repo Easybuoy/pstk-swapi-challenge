@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Navigation /> renders the Navigation component correctly 1`] = `
+<styled.nav>
+  <img
+    alt="star wars"
+    src="star-wars.png"
+  />
+</styled.nav>
+`;

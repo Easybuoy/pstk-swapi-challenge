@@ -31,6 +31,12 @@ describe('Util', () => {
     expect(response).toEqual(30);
   });
 
+  it('test calculateHeights edgecase', () => {
+    const testArray = [{ height: 10 }, { height: 'unknown' }];
+    const response = calculateHeights(testArray);
+    expect(response).toEqual(10);
+  });
+
   it('test culatcalculateFeet', () => {
     const response = calculateFeet(120);
     expect(response).toEqual(3);
