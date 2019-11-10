@@ -2,73 +2,97 @@ import configureStore from 'redux-mock-store';
 import moxios from 'moxios';
 import thunk from 'redux-thunk';
 
-import {  } from './index';
-import { } from '../../src/actions/types';
+import { getMovies, getMovie, getCharacter, selectMovie } from './index';
+import { LOADING, SELECT_MOVIE } from './types';
 import mock from '../__mocks__/mock';
 
-describe('authActions', () => {
-    const mockStore = configureStore([thunk]);
+describe('Actions', () => {
+  const mockStore = configureStore([thunk]);
+  const store = mockStore({});
 
-    beforeEach(() => {
-        moxios.install();
+  beforeEach(() => {
+    moxios.install();
+    store.clearActions();
+  });
+  afterEach(() => {
+    moxios.uninstall();
+  });
+
+  it(`dispatches LOADING  when getMovies request is successful`, done => {
+    moxios.wait(() => {
+      const request = moxios.requests.mostRecent();
+      request.respondWith({
+        status: 200,
+        response: { data: mock.setCurrentUserMock }
       });
-      afterEach(() => {
-        moxios.uninstall();
-      });
-    it('should set the current user', () => {
-        const data = { email: 'ezekiel', password: 1234};
-        const response = setCurrentUser(data);
-        expect(response.type).toEqual(SET_CURRENT_USER);
-        expect(response.payload).toEqual(data);
     });
+    const expectedActions = [
+      {
+        type: LOADING
+      }
+    ];
 
-    // it(`dispatches SET_ERRORS and SET_CURRENT_USER when request is successful`, (done) => {
-    //   moxios.wait(() => {
-    //     const request = moxios.requests.mostRecent();
-    //     request.respondWith({
-    //       status: 200,
-    //       response: {data: mock.setCurrentUserMock},
-    //     });
-    //   });
-    //   const expectedActions = [
-    //     {
-    //       type: SET_ERRORS,
-    //     },
-    //     {
-    //       type: SET_CURRENT_USER,
-    //       payload: {"exp": 1553899374, "iat": 1553895774, "id": "3e26f411-45f4-40b8-8018-099c99a89aa1", "type": 1, "userImage": "assets/uploads/users/default-avatar.png"}
-    //     }
-    //   ];
-    //   const store = mockStore({});
-    //   return store.dispatch(signIn({email: '', password: '1234'})).then(() => {
-    //     expect(store.getActions()).toEqual(expectedActions);
-    //     done();
-    //   });
-    // });
+    store.dispatch(getMovies());
+    expect(store.getActions()).toEqual(expectedActions);
+    expect(store.getActions()).toMatchSnapshot();
+    done();
+  });
 
-//     it(`dispatches GET_ERRORS when request fails`, (done) => {
-//     moxios.wait(() => {
-//       const request = moxios.requests.mostRecent();
-//       request.respondWith({
-//         status: 400,
-//         response: {data: mock.getErrorsMock},
-//       });
-//     });
-//     const expectedActions = [
-//       {
-//         type: GET_ERRORS,
-//         payload:  mock.getErrorsMock
-//       },
-//       {
-//         type: SET_ERRORS,
-//       }
-//     ];
-//     const store = mockStore({});
-//     return store.dispatch(signIn()).then(() => {
-//       expect(store.getActions()).toEqual(expectedActions);
-//       done();
-//     });
-//   });
+  it(`dispatches LOADING  when getmovie request is successful`, done => {
+    moxios.wait(() => {
+      const request = moxios.requests.mostRecent();
+      request.respondWith({
+        status: 200,
+        response: { data: mock.setCurrentUserMock }
+      });
+    });
+    const expectedActions = [
+      {
+        type: LOADING
+      }
+    ];
+    store.dispatch(getMovie('google.com'));
+    expect(store.getActions()).toEqual(expectedActions);
+    expect(store.getActions()).toMatchSnapshot();
+    done();
+  });
 
-  
+  it(`dispatches LOADING  when getCharacter request is successful`, done => {
+    moxios.wait(() => {
+      const request = moxios.requests.mostRecent();
+      request.respondWith({
+        status: 200,
+        response: { data: mock.setCurrentUserMock }
+      });
+    });
+    const expectedActions = [
+      {
+        type: LOADING
+      }
+    ];
+    store.dispatch(getCharacter([]));
+    expect(store.getActions()).toEqual(expectedActions);
+    expect(store.getActions()).toMatchSnapshot();
+    done();
+  });
+
+  it(`dispatches LOADING  when getCharacter request is successful`, done => {
+    moxios.wait(() => {
+      const request = moxios.requests.mostRecent();
+      request.respondWith({
+        status: 200,
+        response: { data: mock.setCurrentUserMock }
+      });
+    });
+    const expectedActions = [
+      {
+        type: SELECT_MOVIE,
+        payload: []
+      }
+    ];
+    store.dispatch(selectMovie([]));
+    expect(store.getActions()).toEqual(expectedActions);
+    expect(store.getActions()).toMatchSnapshot();
+    done();
+  });
 });
