@@ -45,7 +45,6 @@ describe('<Character />', () => {
     expect(props.setCharacters).toBeCalled();
   });
 
-  
   it('should call the mock onDOubleCLick name function', () => {
     props.characters = [];
     const wrapper = shallow(<Character {...props} />);

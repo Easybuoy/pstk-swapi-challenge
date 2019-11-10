@@ -12,7 +12,7 @@ import { toast } from 'react-toastify';
 
 export const getMovies = () => dispatch => {
   dispatch({ type: LOADING });
-  axios
+  return axios
     .get('https://cors-anywhere.herokuapp.com/https://swapi.co/api/films')
     .then(res => dispatch({ type: SET_MOVIES, payload: res.data.results }))
     .catch(err => {
@@ -29,7 +29,7 @@ export const getMovies = () => dispatch => {
 
 export const getMovie = movie_url => dispatch => {
   dispatch({ type: LOADING });
-  axios
+  return axios
     .get(`https://cors-anywhere.herokuapp.com/${movie_url}`)
     .then(res => {
       dispatch({ type: SET_MOVIE, payload: res.data });
@@ -49,7 +49,7 @@ export const getMovie = movie_url => dispatch => {
 
 export const getCharacter = character_urls => dispatch => {
   dispatch({ type: LOADING });
-  Promise.all(
+  return Promise.all(
     character_urls.map(url =>
       axios
         .get(`https://cors-anywhere.herokuapp.com/${url}`)
