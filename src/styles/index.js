@@ -179,8 +179,7 @@ const Character = styled.div`
     .toggle-gender {
       display: flex;
       justify-content: space-evenly;
-        
-      
+
       select {
         display: block;
         font-family: 'Open Sans', sans-serif;
@@ -325,9 +324,12 @@ const Navigation = styled.nav`
   display: flex;
   flex-wrap: wrap;
   background-color: #000;
-  padding-left: 1rem;
-  img {
-    height: 50px;
+
+  div {
+    padding-left: 1rem;
+    img {
+      height: 50px;
+    }
   }
 `;
 
