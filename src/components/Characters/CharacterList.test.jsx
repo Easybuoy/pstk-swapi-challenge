@@ -1,6 +1,5 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
-
+import { mount } from 'enzyme';
 import mock from '../../__mocks__/mock';
 import { CharacterList } from './CharacterList';
 
