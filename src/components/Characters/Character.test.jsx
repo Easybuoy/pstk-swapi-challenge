@@ -3,6 +3,7 @@ import { shallow, mount } from 'enzyme';
 
 import mock from '../../__mocks__/mock';
 import { Character } from './Character';
+import { sortGender } from '../../utils';
 
 const { getMovieMock, getMoviesMock, getCharactersMock } = mock;
 describe('<Character />', () => {
@@ -45,7 +46,6 @@ describe('<Character />', () => {
     expect(props.setCharacters).toBeCalled();
   });
 
-  
   it('should call the mock onDOubleCLick name function', () => {
     props.characters = [];
     const wrapper = shallow(<Character {...props} />);
