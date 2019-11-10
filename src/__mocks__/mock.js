@@ -126,5 +126,5 @@ export default {
     }
   ],
   getNetworkErrorMock: { message: 'Network Error' },
-  getCharactersMock: [{name: 'Eze', gender: 'male', height: "300"}]
+  getCharactersMock: [{ name: 'Eze', gender: 'male', height: '300' }]
 };
