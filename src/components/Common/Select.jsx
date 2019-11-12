@@ -7,8 +7,8 @@ function Select({ value, onChange, defaultValue, items }) {
       <option defaultValue={defaultValue} disabled>
         {defaultValue}
       </option>
-      {items.map((item, i) => (
-        <option key={item.title} value={item.url || item.title} me={item.title} name={item.title}>
+      {items.map(item => (
+        <option key={item.title} value={[item.url, item.title] || item.title} me={item.title} name={item.title}>
           {item.title}
         </option>
       ))}

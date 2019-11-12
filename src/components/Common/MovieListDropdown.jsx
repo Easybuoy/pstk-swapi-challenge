@@ -27,7 +27,7 @@ export const MovieListDropdown = ({
   const handleChange = (e) => {
     const { value } = e.target;
 
-    console.log(e.target.name, 'aa')
+    console.log(value)
     setMovieValue(value);
     selectMovie(value);
     getMovie(value);

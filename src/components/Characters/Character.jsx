@@ -32,15 +32,15 @@ export const sortArrow = order => {
 export const Character = ({ movie, characters, setCharacters }) => {
   const [heightOrder, setHeightOrder] = useState(undefined);
   const [nameOrder, setNameOrder] = useState(undefined);
-  const [genderValue, setGenderValue] = useState('Select Gender');
+  const [genderValue, setGenderValue] = useState('Filter Gender');
   const [stateCharacters, setStateCharacters] = useState([]);
 
   useEffect(() => {
     // const timer = setTimeout(() => {
     //   console.log('enterring bro')
-      if (stateCharacters.length === 0) {
-        setStateCharacters(characters);
-      }
+    if (stateCharacters.length === 0) {
+      setStateCharacters(characters);
+    }
     // }, 3000);
     // return () => clearTimeout(timer);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -79,15 +79,16 @@ export const Character = ({ movie, characters, setCharacters }) => {
   const sortGenderField = (array, letter) => {
     const sorted = sortGender(array, letter);
     setCharacters(sorted);
-    console.log('sorted', sorted)
-    console.log(stateCharacters, 'statechar')
+    console.log('sorted', sorted);
+    console.log(stateCharacters, 'statechar');
     // set state
     // reset state
     // setStateCharacters(sorted)
   };
 
   const onSelectChange = e => {
-    setGenderValue(e.target.value)
+    console.log(e.target.value, 'character value')
+    setGenderValue(e.target.value);
     sortGenderField(stateCharacters, e.target.value);
   };
 
@@ -107,7 +108,7 @@ export const Character = ({ movie, characters, setCharacters }) => {
     return (
       <StyledCharacter>
         <Select
-          defaultValue="Select Gender"
+          defaultValue="Filter Gender"
           value={genderValue}
           onChange={onSelectChange}
           items={items}
