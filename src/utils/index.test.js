@@ -152,13 +152,9 @@ describe('Util', () => {
       { name: 'John', height: 20, gender: 'male' },
       { name: 'Jayne', height: 10, gender: 'n/a' }
     ];
-    const response = sortGender(testArray, 'H');
-    expect(response).toEqual([
-      { name: 'Jayne', height: 10, gender: 'n/a' }
-    ]);
-  })
-
-  
+    const response = sortGender(testArray, 'N/A');
+    expect(response).toEqual([{ name: 'Jayne', height: 10, gender: 'n/a' }]);
+  });
 
   it('test male case for sortGender', () => {
     const testArray = [
