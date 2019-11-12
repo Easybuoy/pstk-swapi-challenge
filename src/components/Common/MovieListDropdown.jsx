@@ -26,11 +26,11 @@ export const MovieListDropdown = ({
 
   const handleChange = (e) => {
     const { value } = e.target;
-
-    console.log(value)
-    setMovieValue(value);
-    selectMovie(value);
-    getMovie(value);
+    const {title, url} = JSON.parse(value);
+    console.log()
+    setMovieValue(title);
+    selectMovie(title);
+    getMovie(url);
   };
 
   let dropDownItems = '';

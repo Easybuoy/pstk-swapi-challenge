@@ -8,7 +8,7 @@ function Select({ value, onChange, defaultValue, items }) {
         {defaultValue}
       </option>
       {items.map(item => (
-        <option key={item.title} value={[item.url, item.title] || item.title} me={item.title} name={item.title}>
+        <option key={item.title} value={JSON.stringify({title: item.title, url: item.url}) || item.title} me={item.title} name={item.title}>
           {item.title}
         </option>
       ))}
