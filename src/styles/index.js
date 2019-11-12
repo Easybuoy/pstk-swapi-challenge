@@ -137,10 +137,7 @@ const Character = styled.div`
       cursor: pointer;
     }
 
-    .toggle-gender {
-      display: flex;
-      justify-content: space-evenly;
-    }
+   
 
     .total {
       font-weight: bold;

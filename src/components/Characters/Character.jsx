@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 import MovieDetails from '../Common/MovieDetails';
 import { setCharacters } from '../../actions';
+import Select from '../Common/Select';
 import { Character as StyledCharacter } from '../../styles';
 import {
   formatGender,
@@ -31,18 +32,19 @@ export const sortArrow = order => {
 export const Character = ({ movie, characters, setCharacters }) => {
   const [heightOrder, setHeightOrder] = useState(undefined);
   const [nameOrder, setNameOrder] = useState(undefined);
-  const [genderValue] = useState('Filter');
+  const [genderValue, setGenderValue] = useState('Select Gender');
   const [stateCharacters, setStateCharacters] = useState([]);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      if (characters.length > 0) {
+    // const timer = setTimeout(() => {
+    //   console.log('enterring bro')
+      if (stateCharacters.length === 0) {
         setStateCharacters(characters);
       }
-    }, 3000);
-    return () => clearTimeout(timer);
+    // }, 3000);
+    // return () => clearTimeout(timer);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  });
+  }, [characters]);
 
   const sortNameField = array => {
     let sorted = [];
@@ -77,12 +79,39 @@ export const Character = ({ movie, characters, setCharacters }) => {
   const sortGenderField = (array, letter) => {
     const sorted = sortGender(array, letter);
     setCharacters(sorted);
+    console.log('sorted', sorted)
+    console.log(stateCharacters, 'statechar')
+    // set state
+    // reset state
+    // setStateCharacters(sorted)
   };
+
+  const onSelectChange = e => {
+    setGenderValue(e.target.value)
+    sortGenderField(stateCharacters, e.target.value);
+  };
+
+  // let usedCharacter = characters;
+  // if (stateCharacters.length > 0) {
+  //   usedCharacter = stateCharacters
+  // }
 
   if (characters.length > 0) {
     const totalHeight = calculateHeights(characters);
+    const items = [
+      { title: 'M' },
+      { title: 'F' },
+      { title: 'H' },
+      { title: 'N/A' }
+    ];
     return (
       <StyledCharacter>
+        <Select
+          defaultValue="Select Gender"
+          value={genderValue}
+          onChange={onSelectChange}
+          items={items}
+        />
         <MovieDetails movie={movie} />
 
         <table className="fl-table">
@@ -94,21 +123,7 @@ export const Character = ({ movie, characters, setCharacters }) => {
               >
                 Name {sortArrow(nameOrder)}
               </th>
-              <th className="toggle-gender">
-                Gender
-                <select
-                  value={genderValue}
-                  onChange={e =>
-                    sortGenderField(stateCharacters, e.target.value)
-                  }
-                >
-                  <option defaultValue="Select Gender" disabled>
-                    Filter
-                  </option>
-                  <option value="M">M</option>
-                  <option value="F">F</option>
-                </select>
-              </th>
+              <th>Gender</th>
               <th
                 onClick={() => sortHeightField(characters)}
                 className="toggle height"
