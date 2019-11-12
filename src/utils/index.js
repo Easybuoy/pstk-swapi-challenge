@@ -5,7 +5,7 @@ export const formatGender = gender => {
     case 'female':
       return 'F';
     case 'hermaphrodite':
-      return 'H'
+      return 'H';
     default:
       return 'N/A';
   }
@@ -54,9 +54,9 @@ export const sortGender = (array, letter) => {
     case 'F':
       return array.filter(word => word.gender === 'female');
     case 'H':
-        return array.filter(word => word.gender === 'hermaphrodite');
+      return array.filter(word => word.gender === 'hermaphrodite');
     case 'N/A':
-        return array.filter(word => word.gender === 'n/a');
+      return array.filter(word => word.gender === 'n/a');
     default:
       return array;
   }
@@ -71,4 +71,20 @@ export const sortName = (array, order) => {
     default:
       return array;
   }
+};
+
+export const addMovieToLocalStorage = (movie, characters) => {
+  console.log(movie);
+  const movieData = JSON.parse(localStorage.getItem('movieData'));
+  console.log(movieData, 'movieData');
+  if (movieData) {
+    const latestMovies = movieData.concat({ title: movie.title, movie, characters });
+    console.log(latestMovies);
+    localStorage.setItem('movieData', JSON.stringify(latestMovies));
+  }
+};
+
+export const getMovieFromLocalStorage = title => {
+  const movieData = JSON.parse(localStorage.getItem('movieData'));
+  return movieData.filter(movie => movie.title === title);
 };
