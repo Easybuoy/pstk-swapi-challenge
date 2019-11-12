@@ -27,7 +27,7 @@ export const MovieListDropdown = ({
   const handleChange = (e) => {
     const { value } = e.target;
     const {title, url} = JSON.parse(value);
-    console.log()
+    console.log(title, 'mtitle')
     setMovieValue(title);
     selectMovie(title);
     getMovie(url);

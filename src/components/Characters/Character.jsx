@@ -87,9 +87,10 @@ export const Character = ({ movie, characters, setCharacters }) => {
   };
 
   const onSelectChange = e => {
-    console.log(e.target.value, 'character value')
-    setGenderValue(e.target.value);
-    sortGenderField(stateCharacters, e.target.value);
+    const {title} = JSON.parse(e.target.value)
+    console.log('titleeee', title)
+    setGenderValue(title);
+    sortGenderField(stateCharacters, title);
   };
 
   // let usedCharacter = characters;
