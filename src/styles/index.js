@@ -46,7 +46,7 @@ const Select = styled.select`
   font-size: 16px;
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
-  color: #444;
+  color: #f7e523;
   line-height: 1.3;
   padding: 0.6em 1.4em 0.5em 0.8em;
   width: 20%;
@@ -63,7 +63,7 @@ const Select = styled.select`
   background-repeat: no-repeat, repeat;
   background-position: right 0.7em top 50%, 0 0;
   background-size: 3em auto, 100%;
-  border-color: black;
+  border-color: #f7e523;
 
   @media (max-width: 1100px) {
     width: 30%;
@@ -171,7 +171,7 @@ const Character = styled.div`
     width: 100%;
     max-width: 100%;
     white-space: nowrap;
-    background-color: white;
+    background-color: #f7e523;
     .toggle {
       cursor: pointer;
     }
@@ -201,7 +201,7 @@ const Character = styled.div`
         background-repeat: no-repeat, repeat;
         background-position: right 0.7em top 50%, 0 0;
         background-size: 3em auto, 100%;
-        border-color: black;
+        border-color: #f7e523;
 
         @media (max-width: 750px) {
           width: 75%;
@@ -242,23 +242,29 @@ const Character = styled.div`
   }
 
   .fl-table td {
-    border-right: 1px solid #f8f8f8;
+    border: 1px solid #f7e523;
+    border-bottom: 0.5px solid #f7e523;
     font-size: 12px;
+    background-color: black;
+    color: #f7e523;
   }
 
   .fl-table thead th {
     color: #000;
     background: #f7e523;
+    font-weight: bold;
+    font-size: 1rem;
+    border: 1px solid #f7e523;
   }
 
-  .fl-table thead th:nth-child(odd) {
+  /* .fl-table thead th:nth-child(odd) {
     color: #f7e523;
     background: #000;
-  }
+  } */
 
-  .fl-table tr:nth-child(even) {
+  /* .fl-table tr:nth-child(even) {
     background: #f8f8f8;
-  }
+  } */
 `;
 
 const PreLoader = styled.div`
