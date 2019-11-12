@@ -23,24 +23,39 @@ describe('<Character />', () => {
 
   it('should call the mock onChange function', () => {
     const wrapper = mount(<Character {...props} />);
-
-    wrapper.find('select').simulate('change', { preventDefault() {} });
+    const event = {
+      target: {
+        name: 'pollName',
+        value: JSON.stringify({ title: '', url: '' })
+      }
+    };
+    wrapper.find('select').simulate('change', event);
     expect(wrapper).toMatchSnapshot();
     expect(props.setCharacters).toBeCalled();
   });
 
   it('should call the mock onClick name function', () => {
     const wrapper = shallow(<Character {...props} />);
-
-    wrapper.find('.name').simulate('click', { preventDefault() {} });
+    const event = {
+      target: {
+        name: 'pollName',
+        value: JSON.stringify({ title: '', url: '' })
+      }
+    };
+    wrapper.find('.name').simulate('click', event);
     expect(wrapper).toMatchSnapshot();
     expect(props.setCharacters).toBeCalled();
   });
 
   it('should call the mock onClick name function', () => {
     const wrapper = shallow(<Character {...props} />);
-
-    wrapper.find('.height').simulate('click', { preventDefault() {} });
+    const event = {
+      target: {
+        name: 'pollName',
+        value: JSON.stringify({ title: '', url: '' })
+      }
+    };
+    wrapper.find('.height').simulate('click', event);
     expect(wrapper).toMatchSnapshot();
     expect(props.setCharacters).toBeCalled();
   });

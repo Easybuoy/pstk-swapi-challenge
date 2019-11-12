@@ -4,8 +4,10 @@ export const formatGender = gender => {
       return 'M';
     case 'female':
       return 'F';
+    case 'hermaphrodite':
+      return 'H'
     default:
-      return '-';
+      return 'N/A';
   }
 };
 
@@ -51,6 +53,10 @@ export const sortGender = (array, letter) => {
       return array.filter(word => word.gender === 'male');
     case 'F':
       return array.filter(word => word.gender === 'female');
+    case 'H':
+        return array.filter(word => word.gender === 'hermaphrodite');
+    case 'N/A':
+        return array.filter(word => word.gender === 'n/a');
     default:
       return array;
   }
