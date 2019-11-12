@@ -93,7 +93,7 @@ the far reaches of space....",
       <tr>
         <th
           className="toggle name"
-          onDoubleClick={[Function]}
+          onClick={[Function]}
         >
           Name 
         </th>
@@ -125,7 +125,7 @@ the far reaches of space....",
         </th>
         <th
           className="toggle height"
-          onDoubleClick={[Function]}
+          onClick={[Function]}
         >
           Height 
         </th>
@@ -158,6 +158,8 @@ the far reaches of space....",
   </table>
 </styled.div>
 `;
+
+exports[`<Character /> should call the mock name function 1`] = `<PreLoader />`;
 
 exports[`<Character /> should call the mock onChange function 1`] = `
 <Character
@@ -362,9 +364,9 @@ the far reaches of space....",
           "$$typeof": Symbol(react.forward_ref),
           "attrs": Array [],
           "componentStyle": ComponentStyle {
-            "componentId": "sc-ifAKCX",
+            "componentId": "sc-bxivhb",
             "isStatic": false,
-            "lastClassName": "bjyEM",
+            "lastClassName": "khblae",
             "rules": Array [
               "
   margin: 10px 70px 70px;
@@ -383,7 +385,9 @@ the far reaches of space....",
     width: 100%;
     max-width: 100%;
     white-space: nowrap;
-    background-color: white;
+    background-color: ",
+              "#f7e523",
+              ";
     .toggle {
       cursor: pointer;
     }
@@ -391,55 +395,6 @@ the far reaches of space....",
     .toggle-gender {
       display: flex;
       justify-content: space-evenly;
-
-      select {
-        display: block;
-        font-family: 'Open Sans', sans-serif;
-        font-weight: 700;
-        color: #444;
-        line-height: 1.3;
-        padding: 0.6em 1.4em 0.5em 0.8em;
-        width: 50%;
-        box-sizing: border-box;
-        border: 1px solid #aaa;
-        box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.04);
-        border-radius: 0.5em;
-        -moz-appearance: none;
-        -webkit-appearance: none;
-        appearance: none;
-        background-color: #fff;
-        background-image: url('https://github.com/Easybuoy/pstk-swapi-challenge/blob/feature/sort-gender-169663235/src/assets/images/dropdown.png?raw=true'),
-          linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%);
-        background-repeat: no-repeat, repeat;
-        background-position: right 0.7em top 50%, 0 0;
-        background-size: 3em auto, 100%;
-        border-color: black;
-
-        @media (max-width: 750px) {
-          width: 75%;
-        }
-        &:hover {
-          cursor: pointer;
-          -webkit-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.75);
-          -moz-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.75);
-          box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.75);
-          transition: all 0.3s ease-in-out;
-        }
-
-        &:-ms-expand {
-          display: none;
-        }
-
-        &:focus {
-          box-shadow: black;
-          color: #222;
-          outline: none;
-        }
-
-        option {
-          font-weight: bold;
-        }
-      }
     }
 
     .total {
@@ -454,22 +409,33 @@ the far reaches of space....",
   }
 
   .fl-table td {
-    border-right: 1px solid #f8f8f8;
+    border: 1px solid ",
+              "#f7e523",
+              ";
+    border-bottom: 0.5px solid ",
+              "#f7e523",
+              ";
     font-size: 12px;
+    background-color: ",
+              "#000",
+              ";
+    color: ",
+              "#f7e523",
+              ";
   }
 
   .fl-table thead th {
-    color: #000;
-    background: #f7e523;
-  }
-
-  .fl-table thead th:nth-child(odd) {
-    color: #f7e523;
-    background: #000;
-  }
-
-  .fl-table tr:nth-child(even) {
-    background: #f8f8f8;
+    color: ",
+              "#000",
+              ";
+    background: ",
+              "#f7e523",
+              ";
+    font-weight: bold;
+    font-size: 1rem;
+    border: 1px solid ",
+              "#f7e523",
+              ";
   }
 ",
             ],
@@ -477,7 +443,7 @@ the far reaches of space....",
           "displayName": "styled.div",
           "foldedComponentIds": Array [],
           "render": [Function],
-          "styledComponentId": "sc-ifAKCX",
+          "styledComponentId": "sc-bxivhb",
           "target": "div",
           "toString": [Function],
           "warnTooManyClasses": [Function],
@@ -487,7 +453,7 @@ the far reaches of space....",
       forwardedRef={null}
     >
       <div
-        className="sc-ifAKCX bjyEM"
+        className="sc-bxivhb khblae"
       >
         <MovieDetails
           movie={
@@ -580,9 +546,9 @@ the far reaches of space....",
                   "$$typeof": Symbol(react.forward_ref),
                   "attrs": Array [],
                   "componentStyle": ComponentStyle {
-                    "componentId": "sc-bZQynM",
+                    "componentId": "sc-EHOje",
                     "isStatic": false,
-                    "lastClassName": "fonemt",
+                    "lastClassName": "iDJPse",
                     "rules": Array [
                       "
   display: flex;
@@ -592,7 +558,9 @@ the far reaches of space....",
   margin: 2rem 0;
 
   .content {
-    background-color: #000;
+    background-color: ",
+                      "#000",
+                      ";
     height: 300px;
     width: 100%;
     display: flex;
@@ -617,7 +585,9 @@ the far reaches of space....",
         margin: 1rem;
         text-align: center;
         h4 {
-          color: #f7e523;
+          color: ",
+                      "#f7e523",
+                      ";
           font-family: 'Supermercado One', cursive;
         }
 
@@ -635,7 +605,7 @@ the far reaches of space....",
                   "displayName": "styled.div",
                   "foldedComponentIds": Array [],
                   "render": [Function],
-                  "styledComponentId": "sc-bZQynM",
+                  "styledComponentId": "sc-EHOje",
                   "target": "div",
                   "toString": [Function],
                   "warnTooManyClasses": [Function],
@@ -645,7 +615,7 @@ the far reaches of space....",
               forwardedRef={null}
             >
               <div
-                className="sc-bZQynM fonemt"
+                className="sc-EHOje iDJPse"
               >
                 <div
                   className="content"
@@ -723,13 +693,15 @@ the far reaches of space...."
                             "$$typeof": Symbol(react.forward_ref),
                             "attrs": Array [],
                             "componentStyle": ComponentStyle {
-                              "componentId": "sc-gzVnrw",
+                              "componentId": "sc-bZQynM",
                               "isStatic": false,
-                              "lastClassName": "jqnnCb",
+                              "lastClassName": "eRjFvC",
                               "rules": Array [
                                 "
   display: flex;
-  color: #f7e523;
+  color: ",
+                                "#f7e523",
+                                ";
   padding: 2rem;
   font-family: 'Supermercado One', cursive;
 ",
@@ -738,7 +710,7 @@ the far reaches of space...."
                             "displayName": "styled.div",
                             "foldedComponentIds": Array [],
                             "render": [Function],
-                            "styledComponentId": "sc-gzVnrw",
+                            "styledComponentId": "sc-bZQynM",
                             "target": "div",
                             "toString": [Function],
                             "warnTooManyClasses": [Function],
@@ -748,7 +720,7 @@ the far reaches of space...."
                         forwardedRef={null}
                       >
                         <div
-                          className="sc-gzVnrw jqnnCb"
+                          className="sc-bZQynM eRjFvC"
                         >
                           <marquee
                             behavior="scroll"
@@ -791,7 +763,7 @@ the far reaches of space....
             <tr>
               <th
                 className="toggle name"
-                onDoubleClick={[Function]}
+                onClick={[Function]}
               >
                 Name 
               </th>
@@ -823,7 +795,7 @@ the far reaches of space....
               </th>
               <th
                 className="toggle height"
-                onDoubleClick={[Function]}
+                onClick={[Function]}
               >
                 Height 
               </th>
@@ -860,7 +832,7 @@ the far reaches of space....
 </Character>
 `;
 
-exports[`<Character /> should call the mock onDOubleCLick name function 1`] = `
+exports[`<Character /> should call the mock onClick name function 1`] = `
 <styled.div>
   <MovieDetails
     movie={
@@ -953,7 +925,7 @@ the far reaches of space....",
       <tr>
         <th
           className="toggle name"
-          onDoubleClick={[Function]}
+          onClick={[Function]}
         >
           Name 
           <span>
@@ -988,7 +960,7 @@ the far reaches of space....",
         </th>
         <th
           className="toggle height"
-          onDoubleClick={[Function]}
+          onClick={[Function]}
         >
           Height 
         </th>
@@ -1022,7 +994,7 @@ the far reaches of space....",
 </styled.div>
 `;
 
-exports[`<Character /> should call the mock onDOubleCLick name function 2`] = `
+exports[`<Character /> should call the mock onClick name function 2`] = `
 <styled.div>
   <MovieDetails
     movie={
@@ -1115,7 +1087,7 @@ the far reaches of space....",
       <tr>
         <th
           className="toggle name"
-          onDoubleClick={[Function]}
+          onClick={[Function]}
         >
           Name 
         </th>
@@ -1147,7 +1119,7 @@ the far reaches of space....",
         </th>
         <th
           className="toggle height"
-          onDoubleClick={[Function]}
+          onClick={[Function]}
         >
           Height 
           <span>
@@ -1183,5 +1155,3 @@ the far reaches of space....",
   </table>
 </styled.div>
 `;
-
-exports[`<Character /> should call the mock onDOubleCLick name function 3`] = `<PreLoader />`;

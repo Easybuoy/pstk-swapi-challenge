@@ -168,8 +168,6 @@ const Character = styled.div`
     font-size: 1rem;
     border: 1px solid ${primaryColor};
   }
-
-  
 `;
 
 const PreLoader = styled.div`
