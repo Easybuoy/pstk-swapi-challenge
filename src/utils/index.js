@@ -74,17 +74,29 @@ export const sortName = (array, order) => {
 };
 
 export const addMovieToLocalStorage = (movie, characters) => {
-  console.log(movie);
+  initializeLocalStorage();
+
   const movieData = JSON.parse(localStorage.getItem('movieData'));
-  console.log(movieData, 'movieData');
   if (movieData) {
-    const latestMovies = movieData.concat({ title: movie.title, movie, characters });
-    console.log(latestMovies);
+    const latestMovies = movieData.concat({
+      title: movie.title,
+      movie,
+      characters
+    });
     localStorage.setItem('movieData', JSON.stringify(latestMovies));
+    return latestMovies;
   }
 };
 
 export const getMovieFromLocalStorage = title => {
+  initializeLocalStorage();
+
   const movieData = JSON.parse(localStorage.getItem('movieData'));
   return movieData.filter(movie => movie.title === title);
+};
+
+export const initializeLocalStorage = () => {
+  if (!localStorage.getItem('movieData')) {
+    localStorage.setItem('movieData', JSON.stringify([]));
+  }
 };

@@ -15,7 +15,8 @@ export const MovieListDropdown = ({
   selectMovie,
   getMovies,
   getMovie,
-  setCharacters
+  setCharacters,
+  setMovie
 }) => {
   const [movieValue, setMovieValue] = useState('');
 
@@ -35,14 +36,12 @@ export const MovieListDropdown = ({
     const existingMovieInLocalStorage = getMovieFromLocalStorage(title)
     if (existingMovieInLocalStorage.length > 0) {
       // we found the movie in localstorage
-      console.log(existingMovieInLocalStorage[0], 'exis')
       setCharacters(existingMovieInLocalStorage[0].characters)
+      setMovie(existingMovieInLocalStorage[0].movie)
     } else {
       //we could not find movie in localstorage, thus get from api
       getMovie(url);
     }
-    console.log(getMovieFromLocalStorage(title), 'choi');
-    
   };
 
   let dropDownItems = '';
