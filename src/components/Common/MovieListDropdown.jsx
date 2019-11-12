@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import PreLoader from '../Common/PreLoader';
 import { getMovies, selectMovie, getMovie } from '../../actions';
 import {
-  MovieListDropdown as StyledMovieListDropdown,
+  MovieListDropdown as StyledMovieListDropdown
   // Select
 } from '../../styles';
 import Select from './Select';
@@ -24,17 +24,17 @@ export const MovieListDropdown = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const handleChange = (e) => {
+  const handleChange = e => {
     const { value } = e.target;
-    const {title, url} = JSON.parse(value);
-    console.log(title, 'mtitle')
-    setMovieValue(title);
+    const { title, url } = JSON.parse(value);
+    setMovieValue(value);
     selectMovie(title);
+    
     getMovie(url);
   };
 
   let dropDownItems = '';
-
+  console.log(movieValue, 'movievalue===');
   if (movies.length > 0) {
     dropDownItems = (
       // <Select value={movieValue} onChange={handleChange}>
@@ -56,7 +56,7 @@ export const MovieListDropdown = ({
         )}
         value={movieValue}
         onChange={handleChange}
-        defaultValue={movieValue}
+        defaultValue="Select Star Wars Movie"
       />
     );
   } else {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Select as StyledSelect } from '../../styles';
 function Select({ value, onChange, defaultValue, items }) {
-  console.log(defaultValue, value);
+//   console.log(defaultValue, value);
   return (
     <StyledSelect value={value} onChange={onChange}>
       <option defaultValue={defaultValue} disabled>

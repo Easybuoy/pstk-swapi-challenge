@@ -89,7 +89,7 @@ export const Character = ({ movie, characters, setCharacters }) => {
   const onSelectChange = e => {
     const {title} = JSON.parse(e.target.value)
     console.log('titleeee', title)
-    setGenderValue(title);
+    setGenderValue(e.target.value);
     sortGenderField(stateCharacters, title);
   };
 
