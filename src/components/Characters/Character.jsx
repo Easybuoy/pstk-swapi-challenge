@@ -34,12 +34,16 @@ export const Character = ({ movie, characters, setCharacters }) => {
   const [nameOrder, setNameOrder] = useState(undefined);
   const [genderValue, setGenderValue] = useState('Filter Gender');
   const [stateCharacters, setStateCharacters] = useState([]);
+  const [movieTitle, setMovieTitle] = useState('');
 
   useEffect(() => {
     // const timer = setTimeout(() => {
     //   console.log('enterring bro')
-    if (stateCharacters.length === 0) {
+    console.log(movie.title, 'latest movie title')
+    console.log(movieTitle, 'existing movie title')
+    if (stateCharacters.length === 0 || movie.title !== movieTitle) {
       setStateCharacters(characters);
+      setMovieTitle(movie.title)
     }
     // }, 3000);
     // return () => clearTimeout(timer);
@@ -81,14 +85,13 @@ export const Character = ({ movie, characters, setCharacters }) => {
     setCharacters(sorted);
     console.log('sorted', sorted);
     console.log(stateCharacters, 'statechar');
-    // set state
-    // reset state
+
     // setStateCharacters(sorted)
   };
 
   const onSelectChange = e => {
-    const {title} = JSON.parse(e.target.value)
-    console.log('titleeee', title)
+    const { title } = JSON.parse(e.target.value);
+
     setGenderValue(e.target.value);
     sortGenderField(stateCharacters, title);
   };
