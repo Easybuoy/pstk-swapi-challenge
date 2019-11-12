@@ -123,6 +123,11 @@ const Character = styled.div`
   @media (max-width: 750px) {
     margin: 0;
   }
+
+  h2 {
+    color: ${primaryColor};
+    text-align: center;
+  }
   .fl-table {
     border-radius: 5px;
     font-size: 12px;

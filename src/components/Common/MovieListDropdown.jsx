@@ -29,27 +29,14 @@ export const MovieListDropdown = ({
     const { title, url } = JSON.parse(value);
     setMovieValue(value);
     selectMovie(title);
-    
+
     getMovie(url);
   };
 
   let dropDownItems = '';
-  console.log(movieValue, 'movievalue===');
+
   if (movies.length > 0) {
     dropDownItems = (
-      // <Select value={movieValue} onChange={handleChange}>
-      //   <option value="Select Star Wars Movie" disabled>
-      //     Select Star Wars Movie
-      //   </option>
-
-      //   {movies
-      //     .sort((a, b) => new Date(a.release_date) - new Date(b.release_date))
-      //     .map(movie => (
-      //       <option key={movie.title} value={movie.url}>
-      //         {movie.title}
-      //       </option>
-      //     ))}
-      // </Select>
       <Select
         items={movies.sort(
           (a, b) => new Date(a.release_date) - new Date(b.release_date)

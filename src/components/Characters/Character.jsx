@@ -29,7 +29,7 @@ export const sortArrow = order => {
   }
 };
 
-export const Character = ({ movie, characters, setCharacters }) => {
+export const Character = ({ movie, characters, setCharacters, loading }) => {
   const [heightOrder, setHeightOrder] = useState(undefined);
   const [nameOrder, setNameOrder] = useState(undefined);
   const [genderValue, setGenderValue] = useState('Filter Gender');
@@ -37,16 +37,11 @@ export const Character = ({ movie, characters, setCharacters }) => {
   const [movieTitle, setMovieTitle] = useState('');
 
   useEffect(() => {
-    // const timer = setTimeout(() => {
-    //   console.log('enterring bro')
-    console.log(movie.title, 'latest movie title')
-    console.log(movieTitle, 'existing movie title')
     if (stateCharacters.length === 0 || movie.title !== movieTitle) {
       setStateCharacters(characters);
-      setMovieTitle(movie.title)
+      setMovieTitle(movie.title);
     }
-    // }, 3000);
-    // return () => clearTimeout(timer);
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [characters]);
 
@@ -83,10 +78,6 @@ export const Character = ({ movie, characters, setCharacters }) => {
   const sortGenderField = (array, letter) => {
     const sorted = sortGender(array, letter);
     setCharacters(sorted);
-    console.log('sorted', sorted);
-    console.log(stateCharacters, 'statechar');
-
-    // setStateCharacters(sorted)
   };
 
   const onSelectChange = e => {
@@ -96,19 +87,34 @@ export const Character = ({ movie, characters, setCharacters }) => {
     sortGenderField(stateCharacters, title);
   };
 
-  // let usedCharacter = characters;
-  // if (stateCharacters.length > 0) {
-  //   usedCharacter = stateCharacters
-  // }
+  const items = [
+    { title: 'M' },
+    { title: 'F' },
+    { title: 'H' },
+    { title: 'N/A' }
+  ];
 
+  if (loading) {
+    return <PreLoader />;
+  }
+
+  if (characters.length === 0) {
+    return (
+      <StyledCharacter>
+        <Select
+          defaultValue="Filter Gender"
+          value={genderValue}
+          onChange={onSelectChange}
+          items={items}
+        />
+
+        <h2>No character to display with search criteria</h2>
+      </StyledCharacter>
+    );
+  }
   if (characters.length > 0) {
     const totalHeight = calculateHeights(characters);
-    const items = [
-      { title: 'M' },
-      { title: 'F' },
-      { title: 'H' },
-      { title: 'N/A' }
-    ];
+
     return (
       <StyledCharacter>
         <Select
@@ -159,8 +165,6 @@ export const Character = ({ movie, characters, setCharacters }) => {
       </StyledCharacter>
     );
   }
-
-  return <PreLoader />;
 };
 
 Character.propTypes = {
@@ -169,7 +173,7 @@ Character.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  loading: state.loading,
+  loading: state.loading.loading,
   error: state.error,
   characters: state.swapi.characters
 });
