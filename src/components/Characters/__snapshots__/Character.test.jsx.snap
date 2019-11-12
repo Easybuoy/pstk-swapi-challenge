@@ -364,7 +364,7 @@ the far reaches of space....",
           "componentStyle": ComponentStyle {
             "componentId": "sc-ifAKCX",
             "isStatic": false,
-            "lastClassName": "eSPLeJ",
+            "lastClassName": "bjyEM",
             "rules": Array [
               "
   margin: 10px 70px 70px;
@@ -391,8 +391,7 @@ the far reaches of space....",
     .toggle-gender {
       display: flex;
       justify-content: space-evenly;
-        
-      
+
       select {
         display: block;
         font-family: 'Open Sans', sans-serif;
@@ -488,7 +487,7 @@ the far reaches of space....",
       forwardedRef={null}
     >
       <div
-        className="sc-ifAKCX eSPLeJ"
+        className="sc-ifAKCX bjyEM"
       >
         <MovieDetails
           movie={
