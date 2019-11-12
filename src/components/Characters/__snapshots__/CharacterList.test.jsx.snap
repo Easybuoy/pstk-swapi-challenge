@@ -93,9 +93,9 @@ the far reaches of space....",
           "$$typeof": Symbol(react.forward_ref),
           "attrs": Array [],
           "componentStyle": ComponentStyle {
-            "componentId": "sc-bxivhb",
+            "componentId": "sc-htpNat",
             "isStatic": false,
-            "lastClassName": "cjXxqd",
+            "lastClassName": "kpmQHN",
             "rules": Array [
               "
   width: 100%;
@@ -132,7 +132,7 @@ the far reaches of space....",
           "displayName": "styled.div",
           "foldedComponentIds": Array [],
           "render": [Function],
-          "styledComponentId": "sc-bxivhb",
+          "styledComponentId": "sc-htpNat",
           "target": "div",
           "toString": [Function],
           "warnTooManyClasses": [Function],
@@ -142,7 +142,7 @@ the far reaches of space....",
       forwardedRef={null}
     >
       <div
-        className="sc-bxivhb cjXxqd"
+        className="sc-htpNat kpmQHN"
       >
         <img
           alt="Star Wars"
@@ -175,9 +175,9 @@ exports[`<CharacterList /> renders the CharacterList component correctly 2`] = `
           "$$typeof": Symbol(react.forward_ref),
           "attrs": Array [],
           "componentStyle": ComponentStyle {
-            "componentId": "sc-bxivhb",
+            "componentId": "sc-htpNat",
             "isStatic": false,
-            "lastClassName": "cjXxqd",
+            "lastClassName": "kpmQHN",
             "rules": Array [
               "
   width: 100%;
@@ -214,7 +214,7 @@ exports[`<CharacterList /> renders the CharacterList component correctly 2`] = `
           "displayName": "styled.div",
           "foldedComponentIds": Array [],
           "render": [Function],
-          "styledComponentId": "sc-bxivhb",
+          "styledComponentId": "sc-htpNat",
           "target": "div",
           "toString": [Function],
           "warnTooManyClasses": [Function],
@@ -224,7 +224,7 @@ exports[`<CharacterList /> renders the CharacterList component correctly 2`] = `
       forwardedRef={null}
     >
       <div
-        className="sc-bxivhb cjXxqd"
+        className="sc-htpNat kpmQHN"
       >
         <img
           alt="Star Wars"
@@ -248,9 +248,9 @@ exports[`<CharacterList /> renders the CharacterList component correctly 3`] = `
           "$$typeof": Symbol(react.forward_ref),
           "attrs": Array [],
           "componentStyle": ComponentStyle {
-            "componentId": "sc-bxivhb",
+            "componentId": "sc-htpNat",
             "isStatic": false,
-            "lastClassName": "cjXxqd",
+            "lastClassName": "kpmQHN",
             "rules": Array [
               "
   width: 100%;
@@ -287,7 +287,7 @@ exports[`<CharacterList /> renders the CharacterList component correctly 3`] = `
           "displayName": "styled.div",
           "foldedComponentIds": Array [],
           "render": [Function],
-          "styledComponentId": "sc-bxivhb",
+          "styledComponentId": "sc-htpNat",
           "target": "div",
           "toString": [Function],
           "warnTooManyClasses": [Function],
@@ -297,7 +297,7 @@ exports[`<CharacterList /> renders the CharacterList component correctly 3`] = `
       forwardedRef={null}
     >
       <div
-        className="sc-bxivhb cjXxqd"
+        className="sc-htpNat kpmQHN"
       >
         <img
           alt="Star Wars"

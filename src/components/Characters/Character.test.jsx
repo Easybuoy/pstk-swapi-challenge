@@ -29,23 +29,23 @@ describe('<Character />', () => {
     expect(props.setCharacters).toBeCalled();
   });
 
-  it('should call the mock onDOubleCLick name function', () => {
+  it('should call the mock onClick name function', () => {
     const wrapper = shallow(<Character {...props} />);
 
-    wrapper.find('.name').simulate('dblclick', { preventDefault() {} });
+    wrapper.find('.name').simulate('click', { preventDefault() {} });
     expect(wrapper).toMatchSnapshot();
     expect(props.setCharacters).toBeCalled();
   });
 
-  it('should call the mock onDOubleCLick name function', () => {
+  it('should call the mock onClick name function', () => {
     const wrapper = shallow(<Character {...props} />);
 
-    wrapper.find('.height').simulate('dblclick', { preventDefault() {} });
+    wrapper.find('.height').simulate('click', { preventDefault() {} });
     expect(wrapper).toMatchSnapshot();
     expect(props.setCharacters).toBeCalled();
   });
 
-  it('should call the mock onDOubleCLick name function', () => {
+  it('should call the mock name function', () => {
     props.characters = [];
     const wrapper = shallow(<Character {...props} />);
 
