@@ -98,7 +98,7 @@ const Select = styled.select`
 
   &:focus {
     box-shadow: black;
-    color: #222;
+    color: yellow;
     outline: none;
   }
 
