@@ -58,8 +58,8 @@ const Select = styled.select`
   -webkit-appearance: none;
   appearance: none;
   background-color: #fff;
-  background-image: url('https://github.com/Easybuoy/pstk-swapi-challenge/blob/feature/sort-gender-169663235/src/assets/images/dropdown.png?raw=true'),
-    linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%);
+  background-image: url('https://github.com/Easybuoy/pstk-swapi-challenge/blob/bug/fix-application-colors-169703366/src/assets/images/dropdown.png?raw=true'),
+    linear-gradient(to bottom, #000 0%, #000 100%);
   background-repeat: no-repeat, repeat;
   background-position: right 0.7em top 50%, 0 0;
   background-size: 3em auto, 100%;
@@ -86,9 +86,9 @@ const Select = styled.select`
   }
   &:hover {
     cursor: pointer;
-    -webkit-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.75);
-    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 0px 0px 3px 0px yellow;
+    -moz-box-shadow: 0px 0px 3px 0px yellow;
+    box-shadow: 0px 0px 3px 0px yellow;
     transition: all 0.3s ease-in-out;
   }
 
