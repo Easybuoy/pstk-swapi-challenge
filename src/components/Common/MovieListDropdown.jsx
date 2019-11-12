@@ -3,12 +3,16 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import PreLoader from '../Common/PreLoader';
-import { getMovies, selectMovie, getMovie, setCharacters, setMovie } from '../../actions';
 import {
-  MovieListDropdown as StyledMovieListDropdown
-} from '../../styles';
+  getMovies,
+  selectMovie,
+  getMovie,
+  setCharacters,
+  setMovie
+} from '../../actions';
+import { MovieListDropdown as StyledMovieListDropdown } from '../../styles';
 import Select from './Select';
-import { getMovieFromLocalStorage} from '../../utils'
+import { getMovieFromLocalStorage } from '../../utils';
 
 export const MovieListDropdown = ({
   movies,
@@ -33,11 +37,11 @@ export const MovieListDropdown = ({
     selectMovie(title);
 
     // check if movie exist in localstorage
-    const existingMovieInLocalStorage = getMovieFromLocalStorage(title)
+    const existingMovieInLocalStorage = getMovieFromLocalStorage(title);
     if (existingMovieInLocalStorage.length > 0) {
       // we found the movie in localstorage
-      setCharacters(existingMovieInLocalStorage[0].characters)
-      setMovie(existingMovieInLocalStorage[0].movie)
+      setCharacters(existingMovieInLocalStorage[0].characters);
+      setMovie(existingMovieInLocalStorage[0].movie);
     } else {
       //we could not find movie in localstorage, thus get from api
       getMovie(url);
@@ -83,7 +87,7 @@ const mapStateToProps = state => ({
   error: state.error.error,
   movies: state.swapi.movies,
   movie: state.swapi.movie,
-  selectedMovie: state.swapi.selectedMovie,
+  selectedMovie: state.swapi.selectedMovie
 });
 
 export default connect(

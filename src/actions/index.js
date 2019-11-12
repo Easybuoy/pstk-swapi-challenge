@@ -49,7 +49,7 @@ export const getMovie = movie_url => dispatch => {
 };
 
 export const getCharacter = movie => dispatch => {
-  const { characters } = movie;
+  const { characters } = movie; 
 
   dispatch({ type: LOADING });
   return Promise.all(
