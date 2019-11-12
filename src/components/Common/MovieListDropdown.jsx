@@ -3,18 +3,24 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import PreLoader from '../Common/PreLoader';
-import { getMovies, selectMovie, getMovie } from '../../actions';
 import {
-  MovieListDropdown as StyledMovieListDropdown
-  // Select
-} from '../../styles';
+  getMovies,
+  selectMovie,
+  getMovie,
+  setCharacters,
+  setMovie
+} from '../../actions';
+import { MovieListDropdown as StyledMovieListDropdown } from '../../styles';
 import Select from './Select';
+import { getMovieFromLocalStorage } from '../../utils';
 
 export const MovieListDropdown = ({
   movies,
   selectMovie,
   getMovies,
-  getMovie
+  getMovie,
+  setCharacters,
+  setMovie
 }) => {
   const [movieValue, setMovieValue] = useState('');
 
@@ -30,7 +36,16 @@ export const MovieListDropdown = ({
     setMovieValue(value);
     selectMovie(title);
 
-    getMovie(url);
+    // check if movie exist in localstorage
+    const existingMovieInLocalStorage = getMovieFromLocalStorage(title);
+    if (existingMovieInLocalStorage.length > 0) {
+      // we found the movie in localstorage
+      setCharacters(existingMovieInLocalStorage[0].characters);
+      setMovie(existingMovieInLocalStorage[0].movie);
+    } else {
+      //we could not find movie in localstorage, thus get from api
+      getMovie(url);
+    }
   };
 
   let dropDownItems = '';
@@ -62,7 +77,9 @@ export const MovieListDropdown = ({
 MovieListDropdown.propTypes = {
   getMovies: PropTypes.func.isRequired,
   selectMovie: PropTypes.func.isRequired,
-  getMovie: PropTypes.func.isRequired
+  getMovie: PropTypes.func.isRequired,
+  setCharacters: PropTypes.func.isRequired,
+  setMovie: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -75,5 +92,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getMovies, selectMovie, getMovie }
+  { getMovies, selectMovie, getMovie, setCharacters, setMovie }
 )(MovieListDropdown);

@@ -6,7 +6,8 @@ import {
   formatHeight,
   sortHeight,
   sortName,
-  sortGender
+  sortGender,
+  initializeLocalStorage
 } from './index';
 
 describe('Util', () => {
@@ -163,5 +164,10 @@ describe('Util', () => {
     ];
     const response = sortGender(testArray, 'M');
     expect(response).toEqual([{ name: 'Ezekiel', height: 10, gender: 'male' }]);
+  });
+
+  it('test initializeLocalStorage', () => {
+    localStorage.removeItem('movieData')
+    expect(initializeLocalStorage()).toEqual(undefined);
   });
 });

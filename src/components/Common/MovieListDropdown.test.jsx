@@ -11,7 +11,9 @@ describe('<MovieListDropdown />', () => {
     movies: getMoviesMock,
     getMovies: jest.fn(),
     selectMovie: jest.fn(),
-    getMovie: jest.fn()
+    getMovie: jest.fn(),
+    setCharacters: jest.fn(),
+    setMovie: jest.fn()
   };
 
   it('renders the MovieListDropdown component correctly', () => {

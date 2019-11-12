@@ -1,5 +1,7 @@
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
+import { addMovieToLocalStorage } from '../utils';
 import {
   LOADING,
   ERROR,
@@ -8,7 +10,6 @@ import {
   SET_MOVIE,
   SET_CHARACTERS
 } from './types';
-import { toast } from 'react-toastify';
 
 export const getMovies = () => dispatch => {
   dispatch({ type: LOADING });
@@ -32,8 +33,8 @@ export const getMovie = movie_url => dispatch => {
   return axios
     .get(`https://cors-anywhere.herokuapp.com/${movie_url}`)
     .then(res => {
-      dispatch({ type: SET_MOVIE, payload: res.data });
-      dispatch(getCharacter(res.data.characters));
+      dispatch(setMovie(res.data));
+      dispatch(getCharacter(res.data));
     })
     .catch(err => {
       if (err.response) {
@@ -47,16 +48,21 @@ export const getMovie = movie_url => dispatch => {
     .finally(() => dispatch({ type: LOADING }));
 };
 
-export const getCharacter = character_urls => dispatch => {
+export const getCharacter = movie => dispatch => {
+  const { characters } = movie; 
+
   dispatch({ type: LOADING });
   return Promise.all(
-    character_urls.map(url =>
+    characters.map(url =>
       axios
         .get(`https://cors-anywhere.herokuapp.com/${url}`)
         .then(data => data.data)
     )
   )
-    .then(res => dispatch(setCharacters(res)))
+    .then(res => {
+      addMovieToLocalStorage(movie, res);
+      dispatch(setCharacters(res));
+    })
     .catch(err => {
       if (err.response) {
         dispatch({ type: ERROR, payload: err.response.data.detail });
@@ -75,4 +81,8 @@ export const selectMovie = movie => {
 
 export const setCharacters = characters => {
   return { type: SET_CHARACTERS, payload: characters };
+};
+
+export const setMovie = movie => {
+  return { type: SET_MOVIE, payload: movie };
 };
