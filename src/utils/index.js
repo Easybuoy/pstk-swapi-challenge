@@ -1,4 +1,5 @@
 export const formatGender = gender => {
+  console.log(gender)
   switch (gender) {
     case 'male':
       return 'M';
