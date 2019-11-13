@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.org/Easybuoy/pstk-swapi-challenge.svg?branch=master)](https://travis-ci.org/Easybuoy/pstk-swapi-challenge)
 [![Coverage Status](https://coveralls.io/repos/github/Easybuoy/pstk-swapi-challenge/badge.svg?branch=develop)](https://coveralls.io/github/Easybuoy/pstk-swapi-challenge?branch=master)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/0e604b3a-dbf6-4c09-a802-0c0c401b1ed6/deploy-status)](https://app.netlify.com/sites/pstk-swapi-challenge/deploys)
 
 ## Pstk Swapi Challenge
 
