@@ -92,11 +92,23 @@ export const addMovieToLocalStorage = (movie, characters) => {
 export const getMovieFromLocalStorage = title => {
   initializeLocalStorage();
   const movieData = JSON.parse(localStorage.getItem('movieData'));
-  return movieData.filter(movie => {
+  return movieData.filter((movie, i) => {
     if (movie.title === title) {
+      console.log(OneDayAgo(movie.created_at), 'isv');
       if (!OneDayAgo(movie.created_at)) {
+        //movie found, but less than a day
         console.log('movie not one day old');
         return movie;
+      } else {
+        // movie found, but older than a day
+        // thus, cleanup and remove existing movie
+        console.log(i, 'index');
+        console.log(movieData);
+        movieData.splice(i, 1);
+        // delete movieData[i]
+        console.log(movieData, 'aaaaaa');
+
+        // someArray.splice(x, i
       }
     }
     return null;
@@ -110,10 +122,15 @@ export const initializeLocalStorage = () => {
 };
 
 const OneDayAgo = date => {
-  const OneDay = Date.now + 1 * 24 * 60 * 60 * 1000;
-  if (OneDay > date) {
+  let twoDaysAgo = new Date();
+  twoDaysAgo = twoDaysAgo.setDate(twoDaysAgo.getDate() - 2);
+  console.log(twoDaysAgo);
+  const todayDate = Date.now();
+  console.log('today', todayDate);
+  const OneDay = Date.now() + 1 * 24 * 60 * 60 * 1000;
+  if (date > todayDate) {
     return false;
-  } else if (OneDay < date) {
+  } else if (date < todayDate) {
     return true;
   }
 };
