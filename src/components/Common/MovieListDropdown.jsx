@@ -34,7 +34,6 @@ export const MovieListDropdown = ({
       //we could not find movieList in localstorage, thus get from api
       getMovies();
     }
-    getMovies();
     setMovieValue('Select Star Wars Movie');
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
