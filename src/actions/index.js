@@ -16,7 +16,7 @@ export const getMovies = () => dispatch => {
   return axios
     .get('https://cors-anywhere.herokuapp.com/https://swapi.co/api/films')
     
-    .then(res => { console.log(res.data)
+    .then(res => {
       addMovieListToLocalStorage(res.data.results)
       dispatch(setMovies(res.data.results))
     })
