@@ -38,6 +38,7 @@ export const MovieListDropdown = ({
 
     // check if movie exist in localstorage
     const existingMovieInLocalStorage = getMovieFromLocalStorage(title);
+    console.log(existingMovieInLocalStorage)
     if (existingMovieInLocalStorage.length > 0) {
       // we found the movie in localstorage
       setCharacters(existingMovieInLocalStorage[0].characters);
