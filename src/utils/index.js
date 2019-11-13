@@ -92,12 +92,10 @@ export const addMovieToLocalStorage = (movie, characters) => {
 export const getMovieFromLocalStorage = title => {
   initializeLocalStorage();
   const movieData = JSON.parse(localStorage.getItem('movieData'));
-  return movieData.filter((movie, i) => {
+  return movieData.filter(movie => {
     if (movie.title === title) {
-      console.log(OneDayAgo(movie.created_at), 'isv');
       if (!OneDayAgo(movie.created_at)) {
-        //movie found, but less than a day
-        console.log('movie not one day old');
+        // movie found, but less than a day
         return movie;
       }
     }
@@ -112,30 +110,14 @@ export const initializeLocalStorage = () => {
 };
 
 const OneDayAgo = date => {
-  //   const date1 = new Date('11/12/2019');
-  // const date2 = new Date('11/13/2019');
-  // const diffTime = Math.abs(date2 - date1);
-  // const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-  // console.log(diffDays);
   let oneDayAgo = new Date();
   oneDayAgo = oneDayAgo.setDate(oneDayAgo.getDate() - 1);
-  console.log(oneDayAgo, 'oneDayAgo');
-  const todayDate = Date.now();
-  // var ts = Math.round(new Date().getTime() / 1000);
-  // var tsYesterday = ts - 24 * 3600;
-  // console.log(
-  //   tsYesterday,
-  //   'onedayagpo'
-  // );
-  var difference = (date - oneDayAgo)
-    var daysDifference = Math.floor(difference/1000/60/60/24);
+  var difference = date - oneDayAgo;
+  var daysDifference = Math.floor(difference / 1000 / 60 / 60 / 24);
 
-    console.log( daysDifference)
-  console.log('today', todayDate);
-  // const OneDay = Date.now() + 1 * 24 * 60 * 60 * 1000;
-  if (date > todayDate) {
+  if (daysDifference === 0) {
     return false;
-  } else if (date < todayDate) {
+  } else {
     return true;
   }
 };
