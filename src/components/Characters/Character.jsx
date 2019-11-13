@@ -89,6 +89,7 @@ export const Character = ({ movie, characters, setCharacters, loading }) => {
   };
 
   const items = [
+    {title: 'ALL'},
     { title: 'M' },
     { title: 'F' },
     { title: 'H' },
