@@ -117,14 +117,15 @@ export const Character = ({ movie, characters, setCharacters, loading }) => {
 
     return (
       <StyledCharacter>
+        <MovieDetails movie={movie} />
+
         <Select
           defaultValue="Filter Gender"
           value={genderValue}
           onChange={onSelectChange}
           items={items}
         />
-        <MovieDetails movie={movie} />
-
+        
         <table className="fl-table">
           <thead>
             <tr>
