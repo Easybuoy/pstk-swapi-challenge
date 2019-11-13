@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { primaryColor, secondaryColor } from './colors';
 
 const Select = styled.select`
-  margin: 2rem 0;
+  margin: 2rem auto;
   display: block;
   font-size: 16px;
   font-family: 'Open Sans', sans-serif;
@@ -142,8 +142,6 @@ const Character = styled.div`
       cursor: pointer;
     }
 
-   
-
     .total {
       font-weight: bold;
     }
@@ -186,40 +184,13 @@ const MovieDetails = styled.div`
 
   .content {
     background-color: ${secondaryColor};
-    height: 300px;
+    height: auto;
     width: 100%;
     display: flex;
     flex-wrap: wrap;
 
     @media (max-width: 820px) {
       height: auto;
-    }
-
-    .content-details {
-      display: flex;
-      flex-wrap: wrap;
-      width: 100%;
-      justify-content: space-evenly;
-      padding: 2rem;
-      @media (max-width: 820px) {
-        padding: 0;
-      }
-      .item {
-        display: flex;
-        flex-direction: column;
-        margin: 1rem;
-        text-align: center;
-        h4 {
-          color: ${primaryColor};
-          font-family: 'Supermercado One', cursive;
-        }
-
-        p {
-          color: #ffffff;
-          font-family: 'Open Sans', sans-serif;
-          padding: 0;
-        }
-      }
     }
   }
 `;

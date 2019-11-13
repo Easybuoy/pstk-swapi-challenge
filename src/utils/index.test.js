@@ -7,8 +7,13 @@ import {
   sortHeight,
   sortName,
   sortGender,
-  initializeLocalStorage
+  initializeLocalStorage,
+  oneDayAgo,
+  getMovieFromLocalStorage
 } from './index';
+
+import mock from '../__mocks__/mock';
+const { getMovieDataMock } = mock;
 
 describe('Util', () => {
   it('test male case Format Gender', () => {
@@ -166,8 +171,25 @@ describe('Util', () => {
     expect(response).toEqual([{ name: 'Ezekiel', height: 10, gender: 'male' }]);
   });
 
+  it('test OneDayAgo', () => {
+    const response = oneDayAgo(Date.now());
+    expect(response).toEqual(true);
+  });
+
+  it('test getMovieFromLocalStorage with invalid movie', () => {
+    localStorage.setItem('movieData', JSON.stringify(getMovieDataMock));
+    const response = getMovieFromLocalStorage('ezekiel');
+    expect(response).toEqual([]);
+  });
+
+  it('test getMovieFromLocalStorage with valid movie', () => {
+    localStorage.setItem('movieData', JSON.stringify(getMovieDataMock));
+    const response = getMovieFromLocalStorage('A New Hope');
+    expect(response).toEqual(JSON.parse(localStorage.getItem('movieData')));
+  });
+
   it('test initializeLocalStorage', () => {
-    localStorage.removeItem('movieData')
+    localStorage.removeItem('movieData');
     expect(initializeLocalStorage()).toEqual(undefined);
   });
 });

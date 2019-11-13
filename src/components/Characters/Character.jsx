@@ -40,6 +40,7 @@ export const Character = ({ movie, characters, setCharacters, loading }) => {
     if (stateCharacters.length === 0 || movie.title !== movieTitle) {
       setStateCharacters(characters);
       setMovieTitle(movie.title);
+      setGenderValue('Filter Gender')
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -88,6 +89,7 @@ export const Character = ({ movie, characters, setCharacters, loading }) => {
   };
 
   const items = [
+    {title: 'ALL'},
     { title: 'M' },
     { title: 'F' },
     { title: 'H' },
@@ -117,13 +119,14 @@ export const Character = ({ movie, characters, setCharacters, loading }) => {
 
     return (
       <StyledCharacter>
+        <MovieDetails movie={movie} />
+
         <Select
           defaultValue="Filter Gender"
           value={genderValue}
           onChange={onSelectChange}
           items={items}
         />
-        <MovieDetails movie={movie} />
 
         <table className="fl-table">
           <thead>

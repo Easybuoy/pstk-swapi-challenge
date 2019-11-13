@@ -81,7 +81,8 @@ export const addMovieToLocalStorage = (movie, characters) => {
     const latestMovies = movieData.concat({
       title: movie.title,
       movie,
-      characters
+      characters,
+      created_at: Date.now()
     });
     localStorage.setItem('movieData', JSON.stringify(latestMovies));
     return latestMovies;
@@ -90,13 +91,32 @@ export const addMovieToLocalStorage = (movie, characters) => {
 
 export const getMovieFromLocalStorage = title => {
   initializeLocalStorage();
-
   const movieData = JSON.parse(localStorage.getItem('movieData'));
-  return movieData.filter(movie => movie.title === title);
+  return movieData.filter(movie => {
+    if (movie.title === title) {
+      if (!oneDayAgo(movie.created_at)) {
+        // movie found, but less than a day
+        return movie;
+      }
+    }
+    return null;
+  });
 };
 
 export const initializeLocalStorage = () => {
   if (!localStorage.getItem('movieData')) {
     localStorage.setItem('movieData', JSON.stringify([]));
+  }
+};
+
+export const oneDayAgo = date => {
+  let oneDayAgo = new Date();
+  oneDayAgo = oneDayAgo.setDate(oneDayAgo.getDate() - 1);
+  let difference = date - oneDayAgo;
+  let daysDifference = Math.floor(difference / 1000 / 60 / 60 / 24);
+  if (daysDifference === 0) {
+    return false;
+  } else {
+    return true;
   }
 };
