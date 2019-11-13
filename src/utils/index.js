@@ -94,7 +94,7 @@ export const getMovieFromLocalStorage = title => {
   const movieData = JSON.parse(localStorage.getItem('movieData'));
   return movieData.filter(movie => {
     if (movie.title === title) {
-      if (!OneDayAgo(movie.created_at)) {
+      if (!oneDayAgo(movie.created_at)) {
         // movie found, but less than a day
         return movie;
       }
@@ -109,12 +109,11 @@ export const initializeLocalStorage = () => {
   }
 };
 
-const OneDayAgo = date => {
+export const oneDayAgo = date => {
   let oneDayAgo = new Date();
   oneDayAgo = oneDayAgo.setDate(oneDayAgo.getDate() - 1);
-  var difference = date - oneDayAgo;
-  var daysDifference = Math.floor(difference / 1000 / 60 / 60 / 24);
-
+  let difference = date - oneDayAgo;
+  let daysDifference = Math.floor(difference / 1000 / 60 / 60 / 24);
   if (daysDifference === 0) {
     return false;
   } else {
