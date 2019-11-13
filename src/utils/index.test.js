@@ -6,8 +6,16 @@ import {
   formatHeight,
   sortHeight,
   sortName,
-  sortGender
+  sortGender,
+  initializeLocalStorage,
+  oneDayAgo,
+  getMovieFromLocalStorage,
+  getMovieListFromLocalStorage,
+  addMovieListToLocalStorage
 } from './index';
+
+import mock from '../__mocks__/mock';
+const { getMovieDataMock, getMovieListMock } = mock;
 
 describe('Util', () => {
   it('test male case Format Gender', () => {
@@ -20,9 +28,14 @@ describe('Util', () => {
     expect(response).toEqual('F');
   });
 
+  it('test hermaphrodite case for Format Gender', () => {
+    const response = formatGender('hermaphrodite');
+    expect(response).toEqual('H');
+  });
+
   it('test default case for Format Gender', () => {
     const response = formatGender();
-    expect(response).toEqual('-');
+    expect(response).toEqual('N/A');
   });
 
   it('test calculateHeights', () => {
@@ -131,6 +144,26 @@ describe('Util', () => {
     ]);
   });
 
+  it('test hermaphrodite case for sortGender', () => {
+    const testArray = [
+      { name: 'John', height: 20, gender: 'male' },
+      { name: 'Jayne', height: 10, gender: 'hermaphrodite' }
+    ];
+    const response = sortGender(testArray, 'H');
+    expect(response).toEqual([
+      { name: 'Jayne', height: 10, gender: 'hermaphrodite' }
+    ]);
+  });
+
+  it('test n/a case for sortGender', () => {
+    const testArray = [
+      { name: 'John', height: 20, gender: 'male' },
+      { name: 'Jayne', height: 10, gender: 'n/a' }
+    ];
+    const response = sortGender(testArray, 'N/A');
+    expect(response).toEqual([{ name: 'Jayne', height: 10, gender: 'n/a' }]);
+  });
+
   it('test male case for sortGender', () => {
     const testArray = [
       { name: 'Ezekiel', height: 10, gender: 'male' },
@@ -138,5 +171,44 @@ describe('Util', () => {
     ];
     const response = sortGender(testArray, 'M');
     expect(response).toEqual([{ name: 'Ezekiel', height: 10, gender: 'male' }]);
+  });
+
+  it('test OneDayAgo', () => {
+    const response = oneDayAgo(Date.now());
+    expect(response).toEqual(true);
+  });
+
+  it('test getMovieFromLocalStorage with invalid movie', () => {
+    localStorage.setItem('movieData', JSON.stringify(getMovieDataMock));
+    const response = getMovieFromLocalStorage('ezekiel');
+    expect(response).toEqual([]);
+  });
+
+  it('test getMovieListFromLocalStorage with invalid movie', () => {
+    localStorage.setItem('movieList', JSON.stringify(getMovieListMock));
+    const response = getMovieListFromLocalStorage();
+    expect(response).toEqual(JSON.parse(localStorage.getItem('movieList')));
+  });
+
+  it('test getMovieFromLocalStorage with valid movie', () => {
+    localStorage.setItem('movieData', JSON.stringify(getMovieDataMock));
+    const response = getMovieFromLocalStorage('A New Hope');
+    expect(response).toEqual(JSON.parse(localStorage.getItem('movieData')));
+  });
+
+  it('test addMovieListToLocalStorage with valid movie', () => {
+    const response = addMovieListToLocalStorage(getMovieListMock);
+    expect(response).toEqual(JSON.parse(localStorage.getItem('movieList')));
+  });
+
+  it('test addMovieListToLocalStorage empty case with valid movie', () => {
+    localStorage.removeItem('movieList');
+    const response = addMovieListToLocalStorage(getMovieListMock);
+    expect(response).toEqual(JSON.parse(localStorage.getItem('movieList')));
+  });
+
+  it('test initializeLocalStorage', () => {
+    localStorage.removeItem('movieData');
+    expect(initializeLocalStorage()).toEqual(undefined);
   });
 });

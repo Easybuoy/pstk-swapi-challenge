@@ -4,8 +4,10 @@ export const formatGender = gender => {
       return 'M';
     case 'female':
       return 'F';
+    case 'hermaphrodite':
+      return 'H';
     default:
-      return '-';
+      return 'N/A';
   }
 };
 
@@ -51,6 +53,10 @@ export const sortGender = (array, letter) => {
       return array.filter(word => word.gender === 'male');
     case 'F':
       return array.filter(word => word.gender === 'female');
+    case 'H':
+      return array.filter(word => word.gender === 'hermaphrodite');
+    case 'N/A':
+      return array.filter(word => word.gender === 'n/a');
     default:
       return array;
   }
@@ -64,5 +70,75 @@ export const sortName = (array, order) => {
       return array.sort((a, b) => b.name.localeCompare(a.name));
     default:
       return array;
+  }
+};
+
+export const addMovieListToLocalStorage = list => {
+  initializeLocalStorage();
+
+  const movieList = JSON.parse(localStorage.getItem('movieList'));
+  if (movieList.length > 0) {
+    return movieList;
+  }
+
+  localStorage.setItem('movieList', JSON.stringify(list));
+  return list;
+};
+
+export const getMovieListFromLocalStorage = () => {
+  initializeLocalStorage();
+  const movieList = JSON.parse(localStorage.getItem('movieList'));
+  return movieList;
+};
+
+export const addMovieDataToLocalStorage = (movie, characters) => {
+  initializeLocalStorage();
+
+  const movieData = JSON.parse(localStorage.getItem('movieData'));
+  if (movieData) {
+    const latestMovies = movieData.concat({
+      title: movie.title,
+      movie,
+      characters,
+      created_at: Date.now()
+    });
+    localStorage.setItem('movieData', JSON.stringify(latestMovies));
+    return latestMovies;
+  }
+};
+
+export const getMovieFromLocalStorage = title => {
+  initializeLocalStorage();
+  const movieData = JSON.parse(localStorage.getItem('movieData'));
+  return movieData.filter(movie => {
+    if (movie.title === title) {
+      if (!oneDayAgo(movie.created_at)) {
+        // movie found, but less than a day
+        return movie;
+      }
+    }
+    return null;
+  });
+};
+
+export const initializeLocalStorage = () => {
+  if (!localStorage.getItem('movieData')) {
+    localStorage.setItem('movieData', JSON.stringify([]));
+  }
+
+  if (!localStorage.getItem('movieList')) {
+    localStorage.setItem('movieList', JSON.stringify([]));
+  }
+};
+
+export const oneDayAgo = date => {
+  let oneDayAgo = new Date();
+  oneDayAgo = oneDayAgo.setDate(oneDayAgo.getDate() - 1);
+  let difference = date - oneDayAgo;
+  let daysDifference = Math.floor(difference / 1000 / 60 / 60 / 24);
+  if (daysDifference === 0) {
+    return false;
+  } else {
+    return true;
   }
 };

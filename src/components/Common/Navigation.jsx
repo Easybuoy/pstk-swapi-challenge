@@ -7,7 +7,9 @@ function Navigation() {
   return (
     <StyledNavigation>
       <div>
-        <img src={logo} alt="star wars" />
+        <a href="/">
+          <img src={logo} alt="star wars" />
+        </a>
       </div>
     </StyledNavigation>
   );

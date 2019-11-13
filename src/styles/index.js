@@ -1,52 +1,13 @@
 import styled from 'styled-components';
-
-const LineLoader = styled.div`
-  height: 4px;
-  width: 100%;
-  position: relative;
-  overflow: hidden;
-  background-color: #ffffff;
-  padding: 5rem 0;
-  &:before {
-    display: block;
-    position: absolute;
-    content: '';
-    left: -200px;
-    width: 200px;
-    height: 4px;
-    background-color: #cc0000;
-    animation: loading 2s linear infinite;
-  }
-  @keyframes loading {
-    from {
-      left: -200px;
-      width: 30%;
-    }
-    50% {
-      width: 30%;
-    }
-    70% {
-      width: 70%;
-    }
-    80% {
-      left: 50%;
-    }
-    95% {
-      left: 120%;
-    }
-    to {
-      left: 100%;
-    }
-  }
-`;
+import { primaryColor, secondaryColor } from './colors';
 
 const Select = styled.select`
-  margin: 2rem 0;
+  margin: 2rem auto;
   display: block;
   font-size: 16px;
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
-  color: #444;
+  color: ${primaryColor};
   line-height: 1.3;
   padding: 0.6em 1.4em 0.5em 0.8em;
   width: 20%;
@@ -58,12 +19,12 @@ const Select = styled.select`
   -webkit-appearance: none;
   appearance: none;
   background-color: #fff;
-  background-image: url('https://github.com/Easybuoy/pstk-swapi-challenge/blob/feature/sort-gender-169663235/src/assets/images/dropdown.png?raw=true'),
-    linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%);
+  background-image: url('https://github.com/Easybuoy/pstk-swapi-challenge/blob/bug/fix-application-colors-169703366/src/assets/images/dropdown.png?raw=true'),
+    linear-gradient(to bottom, ${secondaryColor} 0%, ${secondaryColor} 100%);
   background-repeat: no-repeat, repeat;
   background-position: right 0.7em top 50%, 0 0;
   background-size: 3em auto, 100%;
-  border-color: black;
+  border-color: ${primaryColor};
 
   @media (max-width: 1100px) {
     width: 30%;
@@ -86,9 +47,9 @@ const Select = styled.select`
   }
   &:hover {
     cursor: pointer;
-    -webkit-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.75);
-    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 0px 0px 3px 0px yellow;
+    -moz-box-shadow: 0px 0px 3px 0px yellow;
+    box-shadow: 0px 0px 3px 0px yellow;
     transition: all 0.3s ease-in-out;
   }
 
@@ -97,8 +58,8 @@ const Select = styled.select`
   }
 
   &:focus {
-    box-shadow: black;
-    color: #222;
+    box-shadow: ${secondaryColor};
+    color: yellow;
     outline: none;
   }
 
@@ -118,8 +79,8 @@ const MovieListDropdown = styled.div`
     text-align: center;
     font-family: 'Supermercado One', cursive;
     font-size: 3rem;
-    text-shadow: -1px -1px 0 #f7e523, 2px -1px 0 #f7e523, -1px 1px 0 #f7e523,
-      1px 1px 0 #f7e523;
+    text-shadow: -1px -1px 0 ${primaryColor}, 2px -1px 0 ${primaryColor},
+      -1px 1px 0 ${primaryColor}, 1px 1px 0 ${primaryColor};
   }
 `;
 
@@ -162,6 +123,11 @@ const Character = styled.div`
   @media (max-width: 750px) {
     margin: 0;
   }
+
+  h2 {
+    color: ${primaryColor};
+    text-align: center;
+  }
   .fl-table {
     border-radius: 5px;
     font-size: 12px;
@@ -171,63 +137,9 @@ const Character = styled.div`
     width: 100%;
     max-width: 100%;
     white-space: nowrap;
-    background-color: white;
+    background-color: ${primaryColor};
     .toggle {
       cursor: pointer;
-    }
-
-    .toggle-gender {
-      display: flex;
-      justify-content: space-evenly;
-
-      select {
-        display: block;
-        font-family: 'Open Sans', sans-serif;
-        font-weight: 700;
-        color: #444;
-        line-height: 1.3;
-        padding: 0.6em 1.4em 0.5em 0.8em;
-        width: 50%;
-        box-sizing: border-box;
-        border: 1px solid #aaa;
-        box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.04);
-        border-radius: 0.5em;
-        -moz-appearance: none;
-        -webkit-appearance: none;
-        appearance: none;
-        background-color: #fff;
-        background-image: url('https://github.com/Easybuoy/pstk-swapi-challenge/blob/feature/sort-gender-169663235/src/assets/images/dropdown.png?raw=true'),
-          linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%);
-        background-repeat: no-repeat, repeat;
-        background-position: right 0.7em top 50%, 0 0;
-        background-size: 3em auto, 100%;
-        border-color: black;
-
-        @media (max-width: 750px) {
-          width: 75%;
-        }
-        &:hover {
-          cursor: pointer;
-          -webkit-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.75);
-          -moz-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.75);
-          box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.75);
-          transition: all 0.3s ease-in-out;
-        }
-
-        &:-ms-expand {
-          display: none;
-        }
-
-        &:focus {
-          box-shadow: black;
-          color: #222;
-          outline: none;
-        }
-
-        option {
-          font-weight: bold;
-        }
-      }
     }
 
     .total {
@@ -242,22 +154,19 @@ const Character = styled.div`
   }
 
   .fl-table td {
-    border-right: 1px solid #f8f8f8;
+    border: 1px solid ${primaryColor};
+    border-bottom: 0.5px solid ${primaryColor};
     font-size: 12px;
+    background-color: ${secondaryColor};
+    color: ${primaryColor};
   }
 
   .fl-table thead th {
-    color: #000;
-    background: #f7e523;
-  }
-
-  .fl-table thead th:nth-child(odd) {
-    color: #f7e523;
-    background: #000;
-  }
-
-  .fl-table tr:nth-child(even) {
-    background: #f8f8f8;
+    color: ${secondaryColor};
+    background: ${primaryColor};
+    font-weight: bold;
+    font-size: 1rem;
+    border: 1px solid ${primaryColor};
   }
 `;
 
@@ -274,8 +183,8 @@ const MovieDetails = styled.div`
   margin: 2rem 0;
 
   .content {
-    background-color: #000;
-    height: 300px;
+    background-color: ${secondaryColor};
+    height: auto;
     width: 100%;
     display: flex;
     flex-wrap: wrap;
@@ -283,38 +192,11 @@ const MovieDetails = styled.div`
     @media (max-width: 820px) {
       height: auto;
     }
-
-    .content-details {
-      display: flex;
-      flex-wrap: wrap;
-      width: 100%;
-      justify-content: space-evenly;
-      padding: 2rem;
-      @media (max-width: 820px) {
-        padding: 0;
-      }
-      .item {
-        display: flex;
-        flex-direction: column;
-        margin: 1rem;
-        text-align: center;
-        h4 {
-          color: #f7e523;
-          font-family: 'Supermercado One', cursive;
-        }
-
-        p {
-          color: #ffffff;
-          font-family: 'Open Sans', sans-serif;
-          padding: 0;
-        }
-      }
-    }
   }
 `;
 const OpeningCrawl = styled.div`
   display: flex;
-  color: #f7e523;
+  color: ${primaryColor};
   padding: 2rem;
   font-family: 'Supermercado One', cursive;
 `;
@@ -323,7 +205,8 @@ const Navigation = styled.nav`
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  background-color: #000;
+  background-color: ${secondaryColor};
+  border-bottom: 1px solid ${primaryColor};
 
   div {
     padding-left: 1rem;
@@ -334,7 +217,6 @@ const Navigation = styled.nav`
 `;
 
 export {
-  LineLoader,
   MovieListDropdown,
   Character,
   CharacterList,

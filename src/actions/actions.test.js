@@ -110,7 +110,7 @@ describe('Actions', () => {
         type: LOADING
       }
     ];
-    store.dispatch(getCharacter([]));
+    store.dispatch(getCharacter({ characters: [''] }));
     expect(store.getActions()).toEqual(expectedActions);
     expect(store.getActions()).toMatchSnapshot();
     done();
@@ -141,7 +141,7 @@ describe('Actions', () => {
       }
     ];
     const store = mockStore({});
-    return store.dispatch(getCharacter([''])).then(() => {
+    return store.dispatch(getCharacter({ characters: [''] })).then(() => {
       expect(store.getActions()).toEqual(expectedActions);
       done();
     });

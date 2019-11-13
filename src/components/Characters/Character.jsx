@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 import MovieDetails from '../Common/MovieDetails';
 import { setCharacters } from '../../actions';
+import Select from '../Common/Select';
 import { Character as StyledCharacter } from '../../styles';
 import {
   formatGender,
@@ -28,21 +29,22 @@ export const sortArrow = order => {
   }
 };
 
-export const Character = ({ movie, characters, setCharacters }) => {
+export const Character = ({ movie, characters, setCharacters, loading }) => {
   const [heightOrder, setHeightOrder] = useState(undefined);
   const [nameOrder, setNameOrder] = useState(undefined);
-  const [genderValue] = useState('Filter');
+  const [genderValue, setGenderValue] = useState('Filter Gender');
   const [stateCharacters, setStateCharacters] = useState([]);
+  const [movieTitle, setMovieTitle] = useState('');
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      if (characters.length > 0) {
-        setStateCharacters(characters);
-      }
-    }, 3000);
-    return () => clearTimeout(timer);
+    if (stateCharacters.length === 0 || movie.title !== movieTitle) {
+      setStateCharacters(characters);
+      setMovieTitle(movie.title);
+      setGenderValue('Filter Gender')
+    }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  });
+  }, [characters]);
 
   const sortNameField = array => {
     let sorted = [];
@@ -79,38 +81,65 @@ export const Character = ({ movie, characters, setCharacters }) => {
     setCharacters(sorted);
   };
 
+  const onSelectChange = e => {
+    const { title } = JSON.parse(e.target.value);
+
+    setGenderValue(e.target.value);
+    sortGenderField(stateCharacters, title);
+  };
+
+  const items = [
+    {title: 'ALL'},
+    { title: 'M' },
+    { title: 'F' },
+    { title: 'H' },
+    { title: 'N/A' }
+  ];
+
+  if (loading) {
+    return <PreLoader />;
+  }
+
+  if (characters.length === 0) {
+    return (
+      <StyledCharacter>
+        <Select
+          defaultValue="Filter Gender"
+          value={genderValue}
+          onChange={onSelectChange}
+          items={items}
+        />
+
+        <h2>No character to display with search criteria</h2>
+      </StyledCharacter>
+    );
+  }
   if (characters.length > 0) {
     const totalHeight = calculateHeights(characters);
+
     return (
       <StyledCharacter>
         <MovieDetails movie={movie} />
+
+        <Select
+          defaultValue="Filter Gender"
+          value={genderValue}
+          onChange={onSelectChange}
+          items={items}
+        />
 
         <table className="fl-table">
           <thead>
             <tr>
               <th
-                onDoubleClick={() => sortNameField(characters)}
+                onClick={() => sortNameField(characters)}
                 className="toggle name"
               >
                 Name {sortArrow(nameOrder)}
               </th>
-              <th className="toggle-gender">
-                Gender
-                <select
-                  value={genderValue}
-                  onChange={e =>
-                    sortGenderField(stateCharacters, e.target.value)
-                  }
-                >
-                  <option defaultValue="Select Gender" disabled>
-                    Filter
-                  </option>
-                  <option value="M">M</option>
-                  <option value="F">F</option>
-                </select>
-              </th>
+              <th>Gender</th>
               <th
-                onDoubleClick={() => sortHeightField(characters)}
+                onClick={() => sortHeightField(characters)}
                 className="toggle height"
               >
                 Height {sortArrow(heightOrder)}
@@ -139,8 +168,6 @@ export const Character = ({ movie, characters, setCharacters }) => {
       </StyledCharacter>
     );
   }
-
-  return <PreLoader />;
 };
 
 Character.propTypes = {
@@ -149,7 +176,7 @@ Character.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  loading: state.loading,
+  loading: state.loading.loading,
   error: state.error,
   characters: state.swapi.characters
 });

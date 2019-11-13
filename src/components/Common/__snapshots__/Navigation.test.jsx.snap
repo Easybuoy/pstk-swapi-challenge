@@ -2,9 +2,15 @@
 
 exports[`<Navigation /> renders the Navigation component correctly 1`] = `
 <styled.nav>
-  <img
-    alt="star wars"
-    src="star-wars.png"
-  />
+  <div>
+    <a
+      href="/"
+    >
+      <img
+        alt="star wars"
+        src="star-wars.png"
+      />
+    </a>
+  </div>
 </styled.nav>
 `;

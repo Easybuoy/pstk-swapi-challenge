@@ -11,7 +11,9 @@ describe('<MovieListDropdown />', () => {
     movies: getMoviesMock,
     getMovies: jest.fn(),
     selectMovie: jest.fn(),
-    getMovie: jest.fn()
+    getMovie: jest.fn(),
+    setCharacters: jest.fn(),
+    setMovie: jest.fn()
   };
 
   it('renders the MovieListDropdown component correctly', () => {
@@ -21,8 +23,13 @@ describe('<MovieListDropdown />', () => {
 
   it('should call the mock onChange function', () => {
     const wrapper = mount(<MovieListDropdown {...props} />);
-
-    wrapper.find('select').simulate('change', { preventDefault() {} });
+    const event = {
+      target: {
+        name: 'pollName',
+        value: JSON.stringify({ title: '', url: '' })
+      }
+    };
+    wrapper.find('select').simulate('change', event);
     expect(props.getMovie).toBeCalled();
   });
 });
