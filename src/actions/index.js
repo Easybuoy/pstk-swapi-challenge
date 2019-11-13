@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
-import { addMovieToLocalStorage } from '../utils';
+import { addMovieDataToLocalStorage, addMovieListToLocalStorage } from '../utils';
 import {
   LOADING,
   ERROR,
@@ -15,7 +15,11 @@ export const getMovies = () => dispatch => {
   dispatch({ type: LOADING });
   return axios
     .get('https://cors-anywhere.herokuapp.com/https://swapi.co/api/films')
-    .then(res => dispatch({ type: SET_MOVIES, payload: res.data.results }))
+    
+    .then(res => {
+      addMovieListToLocalStorage(res.data.results)
+      dispatch(setMovies(res.data.results))
+    })
     .catch(err => {
       if (err.response) {
         dispatch({ type: ERROR, payload: err.response.data.detail });
@@ -60,7 +64,7 @@ export const getCharacter = movie => dispatch => {
     )
   )
     .then(res => {
-      addMovieToLocalStorage(movie, res);
+      addMovieDataToLocalStorage(movie, res);
       dispatch(setCharacters(res));
     })
     .catch(err => {
@@ -81,6 +85,10 @@ export const selectMovie = movie => {
 
 export const setCharacters = characters => {
   return { type: SET_CHARACTERS, payload: characters };
+};
+
+export const setMovies = movies => {
+  return { type: SET_MOVIES, payload: movies };
 };
 
 export const setMovie = movie => {
