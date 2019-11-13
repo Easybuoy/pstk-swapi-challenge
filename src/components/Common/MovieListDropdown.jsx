@@ -8,11 +8,12 @@ import {
   selectMovie,
   getMovie,
   setCharacters,
-  setMovie
+  setMovie,
+  setMovies
 } from '../../actions';
 import { MovieListDropdown as StyledMovieListDropdown } from '../../styles';
 import Select from './Select';
-import { getMovieFromLocalStorage } from '../../utils';
+import { getMovieFromLocalStorage, getMovieListFromLocalStorage } from '../../utils';
 
 export const MovieListDropdown = ({
   movies,
@@ -20,11 +21,19 @@ export const MovieListDropdown = ({
   getMovies,
   getMovie,
   setCharacters,
-  setMovie
+  setMovie,
+  setMovies
 }) => {
   const [movieValue, setMovieValue] = useState('');
 
   useEffect(() => {
+    const existingMovieListInLocalStorage = getMovieListFromLocalStorage();
+    if (existingMovieListInLocalStorage.length > 0) {
+      setMovies(existingMovieListInLocalStorage)
+    } else {
+      //we could not find movieList in localstorage, thus get from api
+      getMovies();
+    }
     getMovies();
     setMovieValue('Select Star Wars Movie');
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -92,5 +101,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getMovies, selectMovie, getMovie, setCharacters, setMovie }
+  { getMovies, selectMovie, getMovie, setCharacters, setMovie, setMovies }
 )(MovieListDropdown);

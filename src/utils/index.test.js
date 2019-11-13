@@ -9,11 +9,13 @@ import {
   sortGender,
   initializeLocalStorage,
   oneDayAgo,
-  getMovieFromLocalStorage
+  getMovieFromLocalStorage,
+  getMovieListFromLocalStorage,
+  addMovieListToLocalStorage
 } from './index';
 
 import mock from '../__mocks__/mock';
-const { getMovieDataMock } = mock;
+const { getMovieDataMock, getMovieListMock } = mock;
 
 describe('Util', () => {
   it('test male case Format Gender', () => {
@@ -182,10 +184,27 @@ describe('Util', () => {
     expect(response).toEqual([]);
   });
 
+  it('test getMovieListFromLocalStorage with invalid movie', () => {
+    localStorage.setItem('movieList', JSON.stringify(getMovieListMock));
+    const response = getMovieListFromLocalStorage();
+    expect(response).toEqual(JSON.parse(localStorage.getItem('movieList')));
+  });
+
   it('test getMovieFromLocalStorage with valid movie', () => {
     localStorage.setItem('movieData', JSON.stringify(getMovieDataMock));
     const response = getMovieFromLocalStorage('A New Hope');
     expect(response).toEqual(JSON.parse(localStorage.getItem('movieData')));
+  });
+
+  it('test addMovieListToLocalStorage with valid movie', () => {
+    const response = addMovieListToLocalStorage(getMovieListMock);
+    expect(response).toEqual(JSON.parse(localStorage.getItem('movieList')));
+  });
+
+  it('test addMovieListToLocalStorage empty case with valid movie', () => {
+    localStorage.removeItem('movieList');
+    const response = addMovieListToLocalStorage(getMovieListMock);
+    expect(response).toEqual(JSON.parse(localStorage.getItem('movieList')));
   });
 
   it('test initializeLocalStorage', () => {
