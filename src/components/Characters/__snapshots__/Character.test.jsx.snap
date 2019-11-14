@@ -94,13 +94,13 @@ the far reaches of space....",
           "title": "ALL",
         },
         Object {
-          "title": "M",
+          "title": "MALE",
         },
         Object {
-          "title": "F",
+          "title": "FEMALE",
         },
         Object {
-          "title": "H",
+          "title": "HERMAPHODITE",
         },
         Object {
           "title": "N/A",
@@ -170,13 +170,13 @@ exports[`<Character /> should call the mock name function 1`] = `
           "title": "ALL",
         },
         Object {
-          "title": "M",
+          "title": "MALE",
         },
         Object {
-          "title": "F",
+          "title": "FEMALE",
         },
         Object {
-          "title": "H",
+          "title": "HERMAPHODITE",
         },
         Object {
           "title": "N/A",
@@ -730,13 +730,13 @@ the far reaches of space....
                 "title": "ALL",
               },
               Object {
-                "title": "M",
+                "title": "MALE",
               },
               Object {
-                "title": "F",
+                "title": "FEMALE",
               },
               Object {
-                "title": "H",
+                "title": "HERMAPHODITE",
               },
               Object {
                 "title": "N/A",
@@ -872,28 +872,28 @@ the far reaches of space....
                   ALL
                 </option>
                 <option
-                  key="M"
-                  me="M"
-                  name="M"
-                  value="{\\"title\\":\\"M\\"}"
+                  key="MALE"
+                  me="MALE"
+                  name="MALE"
+                  value="{\\"title\\":\\"MALE\\"}"
                 >
-                  M
+                  MALE
                 </option>
                 <option
-                  key="F"
-                  me="F"
-                  name="F"
-                  value="{\\"title\\":\\"F\\"}"
+                  key="FEMALE"
+                  me="FEMALE"
+                  name="FEMALE"
+                  value="{\\"title\\":\\"FEMALE\\"}"
                 >
-                  F
+                  FEMALE
                 </option>
                 <option
-                  key="H"
-                  me="H"
-                  name="H"
-                  value="{\\"title\\":\\"H\\"}"
+                  key="HERMAPHODITE"
+                  me="HERMAPHODITE"
+                  name="HERMAPHODITE"
+                  value="{\\"title\\":\\"HERMAPHODITE\\"}"
                 >
-                  H
+                  HERMAPHODITE
                 </option>
                 <option
                   key="N/A"
@@ -1054,13 +1054,13 @@ the far reaches of space....",
           "title": "ALL",
         },
         Object {
-          "title": "M",
+          "title": "MALE",
         },
         Object {
-          "title": "F",
+          "title": "FEMALE",
         },
         Object {
-          "title": "H",
+          "title": "HERMAPHODITE",
         },
         Object {
           "title": "N/A",
@@ -1217,13 +1217,13 @@ the far reaches of space....",
           "title": "ALL",
         },
         Object {
-          "title": "M",
+          "title": "MALE",
         },
         Object {
-          "title": "F",
+          "title": "FEMALE",
         },
         Object {
-          "title": "H",
+          "title": "HERMAPHODITE",
         },
         Object {
           "title": "N/A",

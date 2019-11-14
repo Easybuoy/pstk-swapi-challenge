@@ -138,7 +138,7 @@ describe('Util', () => {
       { name: 'John', height: 20, gender: 'male' },
       { name: 'Ezekiel', height: 10, gender: 'female' }
     ];
-    const response = sortGender(testArray, 'F');
+    const response = sortGender(testArray, 'FEMALE');
     expect(response).toEqual([
       { name: 'Ezekiel', height: 10, gender: 'female' }
     ]);
@@ -149,7 +149,7 @@ describe('Util', () => {
       { name: 'John', height: 20, gender: 'male' },
       { name: 'Jayne', height: 10, gender: 'hermaphrodite' }
     ];
-    const response = sortGender(testArray, 'H');
+    const response = sortGender(testArray, 'HERMAPHODITE');
     expect(response).toEqual([
       { name: 'Jayne', height: 10, gender: 'hermaphrodite' }
     ]);
@@ -169,7 +169,7 @@ describe('Util', () => {
       { name: 'Ezekiel', height: 10, gender: 'male' },
       { name: 'John', height: 20, gender: 'female' }
     ];
-    const response = sortGender(testArray, 'M');
+    const response = sortGender(testArray, 'MALE');
     expect(response).toEqual([{ name: 'Ezekiel', height: 10, gender: 'male' }]);
   });
 
