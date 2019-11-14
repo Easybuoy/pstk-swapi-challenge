@@ -49,11 +49,11 @@ export const sortHeight = (array, order) => {
 
 export const sortGender = (array, letter) => {
   switch (letter) {
-    case 'M':
+    case 'MALE':
       return array.filter(word => word.gender === 'male');
-    case 'F':
+    case 'FEMALE':
       return array.filter(word => word.gender === 'female');
-    case 'H':
+    case 'HERMAPHODITE':
       return array.filter(word => word.gender === 'hermaphrodite');
     case 'N/A':
       return array.filter(word => word.gender === 'n/a');
