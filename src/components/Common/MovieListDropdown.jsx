@@ -135,5 +135,4 @@ MovieListDropdown.propTypes = {
   setMovie: PropTypes.func.isRequired
 };
 
-
 export default MovieListDropdown;

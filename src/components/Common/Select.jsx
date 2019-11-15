@@ -1,5 +1,6 @@
 import React from 'react';
 import { Select as StyledSelect } from '../../styles';
+
 const Select = ({ value, onChange, defaultValue, items }) => {
   return (
     <StyledSelect value={value} onChange={onChange}>
