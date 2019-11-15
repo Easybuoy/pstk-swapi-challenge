@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import MovieDetails from '../Common/MovieDetails';
-import { setCharacters } from '../../actions';
 import Select from '../Common/Select';
 import { Character as StyledCharacter } from '../../styles';
 import {
@@ -34,17 +32,15 @@ export const Character = ({ movie, characters, setCharacters, loading }) => {
   const [nameOrder, setNameOrder] = useState(undefined);
   const [genderValue, setGenderValue] = useState('Filter Gender');
   const [stateCharacters, setStateCharacters] = useState([]);
-  const [movieTitle, setMovieTitle] = useState('');
+  // const [movieTitle, setMovieTitle] = useState('');
 
   useEffect(() => {
-    if (stateCharacters.length === 0 || movie.title !== movieTitle) {
-      setStateCharacters(characters);
-      setMovieTitle(movie.title);
-      setGenderValue('Filter Gender')
-    }
+    setStateCharacters(characters);
+
+    setGenderValue('Filter Gender');
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [characters]);
+  }, []);
 
   const sortNameField = array => {
     let sorted = [];
@@ -89,7 +85,7 @@ export const Character = ({ movie, characters, setCharacters, loading }) => {
   };
 
   const items = [
-    {title: 'ALL'},
+    { title: 'ALL' },
     { title: 'MALE' },
     { title: 'FEMALE' },
     { title: 'HERMAPHODITE' },
@@ -175,13 +171,4 @@ Character.propTypes = {
   setCharacters: PropTypes.func.isRequired
 };
 
-const mapStateToProps = state => ({
-  loading: state.loading.loading,
-  error: state.error,
-  characters: state.swapi.characters
-});
-
-export default connect(
-  mapStateToProps,
-  { setCharacters }
-)(Character);
+export default Character;
