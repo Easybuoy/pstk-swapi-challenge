@@ -113,6 +113,59 @@ const CharacterList = styled.div`
       display: none;
     }
   }
+
+  margin: 10px 70px 70px;
+  font-family: 'Open Sans', sans-serif;
+  width: 100%;
+
+  @media (max-width: 750px) {
+    margin: 0;
+  }
+
+  h2 {
+    color: ${primaryColor};
+    text-align: center;
+  }
+  .fl-table {
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: normal;
+    border: none;
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 100%;
+    white-space: nowrap;
+    background-color: ${primaryColor};
+    .toggle {
+      cursor: pointer;
+    }
+
+    .total {
+      font-weight: bold;
+    }
+  }
+
+  .fl-table td,
+  .fl-table th {
+    text-align: center;
+    padding: 8px;
+  }
+
+  .fl-table td {
+    border: 1px solid ${primaryColor};
+    border-bottom: 0.5px solid ${primaryColor};
+    font-size: 12px;
+    background-color: ${secondaryColor};
+    color: ${primaryColor};
+  }
+
+  .fl-table thead th {
+    color: ${secondaryColor};
+    background: ${primaryColor};
+    font-weight: bold;
+    font-size: 1rem;
+    border: 1px solid ${primaryColor};
+  }
 `;
 
 const Character = styled.div`
@@ -171,6 +224,9 @@ const Character = styled.div`
 `;
 
 const PreLoader = styled.div`
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
   text-align: center;
   margin: 5rem 0;
 `;

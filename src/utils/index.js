@@ -142,3 +142,14 @@ export const oneDayAgo = date => {
     return true;
   }
 };
+
+export const requestFromAPI = async (url, method = 'GET') => {
+  const rawResponse = await fetch(url, {
+    method: method,
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
+    }
+  });
+  return rawResponse.json();
+};
