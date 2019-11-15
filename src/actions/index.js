@@ -1,7 +1,10 @@
-import axios from 'axios';
 import { toast } from 'react-toastify';
+import { requestFromAPI } from '../utils';
 
-import { addMovieDataToLocalStorage, addMovieListToLocalStorage } from '../utils';
+import {
+  addMovieDataToLocalStorage,
+  addMovieListToLocalStorage
+} from '../utils';
 import {
   LOADING,
   ERROR,
@@ -13,14 +16,14 @@ import {
 
 export const getMovies = () => dispatch => {
   dispatch({ type: LOADING });
-  return axios
-    .get('https://cors-anywhere.herokuapp.com/https://swapi.co/api/films')
-    
+
+  return requestFromAPI('https://swapi.co/api/films', 'GET')
     .then(res => {
-      addMovieListToLocalStorage(res.data.results)
-      dispatch(setMovies(res.data.results))
+      addMovieListToLocalStorage(res.results);
+      dispatch(setMovies(res.results));
     })
     .catch(err => {
+      console.log(err);
       if (err.response) {
         dispatch({ type: ERROR, payload: err.response.data.detail });
         toast.error(err.response.data.detail);
@@ -34,11 +37,11 @@ export const getMovies = () => dispatch => {
 
 export const getMovie = movie_url => dispatch => {
   dispatch({ type: LOADING });
-  return axios
-    .get(`https://cors-anywhere.herokuapp.com/${movie_url}`)
+
+  return requestFromAPI(movie_url, 'GET')
     .then(res => {
-      dispatch(setMovie(res.data));
-      dispatch(getCharacter(res.data));
+      dispatch(setMovie(res));
+      dispatch(getCharacter(res));
     })
     .catch(err => {
       if (err.response) {
@@ -53,15 +56,11 @@ export const getMovie = movie_url => dispatch => {
 };
 
 export const getCharacter = movie => dispatch => {
-  const { characters } = movie; 
+  const { characters } = movie;
 
   dispatch({ type: LOADING });
   return Promise.all(
-    characters.map(url =>
-      axios
-        .get(`https://cors-anywhere.herokuapp.com/${url}`)
-        .then(data => data.data)
-    )
+    characters.map(url => requestFromAPI(url, 'GET').then(data => data))
   )
     .then(res => {
       addMovieDataToLocalStorage(movie, res);
