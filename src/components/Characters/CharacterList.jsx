@@ -125,13 +125,14 @@ export const CharacterList = ({ movie, characters }) => {
             </tr>
           </thead>
           <tbody>
-            {characters.map((character, i) => {
+            {characters.map(character => {
               return (
-                <tr key={character.name}>
-                  <td>{character.name}</td>
-                  <td>{formatGender(character.gender)}</td>
-                  <td>{formatHeight(character.height)}</td>
-                </tr>
+                <Character
+                  key={character.name}
+                  name={character.name}
+                  gender={formatGender(character.gender)}
+                  height={formatHeight(character.height)}
+                />
               );
             })}
             <tr>

@@ -127,12 +127,13 @@ export const MovieListDropdown = () => {
   );
 };
 
-MovieListDropdown.propTypes = {
-  getMovies: PropTypes.func.isRequired,
-  selectMovie: PropTypes.func.isRequired,
-  getMovie: PropTypes.func.isRequired,
-  setCharacters: PropTypes.func.isRequired,
-  setMovie: PropTypes.func.isRequired
-};
+// MovieListDropdown.propTypes = {
+//   getMovies: PropTypes.func.isRequired,
+//   selectMovie: PropTypes.func.isRequired,
+//   getMovie: PropTypes.func.isRequired,
+//   setCharacters: PropTypes.func.isRequired,
+//   setMovie: PropTypes.func.isRequired
+// };
+
 
 export default MovieListDropdown;
