@@ -1,4 +1,3 @@
-import { toast } from 'react-toastify';
 import { requestFromAPI } from '../utils';
 
 import {
@@ -26,10 +25,10 @@ export const getMovies = () => dispatch => {
       console.log(err);
       if (err.response) {
         dispatch({ type: ERROR, payload: err.response.data.detail });
-        toast.error(err.response.data.detail);
+        alert(err.response.data.detail);
       } else {
         dispatch({ type: ERROR, payload: err.message });
-        toast.error(err.message);
+        alert(err.message);
       }
     })
     .finally(() => dispatch({ type: LOADING }));
@@ -46,10 +45,10 @@ export const getMovie = movie_url => dispatch => {
     .catch(err => {
       if (err.response) {
         dispatch({ type: ERROR, payload: err.response.data.detail });
-        toast.error(err.response.data.detail);
+        alert(err.response.data.detail);
       } else {
         dispatch({ type: ERROR, payload: err.message });
-        toast.error(err.message);
+        alert(err.message);
       }
     })
     .finally(() => dispatch({ type: LOADING }));
@@ -69,10 +68,10 @@ export const getCharacter = movie => dispatch => {
     .catch(err => {
       if (err.response) {
         dispatch({ type: ERROR, payload: err.response.data.detail });
-        toast.error(err.response.data.detail);
+        alert(err.response.data.detail);
       } else {
         dispatch({ type: ERROR, payload: err.message });
-        toast.error(err.message);
+        alert(err.message);
       }
     })
     .finally(() => dispatch({ type: LOADING }));
