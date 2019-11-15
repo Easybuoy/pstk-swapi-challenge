@@ -20,6 +20,7 @@ export const getMovies = () => dispatch => {
     .then(res => {
       addMovieListToLocalStorage(res.results);
       dispatch(setMovies(res.results));
+      console.log(res.results)
     })
     .catch(err => {
       console.log(err);
@@ -33,6 +34,8 @@ export const getMovies = () => dispatch => {
     })
     .finally(() => dispatch({ type: LOADING }));
 };
+
+
 
 export const getMovie = movie_url => dispatch => {
   dispatch({ type: LOADING });

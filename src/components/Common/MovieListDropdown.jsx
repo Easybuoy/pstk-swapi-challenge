@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
+import CharacterList from '../Characters/CharacterList';
 import PreLoader from '../Common/PreLoader';
 import {
   getMovies,
@@ -13,28 +14,46 @@ import {
 } from '../../actions';
 import { MovieListDropdown as StyledMovieListDropdown } from '../../styles';
 import Select from './Select';
-import { getMovieFromLocalStorage, getMovieListFromLocalStorage } from '../../utils';
+import {
+  getMovieFromLocalStorage,
+  getMovieListFromLocalStorage
+} from '../../utils';
+import { requestFromAPI, addMovieListToLocalStorage } from '../../utils';
 
 export const MovieListDropdown = ({
-  movies,
   selectMovie,
   getMovies,
   getMovie,
-  setCharacters,
-  setMovie,
-  setMovies
+  setMovie
 }) => {
   const [movieValue, setMovieValue] = useState('');
+  const [movies, setMovies] = useState([]);
+  const [characters, setCharacters] = useState([]);
 
   useEffect(() => {
+    setMovieValue('Select Star Wars Movie');
     const existingMovieListInLocalStorage = getMovieListFromLocalStorage();
     if (existingMovieListInLocalStorage.length > 0) {
-      setMovies(existingMovieListInLocalStorage)
+      setMovies(existingMovieListInLocalStorage);
     } else {
       //we could not find movieList in localstorage, thus get from api
       getMovies();
+      return requestFromAPI('https://swapi.co/api/films', 'GET')
+        .then(res => {
+          addMovieListToLocalStorage(res.results);
+          setMovies(res.results);
+          console.log(res.results);
+        })
+        .catch(err => {
+          console.log(err);
+          if (err.response) {
+            alert(err.response.data.detail);
+          } else {
+            alert(err.message);
+          }
+        });
     }
-    setMovieValue('Select Star Wars Movie');
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -60,6 +79,7 @@ export const MovieListDropdown = ({
 
   if (movies.length > 0) {
     dropDownItems = (
+      <div style={{display: 'flex', width: '100%', flexWrap: 'wrap'}}>
       <Select
         items={movies.sort(
           (a, b) => new Date(a.release_date) - new Date(b.release_date)
@@ -68,6 +88,8 @@ export const MovieListDropdown = ({
         onChange={handleChange}
         defaultValue="Select Star Wars Movie"
       />
+      <CharacterList  />
+      </div>
     );
   } else {
     dropDownItems = <PreLoader />;
@@ -98,7 +120,11 @@ const mapStateToProps = state => ({
   selectedMovie: state.swapi.selectedMovie
 });
 
-export default connect(
-  mapStateToProps,
-  { getMovies, selectMovie, getMovie, setCharacters, setMovie, setMovies }
-)(MovieListDropdown);
+export default connect(mapStateToProps, {
+  getMovies,
+  selectMovie,
+  getMovie,
+  setCharacters,
+  setMovie,
+  setMovies
+})(MovieListDropdown);
