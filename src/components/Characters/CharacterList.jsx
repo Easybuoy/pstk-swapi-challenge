@@ -54,7 +54,6 @@ export const CharacterList = ({ movie, characters }) => {
       sorted = sortName(array, 'dsc');
       setNameOrder(0);
     }
-    // setCharacters([]);
     setStateCharacters(sorted);
   };
 
@@ -69,7 +68,7 @@ export const CharacterList = ({ movie, characters }) => {
       sorted = sortHeight(array, 'dsc');
       setHeightOrder(0);
     }
-    // setCharacters([]);
+
     setStateCharacters(sorted);
   };
 
@@ -154,7 +153,7 @@ export const CharacterList = ({ movie, characters }) => {
 
 CharacterList.propTypes = {
   movie: PropTypes.object.isRequired,
-  selectedMovie: PropTypes.string.isRequired
+  characters: PropTypes.array.isRequired
 };
 
 export default CharacterList;

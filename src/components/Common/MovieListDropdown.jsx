@@ -63,7 +63,6 @@ export const MovieListDropdown = () => {
       setMovie(existingMovieInLocalStorage[0].movie);
     } else {
       //we could not find movie in localstorage, thus get from api
-      // getMovie(url);
       requestFromAPI(url, 'GET')
         .then(res => {
           console.log(res);
@@ -85,8 +84,6 @@ export const MovieListDropdown = () => {
                 alert(err.message);
               }
             });
-
-          // dispatch(getCharacter(res));
         })
         .catch(err => {
           if (err.response) {
@@ -127,13 +124,6 @@ export const MovieListDropdown = () => {
   );
 };
 
-// MovieListDropdown.propTypes = {
-//   getMovies: PropTypes.func.isRequired,
-//   selectMovie: PropTypes.func.isRequired,
-//   getMovie: PropTypes.func.isRequired,
-//   setCharacters: PropTypes.func.isRequired,
-//   setMovie: PropTypes.func.isRequired
-// };
 
 
 export default MovieListDropdown;
