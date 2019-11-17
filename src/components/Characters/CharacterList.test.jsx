@@ -3,11 +3,12 @@ import { mount } from 'enzyme';
 import mock from '../../__mocks__/mock';
 import { CharacterList } from './CharacterList';
 
-const { getMovieMock } = mock;
+const { getMovieMock, getCharactersMock } = mock;
 describe('<CharacterList />', () => {
   let props = {
     movie: getMovieMock,
-    selectedMovie: ''
+    characters: getCharactersMock,
+    loading: true
   };
 
   it('renders the CharacterList component correctly', () => {

@@ -7,13 +7,7 @@ import { MovieListDropdown } from './MovieListDropdown';
 const { getMovieMock, getMoviesMock } = mock;
 describe('<MovieListDropdown />', () => {
   const props = {
-    movie: getMovieMock,
-    movies: getMoviesMock,
-    getMovies: jest.fn(),
-    selectMovie: jest.fn(),
-    getMovie: jest.fn(),
-    setCharacters: jest.fn(),
-    setMovie: jest.fn()
+    
   };
 
   it('renders the MovieListDropdown component correctly', () => {

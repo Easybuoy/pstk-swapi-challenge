@@ -30,7 +30,6 @@ export const sortArrow = order => {
 };
 
 export const CharacterList = ({ movie, characters, loading }) => {
-  console.log(movie)
   const [heightOrder, setHeightOrder] = useState(undefined);
   const [nameOrder, setNameOrder] = useState(undefined);
   const [genderValue, setGenderValue] = useState('Filter Gender');
