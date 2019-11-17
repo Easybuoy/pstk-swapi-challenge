@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
 
-import PropTypes from 'prop-types';
-
 import CharacterList from '../Characters/CharacterList';
 import PreLoader from '../Common/PreLoader';
 
@@ -22,6 +20,7 @@ export const MovieListDropdown = () => {
   const [movies, setMovies] = useState([]);
   const [characters, setCharacters] = useState([]);
   const [movie, setMovie] = useState({});
+  const [characterLoading, setCharacterLoading] = useState(false);
 
   useEffect(() => {
     setMovieValue('Select Star Wars Movie');
@@ -63,6 +62,7 @@ export const MovieListDropdown = () => {
       setMovie(existingMovieInLocalStorage[0].movie);
     } else {
       //we could not find movie in localstorage, thus get from api
+      setCharacterLoading(true)
       requestFromAPI(url, 'GET')
         .then(res => {
           console.log(res);
@@ -76,6 +76,8 @@ export const MovieListDropdown = () => {
             .then(res => {
               addMovieDataToLocalStorage(movie, res);
               setCharacters(res);
+              setCharacterLoading(false)
+
             })
             .catch(err => {
               if (err.response) {
@@ -108,7 +110,7 @@ export const MovieListDropdown = () => {
           onChange={handleChange}
           defaultValue="Select Star Wars Movie"
         />
-        <CharacterList characters={characters} movie={movie} />
+        <CharacterList characters={characters} movie={movie} loading={characterLoading} />
       </div>
     );
   } else {
