@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<MovieListDropdown /> renders the MovieListDropdown component correctly 1`] = `
+exports[`<MovieList /> renders the MovieList component correctly 1`] = `
 <styled.div>
   <h1>
     Star Wars

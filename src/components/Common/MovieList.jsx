@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import CharacterList from '../Characters/CharacterList';
-import PreLoader from '../Common/PreLoader';
+import PreLoader from './PreLoader';
 
 import { MovieListDropdown as StyledMovieListDropdown } from '../../styles';
 import Select from './Select';
@@ -11,7 +11,7 @@ import {
   addMovieDataToLocalStorage
 } from '../../utils';
 
-export const MovieListDropdown = () => {
+export const MovieList = () => {
   const [movieValue, setMovieValue] = useState('');
   const [movies, setMovies] = useState([]);
   const [characters, setCharacters] = useState([]);
@@ -21,15 +21,8 @@ export const MovieListDropdown = () => {
 
   useEffect(() => {
     setMovieValue('Select Star Wars Movie');
-    // const existingMovieListInLocalStorage = getMovieListFromLocalStorage();
-    // if (existingMovieListInLocalStorage.length > 0) {
-    //   setMovies(existingMovieListInLocalStorage);
-    // } else {
-    //   //we could not find movieList in localstorage, thus get from api
-
     requestFromAPI('https://swapi.co/api/films', 'GET')
       .then(res => {
-        // addMovieListToLocalStorage(res.results);
         setMovies(res.results);
       })
       .catch(err => {
@@ -39,7 +32,6 @@ export const MovieListDropdown = () => {
           alert(err.message);
         }
       });
-    // }
   }, []);
 
   const handleChange = e => {
@@ -125,4 +117,4 @@ export const MovieListDropdown = () => {
   );
 };
 
-export default MovieListDropdown;
+export default MovieList;

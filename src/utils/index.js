@@ -12,12 +12,14 @@ export const formatGender = gender => {
 };
 
 export const calculateHeights = array => {
-  return array.reduce((a, b) => {
-    if (b.height !== 'unknown') {
+  const heightCalculation = array.reduce((a, b) => {
+    if (b.height === 'unknown') {
+      return a;
+    } else {
       return a + parseInt(b.height);
     }
-    return a;
   }, 0);
+  return heightCalculation;
 };
 
 export const calculateFeet = height => {
