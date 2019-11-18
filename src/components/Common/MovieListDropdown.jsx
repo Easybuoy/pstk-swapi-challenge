@@ -34,10 +34,8 @@ export const MovieListDropdown = () => {
         .then(res => {
           addMovieListToLocalStorage(res.results);
           setMovies(res.results);
-          console.log(res.results);
         })
         .catch(err => {
-          console.log(err);
           if (err.response) {
             alert(err.response.data.detail);
           } else {
@@ -62,22 +60,20 @@ export const MovieListDropdown = () => {
       setMovie(existingMovieInLocalStorage[0].movie);
     } else {
       //we could not find movie in localstorage, thus get from api
-      setCharacterLoading(true)
+      setCharacterLoading(true);
       requestFromAPI(url, 'GET')
-        .then(res => {
-          console.log(res);
-          setMovie(res);
+        .then(mov => {
+          setMovie(mov);
 
           Promise.all(
-            res.characters.map(url =>
+            mov.characters.map(url =>
               requestFromAPI(url, 'GET').then(data => data)
             )
           )
             .then(res => {
-              addMovieDataToLocalStorage(movie, res);
               setCharacters(res);
-              setCharacterLoading(false)
-
+              setCharacterLoading(false);
+              addMovieDataToLocalStorage(mov, res);
             })
             .catch(err => {
               if (err.response) {
@@ -110,7 +106,11 @@ export const MovieListDropdown = () => {
           onChange={handleChange}
           defaultValue="Select Star Wars Movie"
         />
-        <CharacterList characters={characters} movie={movie} loading={characterLoading} />
+        <CharacterList
+          characters={characters}
+          movie={movie}
+          loading={characterLoading}
+        />
       </div>
     );
   } else {
@@ -125,7 +125,5 @@ export const MovieListDropdown = () => {
     </StyledMovieListDropdown>
   );
 };
-
-
 
 export default MovieListDropdown;
