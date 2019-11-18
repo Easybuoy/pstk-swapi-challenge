@@ -2,6 +2,16 @@
 
 exports[`<CharacterList /> renders the CharacterList component correctly 1`] = `
 <CharacterList
+  characters={
+    Array [
+      Object {
+        "gender": "male",
+        "height": "300",
+        "name": "Eze",
+      },
+    ]
+  }
+  loading={true}
   movie={
     Object {
       "characters": Array [
@@ -84,227 +94,88 @@ the far reaches of space....",
       ],
     }
   }
-  selectedMovie=""
 >
-  <styled.div>
-    <StyledComponent
-      forwardedComponent={
-        Object {
-          "$$typeof": Symbol(react.forward_ref),
-          "attrs": Array [],
-          "componentStyle": ComponentStyle {
-            "componentId": "sc-htpNat",
-            "isStatic": false,
-            "lastClassName": "kpmQHN",
-            "rules": Array [
-              "
-  width: 100%;
+  <PreLoader>
+    <styled.div>
+      <StyledComponent
+        forwardedComponent={
+          Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "attrs": Array [],
+            "componentStyle": ComponentStyle {
+              "componentId": "sc-ifAKCX",
+              "isStatic": false,
+              "lastClassName": "wUDoL",
+              "rules": Array [
+                "
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-
-  @media (max-width: 800px) {
-    img {
-      width: 600px;
-    }
-  }
-
-  @media (max-width: 650px) {
-    img {
-      width: 500px;
-    }
-  }
-
-  @media (max-width: 550px) {
-    img {
-      width: 400px;
-    }
-  }
-
-  @media (max-width: 430px) {
-    img {
-      display: none;
-    }
-  }
-",
-            ],
-          },
-          "displayName": "styled.div",
-          "foldedComponentIds": Array [],
-          "render": [Function],
-          "styledComponentId": "sc-htpNat",
-          "target": "div",
-          "toString": [Function],
-          "warnTooManyClasses": [Function],
-          "withComponent": [Function],
-        }
-      }
-      forwardedRef={null}
-    >
-      <div
-        className="sc-htpNat kpmQHN"
-      >
-        <img
-          alt="Star Wars"
-          src="star-wars.png"
-        />
-      </div>
-    </StyledComponent>
-  </styled.div>
-</CharacterList>
-`;
-
-exports[`<CharacterList /> renders the CharacterList component correctly 2`] = `
-<CharacterList
-  movie={
-    Object {
-      "characters": Array [
-        Object {
-          "name": "Ezekiel",
-        },
-      ],
-      "name": "Hi",
-    }
-  }
-  selectedMovie=""
->
-  <styled.div>
-    <StyledComponent
-      forwardedComponent={
-        Object {
-          "$$typeof": Symbol(react.forward_ref),
-          "attrs": Array [],
-          "componentStyle": ComponentStyle {
-            "componentId": "sc-htpNat",
-            "isStatic": false,
-            "lastClassName": "kpmQHN",
-            "rules": Array [
-              "
   width: 100%;
-  display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-
-  @media (max-width: 800px) {
-    img {
-      width: 600px;
-    }
-  }
-
-  @media (max-width: 650px) {
-    img {
-      width: 500px;
-    }
-  }
-
-  @media (max-width: 550px) {
-    img {
-      width: 400px;
-    }
-  }
-
-  @media (max-width: 430px) {
-    img {
-      display: none;
-    }
-  }
+  text-align: center;
+  margin: 5rem 0;
 ",
-            ],
-          },
-          "displayName": "styled.div",
-          "foldedComponentIds": Array [],
-          "render": [Function],
-          "styledComponentId": "sc-htpNat",
-          "target": "div",
-          "toString": [Function],
-          "warnTooManyClasses": [Function],
-          "withComponent": [Function],
+              ],
+            },
+            "displayName": "styled.div",
+            "foldedComponentIds": Array [],
+            "render": [Function],
+            "styledComponentId": "sc-ifAKCX",
+            "target": "div",
+            "toString": [Function],
+            "warnTooManyClasses": [Function],
+            "withComponent": [Function],
+          }
         }
-      }
-      forwardedRef={null}
-    >
-      <div
-        className="sc-htpNat kpmQHN"
+        forwardedRef={null}
       >
-        <img
-          alt="Star Wars"
-          src="star-wars.png"
-        />
-      </div>
-    </StyledComponent>
-  </styled.div>
-</CharacterList>
-`;
-
-exports[`<CharacterList /> renders the CharacterList component correctly 3`] = `
-<CharacterList
-  movie={Object {}}
-  selectedMovie=""
->
-  <styled.div>
-    <StyledComponent
-      forwardedComponent={
-        Object {
-          "$$typeof": Symbol(react.forward_ref),
-          "attrs": Array [],
-          "componentStyle": ComponentStyle {
-            "componentId": "sc-htpNat",
-            "isStatic": false,
-            "lastClassName": "kpmQHN",
-            "rules": Array [
-              "
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-
-  @media (max-width: 800px) {
-    img {
-      width: 600px;
-    }
-  }
-
-  @media (max-width: 650px) {
-    img {
-      width: 500px;
-    }
-  }
-
-  @media (max-width: 550px) {
-    img {
-      width: 400px;
-    }
-  }
-
-  @media (max-width: 430px) {
-    img {
-      display: none;
-    }
-  }
-",
-            ],
-          },
-          "displayName": "styled.div",
-          "foldedComponentIds": Array [],
-          "render": [Function],
-          "styledComponentId": "sc-htpNat",
-          "target": "div",
-          "toString": [Function],
-          "warnTooManyClasses": [Function],
-          "withComponent": [Function],
-        }
-      }
-      forwardedRef={null}
-    >
-      <div
-        className="sc-htpNat kpmQHN"
-      >
-        <img
-          alt="Star Wars"
-          src="star-wars.png"
-        />
-      </div>
-    </StyledComponent>
-  </styled.div>
+        <div
+          className="sc-ifAKCX wUDoL"
+        >
+          <n
+            color="#f7e523"
+            size={15}
+          >
+            <div
+              className="PreLoading-Pulse"
+            >
+              <span
+                className="Pulse-circle"
+                style={
+                  Object {
+                    "background": "#f7e523",
+                    "height": 15,
+                    "margin": 7.5,
+                    "width": 15,
+                  }
+                }
+              />
+              <span
+                className="Pulse-circle"
+                style={
+                  Object {
+                    "background": "#f7e523",
+                    "height": 15,
+                    "margin": 7.5,
+                    "width": 15,
+                  }
+                }
+              />
+              <span
+                className="Pulse-circle"
+                style={
+                  Object {
+                    "background": "#f7e523",
+                    "height": 15,
+                    "margin": 7.5,
+                    "width": 15,
+                  }
+                }
+              />
+            </div>
+          </n>
+        </div>
+      </StyledComponent>
+    </styled.div>
+  </PreLoader>
 </CharacterList>
 `;

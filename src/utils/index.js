@@ -47,7 +47,18 @@ export const sortHeight = (array, order) => {
   }
 };
 
-export const sortGender = (array, letter) => {
+export const sortGender = (array, order) => {
+  switch (order) {
+    case 'asc':
+      return array.sort((a, b) => a.gender.localeCompare(b.gender));
+    case 'dsc':
+      return array.sort((a, b) => b.gender.localeCompare(a.gender));
+    default:
+      return array;
+  }
+};
+
+export const filterGender = (array, letter) => {
   switch (letter) {
     case 'MALE':
       return array.filter(word => word.gender === 'male');
@@ -141,4 +152,15 @@ export const oneDayAgo = date => {
   } else {
     return true;
   }
+};
+
+export const requestFromAPI = async (url, method = 'GET') => {
+  const rawResponse = await fetch(url, {
+    method: method,
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
+    }
+  });
+  return rawResponse.json();
 };

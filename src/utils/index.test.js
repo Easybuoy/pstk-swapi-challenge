@@ -7,6 +7,7 @@ import {
   sortHeight,
   sortName,
   sortGender,
+  filterGender,
   initializeLocalStorage,
   oneDayAgo,
   getMovieFromLocalStorage,
@@ -88,6 +89,24 @@ describe('Util', () => {
     expect(response).toEqual(testArray);
   });
 
+  it('test asc case for sortGender', () => {
+    const testArray = [{ gender: 'male' }, { gender: 'female' }];
+    const response = sortGender(testArray, 'asc');
+    expect(response).toEqual([{ gender: 'female' }, { gender: 'male' }]);
+  });
+
+  it('test desc case for sortGender', () => {
+    const testArray = [{ gender: 'male' }, { gender: 'female' }];
+    const response = sortGender(testArray, 'dsc');
+    expect(response).toEqual([{ gender: 'male' }, { gender: 'female' }]);
+  });
+
+  it('test default case for sortGender', () => {
+    const testArray = [{ gender: 'male' }, { gender: 'n/a' }];
+    const response = sortGender(testArray, '');
+    expect(response).toEqual(testArray);
+  });
+
   it('test default case for sortName', () => {
     const testArray = [
       { name: 'Ezekiel', height: 10 },
@@ -121,55 +140,55 @@ describe('Util', () => {
     ]);
   });
 
-  it('test default case for sortGender', () => {
+  it('test default case for filterGender', () => {
     const testArray = [
       { name: 'John', height: 20, gender: 'male' },
       { name: 'Ezekiel', height: 10, gender: 'female' }
     ];
-    const response = sortGender(testArray, 'asc');
+    const response = filterGender(testArray, 'asc');
     expect(response).toEqual([
       { name: 'John', height: 20, gender: 'male' },
       { name: 'Ezekiel', height: 10, gender: 'female' }
     ]);
   });
 
-  it('test female case for sortGender', () => {
+  it('test female case for filterGender', () => {
     const testArray = [
       { name: 'John', height: 20, gender: 'male' },
       { name: 'Ezekiel', height: 10, gender: 'female' }
     ];
-    const response = sortGender(testArray, 'FEMALE');
+    const response = filterGender(testArray, 'FEMALE');
     expect(response).toEqual([
       { name: 'Ezekiel', height: 10, gender: 'female' }
     ]);
   });
 
-  it('test hermaphrodite case for sortGender', () => {
+  it('test hermaphrodite case for filterGender', () => {
     const testArray = [
       { name: 'John', height: 20, gender: 'male' },
       { name: 'Jayne', height: 10, gender: 'hermaphrodite' }
     ];
-    const response = sortGender(testArray, 'HERMAPHODITE');
+    const response = filterGender(testArray, 'HERMAPHODITE');
     expect(response).toEqual([
       { name: 'Jayne', height: 10, gender: 'hermaphrodite' }
     ]);
   });
 
-  it('test n/a case for sortGender', () => {
+  it('test n/a case for filterGender', () => {
     const testArray = [
       { name: 'John', height: 20, gender: 'male' },
       { name: 'Jayne', height: 10, gender: 'n/a' }
     ];
-    const response = sortGender(testArray, 'N/A');
+    const response = filterGender(testArray, 'N/A');
     expect(response).toEqual([{ name: 'Jayne', height: 10, gender: 'n/a' }]);
   });
 
-  it('test male case for sortGender', () => {
+  it('test male case for filterGender', () => {
     const testArray = [
       { name: 'Ezekiel', height: 10, gender: 'male' },
       { name: 'John', height: 20, gender: 'female' }
     ];
-    const response = sortGender(testArray, 'MALE');
+    const response = filterGender(testArray, 'MALE');
     expect(response).toEqual([{ name: 'Ezekiel', height: 10, gender: 'male' }]);
   });
 
@@ -193,7 +212,8 @@ describe('Util', () => {
   it('test getMovieFromLocalStorage with valid movie', () => {
     localStorage.setItem('movieData', JSON.stringify(getMovieDataMock));
     const response = getMovieFromLocalStorage('A New Hope');
-    expect(response).toEqual(JSON.parse(localStorage.getItem('movieData')));
+    const expected = localStorage.getItem('movieData');
+    expect(response).toEqual(JSON.parse(expected));
   });
 
   it('test addMovieListToLocalStorage with valid movie', () => {
