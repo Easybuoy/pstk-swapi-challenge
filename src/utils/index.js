@@ -47,6 +47,19 @@ export const sortHeight = (array, order) => {
   }
 };
 
+
+export const sortGender = (array, order) => {
+  switch (order) {
+    case 'asc':
+      return array.sort((a, b) => a.gender.localeCompare(b.gender));
+    case 'dsc':
+      return array.sort((a, b) => b.gender.localeCompare(a.gender));
+    default:
+      return array;
+  }
+};
+
+
 export const filterGender = (array, letter) => {
   switch (letter) {
     case 'MALE':
