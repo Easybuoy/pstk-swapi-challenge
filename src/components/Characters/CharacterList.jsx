@@ -103,7 +103,6 @@ export const CharacterList = ({ movie, characters, loading }) => {
 
   const filterGenderField = (array, letter) => {
     const sorted = filterGender(array, letter);
-    console.log(sorted);
     setStateCharacters(sorted);
   };
 
