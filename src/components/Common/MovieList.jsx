@@ -1,56 +1,44 @@
 import React, { useEffect, useState } from 'react';
 
 import CharacterList from '../Characters/CharacterList';
-import PreLoader from '../Common/PreLoader';
+import PreLoader from './PreLoader';
 
 import { MovieListDropdown as StyledMovieListDropdown } from '../../styles';
 import Select from './Select';
 import {
   getMovieFromLocalStorage,
-  getMovieListFromLocalStorage
-} from '../../utils';
-import {
   requestFromAPI,
-  addMovieListToLocalStorage,
   addMovieDataToLocalStorage
 } from '../../utils';
 
-export const MovieListDropdown = () => {
+export const MovieList = () => {
   const [movieValue, setMovieValue] = useState('');
   const [movies, setMovies] = useState([]);
   const [characters, setCharacters] = useState([]);
   const [movie, setMovie] = useState({});
   const [characterLoading, setCharacterLoading] = useState(false);
+  const [disableSelect, setdisableSelect] = useState(false);
 
   useEffect(() => {
     setMovieValue('Select Star Wars Movie');
-    const existingMovieListInLocalStorage = getMovieListFromLocalStorage();
-    if (existingMovieListInLocalStorage.length > 0) {
-      setMovies(existingMovieListInLocalStorage);
-    } else {
-      //we could not find movieList in localstorage, thus get from api
-
-      requestFromAPI('https://swapi.co/api/films', 'GET')
-        .then(res => {
-          addMovieListToLocalStorage(res.results);
-          setMovies(res.results);
-        })
-        .catch(err => {
-          if (err.response) {
-            alert(err.response.data.detail);
-          } else {
-            alert(err.message);
-          }
-        });
-    }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    requestFromAPI('https://swapi.co/api/films', 'GET')
+      .then(res => {
+        setMovies(res.results);
+      })
+      .catch(err => {
+        if (err.response) {
+          alert(err.response.data.detail);
+        } else {
+          alert(err.message);
+        }
+      });
   }, []);
 
   const handleChange = e => {
     const { value } = e.target;
     const { title, url } = JSON.parse(value);
     setMovieValue(value);
+    setdisableSelect(true);
 
     // check if movie exist in localstorage
     const existingMovieInLocalStorage = getMovieFromLocalStorage(title);
@@ -58,6 +46,7 @@ export const MovieListDropdown = () => {
       // we found the movie in localstorage
       setCharacters(existingMovieInLocalStorage[0].characters);
       setMovie(existingMovieInLocalStorage[0].movie);
+      setdisableSelect(false);
     } else {
       //we could not find movie in localstorage, thus get from api
       setCharacterLoading(true);
@@ -74,6 +63,7 @@ export const MovieListDropdown = () => {
               setCharacters(res);
               setCharacterLoading(false);
               addMovieDataToLocalStorage(mov, res);
+              setdisableSelect(false);
             })
             .catch(err => {
               if (err.response) {
@@ -105,6 +95,7 @@ export const MovieListDropdown = () => {
           value={movieValue}
           onChange={handleChange}
           defaultValue="Select Star Wars Movie"
+          disabled={disableSelect}
         />
         <CharacterList
           characters={characters}
@@ -126,4 +117,4 @@ export const MovieListDropdown = () => {
   );
 };
 
-export default MovieListDropdown;
+export default MovieList;
