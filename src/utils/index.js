@@ -33,7 +33,7 @@ export const formatHeight = height => {
     return '-';
   }
 
-  return `${height}cm`;
+  return `${height}`;
 };
 
 export const sortHeight = (array, order) => {

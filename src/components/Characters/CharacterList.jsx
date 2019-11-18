@@ -147,7 +147,7 @@ export const CharacterList = ({ movie, characters, loading }) => {
                 onClick={() => sortHeightField(characters)}
                 className="toggle height"
               >
-                Height {sortArrow(heightOrder)}
+                Height (cm) {sortArrow(heightOrder)}
               </th>
             </tr>
           </thead>
