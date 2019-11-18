@@ -1,9 +1,14 @@
 import React from 'react';
 import { Select as StyledSelect } from '../../styles';
 
-export const Select = ({ value, onChange, defaultValue, items }) => {
+export const Select = ({ value, onChange, defaultValue, items, disabled }) => {
   return (
-    <StyledSelect value={value} onChange={onChange} className="select">
+    <StyledSelect
+      value={value}
+      onChange={onChange}
+      className="select"
+      disabled={disabled}
+    >
       <option defaultValue={defaultValue} disabled>
         {defaultValue}
       </option>

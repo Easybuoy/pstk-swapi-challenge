@@ -126,6 +126,7 @@ export const CharacterList = ({ movie, characters, loading }) => {
           value={genderValue}
           onChange={onSelectChange}
           items={items}
+          disabled={false}
         />
 
         <table className="fl-table">

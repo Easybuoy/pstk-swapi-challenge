@@ -21,6 +21,7 @@ export const MovieListDropdown = () => {
   const [characters, setCharacters] = useState([]);
   const [movie, setMovie] = useState({});
   const [characterLoading, setCharacterLoading] = useState(false);
+  const [disableSelect, setdisableSelect] = useState(false);
 
   useEffect(() => {
     setMovieValue('Select Star Wars Movie');
@@ -43,14 +44,14 @@ export const MovieListDropdown = () => {
           }
         });
     }
-
-    
   }, []);
 
   const handleChange = e => {
     const { value } = e.target;
     const { title, url } = JSON.parse(value);
     setMovieValue(value);
+    console.log('aa')
+    setdisableSelect(true);
 
     // check if movie exist in localstorage
     const existingMovieInLocalStorage = getMovieFromLocalStorage(title);
@@ -58,6 +59,7 @@ export const MovieListDropdown = () => {
       // we found the movie in localstorage
       setCharacters(existingMovieInLocalStorage[0].characters);
       setMovie(existingMovieInLocalStorage[0].movie);
+      setdisableSelect(false);
     } else {
       //we could not find movie in localstorage, thus get from api
       setCharacterLoading(true);
@@ -74,6 +76,7 @@ export const MovieListDropdown = () => {
               setCharacters(res);
               setCharacterLoading(false);
               addMovieDataToLocalStorage(mov, res);
+              setdisableSelect(false);
             })
             .catch(err => {
               if (err.response) {
@@ -91,6 +94,7 @@ export const MovieListDropdown = () => {
           }
         });
     }
+    
   };
 
   let dropDownItems = '';
@@ -98,7 +102,6 @@ export const MovieListDropdown = () => {
   if (movies.length > 0) {
     dropDownItems = (
       <div style={{ display: 'flex', width: '100%', flexWrap: 'wrap' }}>
-
         <Select
           items={movies.sort(
             (a, b) => new Date(a.release_date) - new Date(b.release_date)
@@ -106,6 +109,7 @@ export const MovieListDropdown = () => {
           value={movieValue}
           onChange={handleChange}
           defaultValue="Select Star Wars Movie"
+          disabled={disableSelect}
         />
         <CharacterList
           characters={characters}
