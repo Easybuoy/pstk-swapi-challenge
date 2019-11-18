@@ -125,6 +125,7 @@ const CharacterList = styled.div`
   h2 {
     color: ${primaryColor};
     text-align: center;
+    width: 100%;
   }
   .fl-table {
     border-radius: 5px;

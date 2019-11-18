@@ -44,7 +44,7 @@ export const CharacterList = ({ movie, characters, loading }) => {
       setMovieInState(movie);
       setGenderValue('Filter Gender');
     }
-  }, [characters, stateCharacters.length]);
+  }, [characters, movie, movieInState.title, stateCharacters.length]);
 
   if (loading) {
     return <PreLoader />;
@@ -97,7 +97,7 @@ export const CharacterList = ({ movie, characters, loading }) => {
       sorted = sortGender(array, 'dsc');
       setGenderOrder(0);
     }
-    
+
     setStateCharacters(sorted);
   };
 
@@ -127,6 +127,22 @@ export const CharacterList = ({ movie, characters, loading }) => {
       { title: 'N/A' }
     ];
 
+    if (genderValue !== 'Filter Gender' && stateCharacters.length === 0) {
+      return (
+        <StyledCharacterList>
+          <MovieDetails movie={movie} />
+
+          <Select
+            defaultValue="Filter Gender"
+            value={genderValue}
+            onChange={onSelectChange}
+            items={items}
+            disabled={false}
+          />
+          <h2>No character ound with search criteria</h2>
+        </StyledCharacterList>
+      );
+    }
     return (
       <StyledCharacterList>
         <MovieDetails movie={movie} />
