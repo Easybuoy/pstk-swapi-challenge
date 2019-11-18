@@ -44,7 +44,7 @@ export const MovieListDropdown = () => {
         });
     }
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    
   }, []);
 
   const handleChange = e => {
@@ -98,6 +98,7 @@ export const MovieListDropdown = () => {
   if (movies.length > 0) {
     dropDownItems = (
       <div style={{ display: 'flex', width: '100%', flexWrap: 'wrap' }}>
+
         <Select
           items={movies.sort(
             (a, b) => new Date(a.release_date) - new Date(b.release_date)

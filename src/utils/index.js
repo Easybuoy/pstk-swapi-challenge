@@ -86,14 +86,17 @@ export const sortName = (array, order) => {
 
 export const addMovieListToLocalStorage = list => {
   initializeLocalStorage();
+  try {
+    const movieList = JSON.parse(localStorage.getItem('movieList'));
+    if (movieList.length > 0) {
+      return movieList;
+    }
 
-  const movieList = JSON.parse(localStorage.getItem('movieList'));
-  if (movieList.length > 0) {
-    return movieList;
+    localStorage.setItem('movieList', JSON.stringify(list));
+    return list;
+  } catch (err) {
+    return false;
   }
-
-  localStorage.setItem('movieList', JSON.stringify(list));
-  return list;
 };
 
 export const getMovieListFromLocalStorage = () => {
@@ -105,7 +108,8 @@ export const getMovieListFromLocalStorage = () => {
 export const addMovieDataToLocalStorage = (movie, characters) => {
   initializeLocalStorage();
 
-  const movieData = JSON.parse(localStorage.getItem('movieData'));
+  try {
+    const movieData = JSON.parse(localStorage.getItem('movieData'));
   if (movieData) {
     const latestMovies = movieData.concat({
       title: movie.title,
@@ -116,6 +120,11 @@ export const addMovieDataToLocalStorage = (movie, characters) => {
     localStorage.setItem('movieData', JSON.stringify(latestMovies));
     return latestMovies;
   }
+  } catch (err) {
+    return false;
+  }
+
+  
 };
 
 export const getMovieFromLocalStorage = title => {
