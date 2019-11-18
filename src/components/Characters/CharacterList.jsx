@@ -15,7 +15,7 @@ import {
   sortName,
   calculateFeet,
   calculateInches,
-  sortGender
+  filterGender
 } from '../../utils';
 
 export const sortArrow = order => {
@@ -29,12 +29,15 @@ export const sortArrow = order => {
   }
 };
 
-export const CharacterList = ({ movie, characters }) => {
+export const CharacterList = ({ movie, characters, loading }) => {
   const [heightOrder, setHeightOrder] = useState(undefined);
   const [nameOrder, setNameOrder] = useState(undefined);
   const [genderValue, setGenderValue] = useState('Filter Gender');
   const [stateCharacters, setStateCharacters] = useState([]);
 
+  if (loading) {
+    return <PreLoader />;
+  }
   if (characters.length === 0) {
     return (
       <StyledCharacterList>
@@ -54,7 +57,6 @@ export const CharacterList = ({ movie, characters }) => {
       sorted = sortName(array, 'dsc');
       setNameOrder(0);
     }
-    // setCharacters([]);
     setStateCharacters(sorted);
   };
 
@@ -69,12 +71,12 @@ export const CharacterList = ({ movie, characters }) => {
       sorted = sortHeight(array, 'dsc');
       setHeightOrder(0);
     }
-    // setCharacters([]);
+
     setStateCharacters(sorted);
   };
 
-  const sortGenderField = (array, letter) => {
-    const sorted = sortGender(array, letter);
+  const filterGenderField = (array, letter) => {
+    const sorted = filterGender(array, letter);
     setStateCharacters(sorted);
   };
 
@@ -82,11 +84,14 @@ export const CharacterList = ({ movie, characters }) => {
     const { title } = JSON.parse(e.target.value);
 
     setGenderValue(e.target.value);
-    sortGenderField(stateCharacters, title);
+    filterGenderField(characters, title);
   };
 
   if (characters) {
-    const totalHeight = calculateHeights(characters);
+    let totalHeight = calculateHeights(characters);
+    if (stateCharacters.length > 0) {
+      totalHeight = calculateHeights(stateCharacters);
+    }
     const items = [
       { title: 'ALL' },
       { title: 'MALE' },
@@ -125,16 +130,28 @@ export const CharacterList = ({ movie, characters }) => {
             </tr>
           </thead>
           <tbody>
-            {characters.map(character => {
-              return (
-                <Character
-                  key={character.name}
-                  name={character.name}
-                  gender={formatGender(character.gender)}
-                  height={formatHeight(character.height)}
-                />
-              );
-            })}
+            {stateCharacters.length > 0
+              ? stateCharacters.map(character => {
+                  return (
+                    <Character
+                      key={character.name}
+                      name={character.name}
+                      gender={formatGender(character.gender)}
+                      height={formatHeight(character.height)}
+                    />
+                  );
+                })
+              : '' ||
+                characters.map(character => {
+                  return (
+                    <Character
+                      key={character.name}
+                      name={character.name}
+                      gender={formatGender(character.gender)}
+                      height={formatHeight(character.height)}
+                    />
+                  );
+                })}
             <tr>
               <td></td>
               <td></td>
@@ -144,7 +161,6 @@ export const CharacterList = ({ movie, characters }) => {
             </tr>
           </tbody>
         </table>
-        {/* <Character movie={movie} /> */}
       </StyledCharacterList>
     );
   }
@@ -154,7 +170,7 @@ export const CharacterList = ({ movie, characters }) => {
 
 CharacterList.propTypes = {
   movie: PropTypes.object.isRequired,
-  selectedMovie: PropTypes.string.isRequired
+  characters: PropTypes.array.isRequired
 };
 
 export default CharacterList;

@@ -47,7 +47,7 @@ export const sortHeight = (array, order) => {
   }
 };
 
-export const sortGender = (array, letter) => {
+export const filterGender = (array, letter) => {
   switch (letter) {
     case 'MALE':
       return array.filter(word => word.gender === 'male');

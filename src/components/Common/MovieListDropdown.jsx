@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
 
-import PropTypes from 'prop-types';
-
 import CharacterList from '../Characters/CharacterList';
 import PreLoader from '../Common/PreLoader';
 
@@ -22,6 +20,7 @@ export const MovieListDropdown = () => {
   const [movies, setMovies] = useState([]);
   const [characters, setCharacters] = useState([]);
   const [movie, setMovie] = useState({});
+  const [characterLoading, setCharacterLoading] = useState(false);
 
   useEffect(() => {
     setMovieValue('Select Star Wars Movie');
@@ -35,10 +34,8 @@ export const MovieListDropdown = () => {
         .then(res => {
           addMovieListToLocalStorage(res.results);
           setMovies(res.results);
-          console.log(res.results);
         })
         .catch(err => {
-          console.log(err);
           if (err.response) {
             alert(err.response.data.detail);
           } else {
@@ -63,20 +60,20 @@ export const MovieListDropdown = () => {
       setMovie(existingMovieInLocalStorage[0].movie);
     } else {
       //we could not find movie in localstorage, thus get from api
-      // getMovie(url);
+      setCharacterLoading(true);
       requestFromAPI(url, 'GET')
-        .then(res => {
-          console.log(res);
-          setMovie(res);
+        .then(mov => {
+          setMovie(mov);
 
           Promise.all(
-            res.characters.map(url =>
+            mov.characters.map(url =>
               requestFromAPI(url, 'GET').then(data => data)
             )
           )
             .then(res => {
-              addMovieDataToLocalStorage(movie, res);
               setCharacters(res);
+              setCharacterLoading(false);
+              addMovieDataToLocalStorage(mov, res);
             })
             .catch(err => {
               if (err.response) {
@@ -85,8 +82,6 @@ export const MovieListDropdown = () => {
                 alert(err.message);
               }
             });
-
-          // dispatch(getCharacter(res));
         })
         .catch(err => {
           if (err.response) {
@@ -111,7 +106,11 @@ export const MovieListDropdown = () => {
           onChange={handleChange}
           defaultValue="Select Star Wars Movie"
         />
-        <CharacterList characters={characters} movie={movie} />
+        <CharacterList
+          characters={characters}
+          movie={movie}
+          loading={characterLoading}
+        />
       </div>
     );
   } else {
@@ -126,14 +125,5 @@ export const MovieListDropdown = () => {
     </StyledMovieListDropdown>
   );
 };
-
-// MovieListDropdown.propTypes = {
-//   getMovies: PropTypes.func.isRequired,
-//   selectMovie: PropTypes.func.isRequired,
-//   getMovie: PropTypes.func.isRequired,
-//   setCharacters: PropTypes.func.isRequired,
-//   setMovie: PropTypes.func.isRequired
-// };
-
 
 export default MovieListDropdown;

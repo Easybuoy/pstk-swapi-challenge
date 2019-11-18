@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Character = ({ name, gender, height }) => {
+export const Character = ({ name, gender, height }) => {
   return (
     <tr>
       <td>{name}</td>
