@@ -15,7 +15,7 @@ import {
   sortName,
   calculateFeet,
   calculateInches,
-  sortGender
+  filterGender
 } from '../../utils';
 
 export const sortArrow = order => {
@@ -36,7 +36,7 @@ export const CharacterList = ({ movie, characters, loading }) => {
   const [stateCharacters, setStateCharacters] = useState([]);
 
   if (loading) {
-    return <PreLoader />
+    return <PreLoader />;
   }
   if (characters.length === 0) {
     return (
@@ -75,8 +75,9 @@ export const CharacterList = ({ movie, characters, loading }) => {
     setStateCharacters(sorted);
   };
 
-  const sortGenderField = (array, letter) => {
-    const sorted = sortGender(array, letter);
+  const filterGenderField = (array, letter) => {
+    const sorted = filterGender(array, letter);
+    console.log(sorted, 'sorted');
     setStateCharacters(sorted);
   };
 
@@ -84,11 +85,14 @@ export const CharacterList = ({ movie, characters, loading }) => {
     const { title } = JSON.parse(e.target.value);
 
     setGenderValue(e.target.value);
-    sortGenderField(stateCharacters, title);
+    filterGenderField(characters, title);
   };
 
   if (characters) {
-    const totalHeight = calculateHeights(characters);
+    let totalHeight = calculateHeights(characters);
+    if (stateCharacters.length > 0) {
+      totalHeight = calculateHeights(stateCharacters);
+    }
     const items = [
       { title: 'ALL' },
       { title: 'MALE' },
@@ -127,16 +131,28 @@ export const CharacterList = ({ movie, characters, loading }) => {
             </tr>
           </thead>
           <tbody>
-            {characters.map(character => {
-              return (
-                <Character
-                  key={character.name}
-                  name={character.name}
-                  gender={formatGender(character.gender)}
-                  height={formatHeight(character.height)}
-                />
-              );
-            })}
+            {stateCharacters.length > 0
+              ? stateCharacters.map(character => {
+                  return (
+                    <Character
+                      key={character.name}
+                      name={character.name}
+                      gender={formatGender(character.gender)}
+                      height={formatHeight(character.height)}
+                    />
+                  );
+                })
+              : '' ||
+                characters.map(character => {
+                  return (
+                    <Character
+                      key={character.name}
+                      name={character.name}
+                      gender={formatGender(character.gender)}
+                      height={formatHeight(character.height)}
+                    />
+                  );
+                })}
             <tr>
               <td></td>
               <td></td>
@@ -146,7 +162,6 @@ export const CharacterList = ({ movie, characters, loading }) => {
             </tr>
           </tbody>
         </table>
-        {/* <Character movie={movie} /> */}
       </StyledCharacterList>
     );
   }
