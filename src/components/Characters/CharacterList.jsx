@@ -15,7 +15,8 @@ import {
   sortName,
   calculateFeet,
   calculateInches,
-  filterGender
+  filterGender,
+  sortGender
 } from '../../utils';
 
 export const sortArrow = order => {
@@ -32,6 +33,7 @@ export const sortArrow = order => {
 export const CharacterList = ({ movie, characters, loading }) => {
   const [heightOrder, setHeightOrder] = useState(undefined);
   const [nameOrder, setNameOrder] = useState(undefined);
+  const [genderOrder, setGenderOrder] = useState(undefined);
   const [genderValue, setGenderValue] = useState('Filter Gender');
   const [stateCharacters, setStateCharacters] = useState([]);
 
@@ -70,6 +72,21 @@ export const CharacterList = ({ movie, characters, loading }) => {
     if (heightOrder === 1) {
       sorted = sortHeight(array, 'dsc');
       setHeightOrder(0);
+    }
+
+    setStateCharacters(sorted);
+  };
+
+  const sortGenderField = array => {
+    let sorted = [];
+    if (genderOrder === 0 || genderOrder === undefined) {
+      sorted = sortGender(array, 'asc');
+      setGenderOrder(1);
+    }
+
+    if (genderOrder === 1) {
+      sorted = sortGender(array, 'dsc');
+      setGenderOrder(0);
     }
 
     setStateCharacters(sorted);
@@ -120,7 +137,12 @@ export const CharacterList = ({ movie, characters, loading }) => {
               >
                 Name {sortArrow(nameOrder)}
               </th>
-              <th>Gender</th>
+              <th
+                onClick={() => sortGenderField(characters)}
+                className="toggle gender"
+              >
+                Gender {sortArrow(genderOrder)}
+              </th>
               <th
                 onClick={() => sortHeightField(characters)}
                 className="toggle height"

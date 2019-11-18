@@ -6,6 +6,7 @@ import {
   formatHeight,
   sortHeight,
   sortName,
+  sortGender,
   filterGender,
   initializeLocalStorage,
   oneDayAgo,
@@ -85,6 +86,24 @@ describe('Util', () => {
   it('test default case for sortHeight', () => {
     const testArray = [{ height: 10 }, { height: 20 }];
     const response = sortHeight(testArray, '');
+    expect(response).toEqual(testArray);
+  });
+
+  it('test asc case for sortGender', () => {
+    const testArray = [{ gender: 'male' }, { gender: 'female' }];
+    const response = sortGender(testArray, 'asc');
+    expect(response).toEqual([{ gender: 'female' }, { gender: 'male' }]);
+  });
+
+  it('test desc case for sortGender', () => {
+    const testArray = [{ gender: 'male' }, { gender: 'female' }];
+    const response = sortGender(testArray, 'dsc');
+    expect(response).toEqual([{ gender: 'male' }, { gender: 'female' }]);
+  });
+
+  it('test default case for sortGender', () => {
+    const testArray = [{ gender: 'male' }, { gender: 'n/a' }];
+    const response = sortGender(testArray, '');
     expect(response).toEqual(testArray);
   });
 
