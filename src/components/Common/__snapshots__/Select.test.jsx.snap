@@ -1,0 +1,134 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<MovieListDropdown /> renders the MovieListDropdown component correctly 1`] = `
+<styled.select
+  className="select"
+  onChange={[MockFunction]}
+  value={
+    Object {
+      "addMatchers": [Function],
+      "advanceTimersByTime": [Function],
+      "advanceTimersToNextTimer": [Function],
+      "autoMockOff": [Function],
+      "autoMockOn": [Function],
+      "clearAllMocks": [Function],
+      "clearAllTimers": [Function],
+      "deepUnmock": [Function],
+      "disableAutomock": [Function],
+      "doMock": [Function],
+      "dontMock": [Function],
+      "enableAutomock": [Function],
+      "fn": [Function],
+      "genMockFromModule": [Function],
+      "getTimerCount": [Function],
+      "isMockFunction": [Function],
+      "isolateModules": [Function],
+      "mock": [Function],
+      "requireActual": [Function],
+      "requireMock": [Function],
+      "resetAllMocks": [Function],
+      "resetModuleRegistry": [Function],
+      "resetModules": [Function],
+      "restoreAllMocks": [Function],
+      "retryTimes": [Function],
+      "runAllImmediates": [Function],
+      "runAllTicks": [Function],
+      "runAllTimers": [Function],
+      "runOnlyPendingTimers": [Function],
+      "runTimersToTime": [Function],
+      "setMock": [Function],
+      "setTimeout": [Function],
+      "spyOn": [Function],
+      "unmock": [Function],
+      "useFakeTimers": [Function],
+      "useRealTimers": [Function],
+    }
+  }
+>
+  <option
+    defaultValue={
+      Object {
+        "addMatchers": [Function],
+        "advanceTimersByTime": [Function],
+        "advanceTimersToNextTimer": [Function],
+        "autoMockOff": [Function],
+        "autoMockOn": [Function],
+        "clearAllMocks": [Function],
+        "clearAllTimers": [Function],
+        "deepUnmock": [Function],
+        "disableAutomock": [Function],
+        "doMock": [Function],
+        "dontMock": [Function],
+        "enableAutomock": [Function],
+        "fn": [Function],
+        "genMockFromModule": [Function],
+        "getTimerCount": [Function],
+        "isMockFunction": [Function],
+        "isolateModules": [Function],
+        "mock": [Function],
+        "requireActual": [Function],
+        "requireMock": [Function],
+        "resetAllMocks": [Function],
+        "resetModuleRegistry": [Function],
+        "resetModules": [Function],
+        "restoreAllMocks": [Function],
+        "retryTimes": [Function],
+        "runAllImmediates": [Function],
+        "runAllTicks": [Function],
+        "runAllTimers": [Function],
+        "runOnlyPendingTimers": [Function],
+        "runTimersToTime": [Function],
+        "setMock": [Function],
+        "setTimeout": [Function],
+        "spyOn": [Function],
+        "unmock": [Function],
+        "useFakeTimers": [Function],
+        "useRealTimers": [Function],
+      }
+    }
+    disabled={true}
+  >
+    <Component />
+  </option>
+  <option
+    key="ALL"
+    me="ALL"
+    name="ALL"
+    value="{\\"title\\":\\"ALL\\"}"
+  >
+    ALL
+  </option>
+  <option
+    key="MALE"
+    me="MALE"
+    name="MALE"
+    value="{\\"title\\":\\"MALE\\"}"
+  >
+    MALE
+  </option>
+  <option
+    key="FEMALE"
+    me="FEMALE"
+    name="FEMALE"
+    value="{\\"title\\":\\"FEMALE\\"}"
+  >
+    FEMALE
+  </option>
+  <option
+    key="HERMAPHODITE"
+    me="HERMAPHODITE"
+    name="HERMAPHODITE"
+    value="{\\"title\\":\\"HERMAPHODITE\\"}"
+  >
+    HERMAPHODITE
+  </option>
+  <option
+    key="N/A"
+    me="N/A"
+    name="N/A"
+    value="{\\"title\\":\\"N/A\\"}"
+  >
+    N/A
+  </option>
+</styled.select>
+`;
