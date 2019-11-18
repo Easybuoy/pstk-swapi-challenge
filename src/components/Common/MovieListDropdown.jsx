@@ -7,11 +7,7 @@ import { MovieListDropdown as StyledMovieListDropdown } from '../../styles';
 import Select from './Select';
 import {
   getMovieFromLocalStorage,
-  getMovieListFromLocalStorage
-} from '../../utils';
-import {
   requestFromAPI,
-  addMovieListToLocalStorage,
   addMovieDataToLocalStorage
 } from '../../utils';
 
@@ -25,32 +21,31 @@ export const MovieListDropdown = () => {
 
   useEffect(() => {
     setMovieValue('Select Star Wars Movie');
-    const existingMovieListInLocalStorage = getMovieListFromLocalStorage();
-    if (existingMovieListInLocalStorage.length > 0) {
-      setMovies(existingMovieListInLocalStorage);
-    } else {
-      //we could not find movieList in localstorage, thus get from api
+    // const existingMovieListInLocalStorage = getMovieListFromLocalStorage();
+    // if (existingMovieListInLocalStorage.length > 0) {
+    //   setMovies(existingMovieListInLocalStorage);
+    // } else {
+    //   //we could not find movieList in localstorage, thus get from api
 
-      requestFromAPI('https://swapi.co/api/films', 'GET')
-        .then(res => {
-          addMovieListToLocalStorage(res.results);
-          setMovies(res.results);
-        })
-        .catch(err => {
-          if (err.response) {
-            alert(err.response.data.detail);
-          } else {
-            alert(err.message);
-          }
-        });
-    }
+    requestFromAPI('https://swapi.co/api/films', 'GET')
+      .then(res => {
+        // addMovieListToLocalStorage(res.results);
+        setMovies(res.results);
+      })
+      .catch(err => {
+        if (err.response) {
+          alert(err.response.data.detail);
+        } else {
+          alert(err.message);
+        }
+      });
+    // }
   }, []);
 
   const handleChange = e => {
     const { value } = e.target;
     const { title, url } = JSON.parse(value);
     setMovieValue(value);
-    console.log('aa')
     setdisableSelect(true);
 
     // check if movie exist in localstorage
@@ -94,7 +89,6 @@ export const MovieListDropdown = () => {
           }
         });
     }
-    
   };
 
   let dropDownItems = '';
