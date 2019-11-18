@@ -12,12 +12,14 @@ export const formatGender = gender => {
 };
 
 export const calculateHeights = array => {
-  return array.reduce((a, b) => {
-    if (b.height !== 'unknown') {
+  const heightCalculation = array.reduce((a, b) => {
+    if (b.height === 'unknown') {
+      return a;
+    } else {
       return a + parseInt(b.height);
     }
-    return a;
   }, 0);
+  return heightCalculation;
 };
 
 export const calculateFeet = height => {
@@ -33,7 +35,7 @@ export const formatHeight = height => {
     return '-';
   }
 
-  return `${height}cm`;
+  return `${height}`;
 };
 
 export const sortHeight = (array, order) => {
@@ -84,37 +86,23 @@ export const sortName = (array, order) => {
   }
 };
 
-export const addMovieListToLocalStorage = list => {
-  initializeLocalStorage();
-
-  const movieList = JSON.parse(localStorage.getItem('movieList'));
-  if (movieList.length > 0) {
-    return movieList;
-  }
-
-  localStorage.setItem('movieList', JSON.stringify(list));
-  return list;
-};
-
-export const getMovieListFromLocalStorage = () => {
-  initializeLocalStorage();
-  const movieList = JSON.parse(localStorage.getItem('movieList'));
-  return movieList;
-};
-
 export const addMovieDataToLocalStorage = (movie, characters) => {
   initializeLocalStorage();
 
-  const movieData = JSON.parse(localStorage.getItem('movieData'));
-  if (movieData) {
-    const latestMovies = movieData.concat({
-      title: movie.title,
-      movie,
-      characters,
-      created_at: Date.now()
-    });
-    localStorage.setItem('movieData', JSON.stringify(latestMovies));
-    return latestMovies;
+  try {
+    const movieData = JSON.parse(localStorage.getItem('movieData'));
+    if (movieData) {
+      const latestMovies = movieData.concat({
+        title: movie.title,
+        movie,
+        characters,
+        created_at: Date.now()
+      });
+      localStorage.setItem('movieData', JSON.stringify(latestMovies));
+      return latestMovies;
+    }
+  } catch (err) {
+    return false;
   }
 };
 
@@ -135,10 +123,6 @@ export const getMovieFromLocalStorage = title => {
 export const initializeLocalStorage = () => {
   if (!localStorage.getItem('movieData')) {
     localStorage.setItem('movieData', JSON.stringify([]));
-  }
-
-  if (!localStorage.getItem('movieList')) {
-    localStorage.setItem('movieList', JSON.stringify([]));
   }
 };
 

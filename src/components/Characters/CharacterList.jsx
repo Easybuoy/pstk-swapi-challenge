@@ -126,6 +126,7 @@ export const CharacterList = ({ movie, characters, loading }) => {
           value={genderValue}
           onChange={onSelectChange}
           items={items}
+          disabled={false}
         />
 
         <table className="fl-table">
@@ -147,7 +148,7 @@ export const CharacterList = ({ movie, characters, loading }) => {
                 onClick={() => sortHeightField(characters)}
                 className="toggle height"
               >
-                Height {sortArrow(heightOrder)}
+                Height (cm) {sortArrow(heightOrder)}
               </th>
             </tr>
           </thead>
