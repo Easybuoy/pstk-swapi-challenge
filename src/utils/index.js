@@ -47,7 +47,6 @@ export const sortHeight = (array, order) => {
   }
 };
 
-
 export const sortGender = (array, order) => {
   switch (order) {
     case 'asc':
@@ -58,7 +57,6 @@ export const sortGender = (array, order) => {
       return array;
   }
 };
-
 
 export const filterGender = (array, letter) => {
   switch (letter) {
