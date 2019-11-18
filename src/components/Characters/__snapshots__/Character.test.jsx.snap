@@ -13,17 +13,3 @@ exports[`<Character /> renders the Character component correctly 1`] = `
   </td>
 </tr>
 `;
-
-exports[`<Character /> should call the mock name function 1`] = `
-<tr>
-  <td>
-    <Component />
-  </td>
-  <td>
-    <Component />
-  </td>
-  <td>
-    <Component />
-  </td>
-</tr>
-`;

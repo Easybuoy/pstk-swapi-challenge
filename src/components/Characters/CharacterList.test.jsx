@@ -16,21 +16,21 @@ describe('<CharacterList />', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it('renders the CharacterList component correctly', () => {
-    props = {
-      movie: { name: 'Hi', characters: [{ name: 'Ezekiel' }] },
-      selectedMovie: ''
-    };
-    const wrapper = mount(<CharacterList {...props} />);
-    expect(wrapper).toMatchSnapshot();
-  });
+  // it('renders the CharacterList component correctly', () => {
+  //   props = {
+  //     movie: { name: 'Hi', characters: [{ name: 'Ezekiel' }] },
+  //     selectedMovie: ''
+  //   };
+  //   const wrapper = mount(<CharacterList {...props} />);
+  //   expect(wrapper).toMatchSnapshot();
+  // });
 
-  it('renders the CharacterList component correctly', () => {
-    props = {
-      movie: {},
-      selectedMovie: ''
-    };
-    const wrapper = mount(<CharacterList {...props} />);
-    expect(wrapper).toMatchSnapshot();
-  });
+  // it('renders the CharacterList component correctly', () => {
+  //   props = {
+  //     movie: {},
+  //     selectedMovie: ''
+  //   };
+  //   const wrapper = mount(<CharacterList {...props} />);
+  //   expect(wrapper).toMatchSnapshot();
+  // });
 });

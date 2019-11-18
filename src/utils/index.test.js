@@ -193,7 +193,8 @@ describe('Util', () => {
   it('test getMovieFromLocalStorage with valid movie', () => {
     localStorage.setItem('movieData', JSON.stringify(getMovieDataMock));
     const response = getMovieFromLocalStorage('A New Hope');
-    expect(response).toEqual(JSON.parse(localStorage.getItem('movieData')));
+    const expected = localStorage.getItem('movieData');
+    expect(response).toEqual(JSON.parse(expected));
   });
 
   it('test addMovieListToLocalStorage with valid movie', () => {
