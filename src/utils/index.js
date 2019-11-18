@@ -12,14 +12,14 @@ export const formatGender = gender => {
 };
 
 export const calculateHeights = array => {
-  const heightCalculation = array.reduce((a, b) => {
+  const heightsSum = array.reduce((a, b) => {
     if (b.height === 'unknown') {
       return a;
     } else {
       return a + parseInt(b.height);
     }
   }, 0);
-  return heightCalculation;
+  return heightsSum;
 };
 
 export const calculateFeet = height => {
@@ -60,8 +60,8 @@ export const sortGender = (array, order) => {
   }
 };
 
-export const filterGender = (array, letter) => {
-  switch (letter) {
+export const filterGender = (array, condition) => {
+  switch (condition) {
     case 'MALE':
       return array.filter(word => word.gender === 'male');
     case 'FEMALE':
@@ -139,12 +139,12 @@ export const oneDayAgo = date => {
 };
 
 export const requestFromAPI = async (url, method = 'GET') => {
-  const rawResponse = await fetch(url, {
+  const response = await fetch(url, {
     method: method,
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json'
     }
   });
-  return rawResponse.json();
+  return response.json();
 };
