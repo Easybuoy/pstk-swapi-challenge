@@ -1,25 +1,23 @@
 export const formatGender = gender => {
-  switch (gender) {
-    case 'male':
-      return 'M';
-    case 'female':
-      return 'F';
-    case 'hermaphrodite':
-      return 'H';
-    default:
-      return 'N/A';
-  }
+  const genderLookup = {
+    male: 'M',
+    female: 'F',
+    hermaphrodite: 'H',
+    'n/a': 'N/A',
+    none: 'N'
+  };
+  return genderLookup[gender];
 };
 
 export const calculateHeights = array => {
-  const heightCalculation = array.reduce((a, b) => {
+  const heightsSum = array.reduce((a, b) => {
     if (b.height === 'unknown') {
       return a;
     } else {
       return a + parseInt(b.height);
     }
   }, 0);
-  return heightCalculation;
+  return heightsSum;
 };
 
 export const calculateFeet = height => {
@@ -60,16 +58,18 @@ export const sortGender = (array, order) => {
   }
 };
 
-export const filterGender = (array, letter) => {
-  switch (letter) {
+export const filterGender = (array, condition) => {
+  switch (condition) {
     case 'MALE':
       return array.filter(word => word.gender === 'male');
     case 'FEMALE':
       return array.filter(word => word.gender === 'female');
-    case 'HERMAPHODITE':
+    case 'HERMAPHRODITE':
       return array.filter(word => word.gender === 'hermaphrodite');
     case 'N/A':
       return array.filter(word => word.gender === 'n/a');
+    case 'NONE':
+      return array.filter(word => word.gender === 'none');
     default:
       return array;
   }
@@ -139,12 +139,29 @@ export const oneDayAgo = date => {
 };
 
 export const requestFromAPI = async (url, method = 'GET') => {
-  const rawResponse = await fetch(url, {
+  const response = await fetch(url, {
     method: method,
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json'
     }
   });
-  return rawResponse.json();
+  return response.json();
+};
+
+export const genderFilterFromCharacters = (characters = []) => {
+  let filter = [{ title: 'ALL' }];
+  
+  characters.forEach(character => {
+    const existingFilter = filter
+      .map(e => {
+        return e.title;
+      })
+      .indexOf(character.gender.toUpperCase());
+    if (existingFilter === -1) {
+      filter = filter.concat({ title: character.gender.toUpperCase() });
+    }
+    return character;
+  });
+  return filter.sort((a, b) => a.title.localeCompare(b.title));
 };

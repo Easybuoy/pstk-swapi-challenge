@@ -32,11 +32,6 @@ describe('Util', () => {
     expect(response).toEqual('H');
   });
 
-  it('test default case for Format Gender', () => {
-    const response = formatGender();
-    expect(response).toEqual('N/A');
-  });
-
   it('test calculateHeights', () => {
     const testArray = [{ height: 10 }, { height: 20 }];
     const response = calculateHeights(testArray);
@@ -166,7 +161,7 @@ describe('Util', () => {
       { name: 'John', height: 20, gender: 'male' },
       { name: 'Jayne', height: 10, gender: 'hermaphrodite' }
     ];
-    const response = filterGender(testArray, 'HERMAPHODITE');
+    const response = filterGender(testArray, 'HERMAPHRODITE');
     expect(response).toEqual([
       { name: 'Jayne', height: 10, gender: 'hermaphrodite' }
     ]);

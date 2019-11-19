@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import MovieDetails from '../Common/MovieDetails';
@@ -16,7 +16,8 @@ import {
   calculateFeet,
   calculateInches,
   filterGender,
-  sortGender
+  sortGender,
+  genderFilterFromCharacters
 } from '../../utils';
 
 export const sortArrow = order => {
@@ -36,6 +37,18 @@ export const CharacterList = ({ movie, characters, loading }) => {
   const [genderOrder, setGenderOrder] = useState(undefined);
   const [genderValue, setGenderValue] = useState('Filter Gender');
   const [stateCharacters, setStateCharacters] = useState([]);
+  const [movieInState, setMovieInState] = useState({});
+  const [genderFilter, setGenderFilter] = useState([]);
+
+  useEffect(() => {
+    const filters = genderFilterFromCharacters(characters);
+    setGenderFilter(filters);
+    if (characters.length > 0 && movieInState.title !== movie.title) {
+      setStateCharacters([]);
+      setMovieInState(movie);
+      setGenderValue('Filter Gender');
+    }
+  }, [characters, movie, movieInState.title, stateCharacters.length]);
 
   if (loading) {
     return <PreLoader />;
@@ -53,11 +66,15 @@ export const CharacterList = ({ movie, characters, loading }) => {
     if (nameOrder === 0 || nameOrder === undefined) {
       sorted = sortName(array, 'asc');
       setNameOrder(1);
+      setGenderOrder(undefined);
+      setHeightOrder(undefined);
     }
 
     if (nameOrder === 1) {
       sorted = sortName(array, 'dsc');
       setNameOrder(0);
+      setGenderOrder(undefined);
+      setHeightOrder(undefined);
     }
     setStateCharacters(sorted);
   };
@@ -67,11 +84,15 @@ export const CharacterList = ({ movie, characters, loading }) => {
     if (heightOrder === 0 || heightOrder === undefined) {
       sorted = sortHeight(array, 'asc');
       setHeightOrder(1);
+      setGenderOrder(undefined);
+      setNameOrder(undefined);
     }
 
     if (heightOrder === 1) {
       sorted = sortHeight(array, 'dsc');
       setHeightOrder(0);
+      setGenderOrder(undefined);
+      setNameOrder(undefined);
     }
 
     setStateCharacters(sorted);
@@ -82,11 +103,15 @@ export const CharacterList = ({ movie, characters, loading }) => {
     if (genderOrder === 0 || genderOrder === undefined) {
       sorted = sortGender(array, 'asc');
       setGenderOrder(1);
+      setNameOrder(undefined);
+      setHeightOrder(undefined);
     }
 
     if (genderOrder === 1) {
       sorted = sortGender(array, 'dsc');
       setGenderOrder(0);
+      setNameOrder(undefined);
+      setHeightOrder(undefined);
     }
 
     setStateCharacters(sorted);
@@ -109,14 +134,23 @@ export const CharacterList = ({ movie, characters, loading }) => {
     if (stateCharacters.length > 0) {
       totalHeight = calculateHeights(stateCharacters);
     }
-    const items = [
-      { title: 'ALL' },
-      { title: 'MALE' },
-      { title: 'FEMALE' },
-      { title: 'HERMAPHODITE' },
-      { title: 'N/A' }
-    ];
 
+    if (genderValue !== 'Filter Gender' && stateCharacters.length === 0) {
+      return (
+        <StyledCharacterList>
+          <MovieDetails movie={movie} />
+
+          <Select
+            defaultValue="Filter Gender"
+            value={genderValue}
+            onChange={onSelectChange}
+            items={genderFilter}
+            disabled={false}
+          />
+          <h2>No character ound with search criteria</h2>
+        </StyledCharacterList>
+      );
+    }
     return (
       <StyledCharacterList>
         <MovieDetails movie={movie} />
@@ -125,7 +159,7 @@ export const CharacterList = ({ movie, characters, loading }) => {
           defaultValue="Filter Gender"
           value={genderValue}
           onChange={onSelectChange}
-          items={items}
+          items={genderFilter}
           disabled={false}
         />
 
@@ -136,19 +170,20 @@ export const CharacterList = ({ movie, characters, loading }) => {
                 onClick={() => sortNameField(characters)}
                 className="toggle name"
               >
-                Name {sortArrow(nameOrder)}
+                Name {nameOrder !== undefined ? sortArrow(nameOrder) : ''}
               </th>
               <th
                 onClick={() => sortGenderField(characters)}
                 className="toggle gender"
               >
-                Gender {sortArrow(genderOrder)}
+                Gender {genderOrder !== undefined ? sortArrow(genderOrder) : ''}
               </th>
               <th
                 onClick={() => sortHeightField(characters)}
                 className="toggle height"
               >
-                Height (cm) {sortArrow(heightOrder)}
+                Height (cm){' '}
+                {heightOrder !== undefined ? sortArrow(heightOrder) : ''}
               </th>
             </tr>
           </thead>
