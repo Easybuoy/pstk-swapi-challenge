@@ -1,14 +1,11 @@
 export const formatGender = gender => {
-  switch (gender) {
-    case 'male':
-      return 'M';
-    case 'female':
-      return 'F';
-    case 'hermaphrodite':
-      return 'H';
-    default:
-      return 'N/A';
-  }
+  const genderLookup = {
+    male: 'M',
+    female: 'F',
+    hermaphrodite: 'H',
+    'n/a': 'N/A'
+  };
+  return genderLookup[gender];
 };
 
 export const calculateHeights = array => {
