@@ -5,6 +5,7 @@ import { Alert as StyledAlert } from '../../styles';
 
 const Alert = ({ message }) => {
   const [hideMessage, setHideMessage] = useState(false);
+  
   useEffect(() => {
     const timeout = setTimeout(() => {
       setHideMessage('none');
