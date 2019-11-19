@@ -16,7 +16,8 @@ import {
   calculateFeet,
   calculateInches,
   filterGender,
-  sortGender
+  sortGender,
+  genderFilterFromCharacters
 } from '../../utils';
 
 export const sortArrow = order => {
@@ -37,8 +38,11 @@ export const CharacterList = ({ movie, characters, loading }) => {
   const [genderValue, setGenderValue] = useState('Filter Gender');
   const [stateCharacters, setStateCharacters] = useState([]);
   const [movieInState, setMovieInState] = useState({});
+  const [genderFilter, setGenderFilter] = useState([]);
 
   useEffect(() => {
+    const filters = genderFilterFromCharacters(characters)
+    setGenderFilter(filters);
     if (characters.length > 0 && movieInState.title !== movie.title) {
       setStateCharacters([]);
       setMovieInState(movie);
@@ -118,13 +122,6 @@ export const CharacterList = ({ movie, characters, loading }) => {
     if (stateCharacters.length > 0) {
       totalHeight = calculateHeights(stateCharacters);
     }
-    const items = [
-      { title: 'ALL' },
-      { title: 'MALE' },
-      { title: 'FEMALE' },
-      { title: 'HERMAPHODITE' },
-      { title: 'N/A' }
-    ];
 
     if (genderValue !== 'Filter Gender' && stateCharacters.length === 0) {
       return (
@@ -135,7 +132,7 @@ export const CharacterList = ({ movie, characters, loading }) => {
             defaultValue="Filter Gender"
             value={genderValue}
             onChange={onSelectChange}
-            items={items}
+            items={genderFilter}
             disabled={false}
           />
           <h2>No character ound with search criteria</h2>
@@ -150,7 +147,7 @@ export const CharacterList = ({ movie, characters, loading }) => {
           defaultValue="Filter Gender"
           value={genderValue}
           onChange={onSelectChange}
-          items={items}
+          items={genderFilter}
           disabled={false}
         />
 
