@@ -3,7 +3,8 @@ export const formatGender = gender => {
     male: 'M',
     female: 'F',
     hermaphrodite: 'H',
-    'n/a': 'N/A'
+    'n/a': 'N/A',
+    none: 'N'
   };
   return genderLookup[gender];
 };
@@ -63,10 +64,12 @@ export const filterGender = (array, condition) => {
       return array.filter(word => word.gender === 'male');
     case 'FEMALE':
       return array.filter(word => word.gender === 'female');
-    case 'HERMAPHODITE':
+    case 'HERMAPHRODITE':
       return array.filter(word => word.gender === 'hermaphrodite');
     case 'N/A':
       return array.filter(word => word.gender === 'n/a');
+    case 'NONE':
+      return array.filter(word => word.gender === 'none');
     default:
       return array;
   }
@@ -148,20 +151,16 @@ export const requestFromAPI = async (url, method = 'GET') => {
 
 export const genderFilterFromCharacters = (characters = []) => {
   let filter = [{ title: 'ALL' }];
-
   characters.map(character => {
     const existingFilter = filter
       .map(e => {
         return e.title;
       })
       .indexOf(character.gender.toUpperCase());
-
     if (existingFilter === -1) {
       filter = filter.concat({ title: character.gender.toUpperCase() });
     }
     return character;
   });
-
-  // return filter.sort((a, b) => a.title.localeCompare(b.title));
-  return filter;
+  return filter.sort((a, b) => a.title.localeCompare(b.title));
 };

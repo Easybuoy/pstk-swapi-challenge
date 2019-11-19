@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+
 import { Alert as StyledAlert } from '../../styles';
 
 const Alert = ({ message }) => {
@@ -19,6 +21,10 @@ const Alert = ({ message }) => {
       </div>
     </StyledAlert>
   );
+};
+
+Alert.propTypes = {
+  message: PropTypes.string.isRequired,
 };
 
 export default Alert;
