@@ -87,7 +87,7 @@ export const MovieList = () => {
   let dropDownItems = '';
 
   if (error) {
-    return <Alert message={error} />
+    return <Alert message={error} />;
   }
 
   if (movies.length > 0) {
