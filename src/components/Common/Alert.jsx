@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {Alert as StyledAlert} from '../../styles';
-
+import { Alert as StyledAlert } from '../../styles';
 
 const Alert = ({ message }) => {
   const [hideMessage, setHideMessage] = useState(false);

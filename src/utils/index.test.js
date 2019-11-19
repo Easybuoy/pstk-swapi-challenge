@@ -32,11 +32,6 @@ describe('Util', () => {
     expect(response).toEqual('H');
   });
 
-  it('test default case for Format Gender', () => {
-    const response = formatGender();
-    expect(response).toEqual('N/A');
-  });
-
   it('test calculateHeights', () => {
     const testArray = [{ height: 10 }, { height: 20 }];
     const response = calculateHeights(testArray);
