@@ -145,3 +145,23 @@ export const requestFromAPI = async (url, method = 'GET') => {
   });
   return response.json();
 };
+
+export const genderFilterFromCharacters = (characters = []) => {
+  let filter = [{ title: 'ALL' }];
+
+  characters.map(character => {
+    const existingFilter = filter
+      .map(e => {
+        return e.title;
+      })
+      .indexOf(character.gender.toUpperCase());
+
+    if (existingFilter === -1) {
+      filter = filter.concat({ title: character.gender.toUpperCase() });
+    }
+    return character;
+  });
+
+  // return filter.sort((a, b) => a.title.localeCompare(b.title));
+  return filter;
+};
