@@ -151,7 +151,8 @@ export const requestFromAPI = async (url, method = 'GET') => {
 
 export const genderFilterFromCharacters = (characters = []) => {
   let filter = [{ title: 'ALL' }];
-  characters.map(character => {
+  
+  characters.forEach(character => {
     const existingFilter = filter
       .map(e => {
         return e.title;

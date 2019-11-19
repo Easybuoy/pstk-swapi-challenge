@@ -122,13 +122,6 @@ export const CharacterList = ({ movie, characters, loading }) => {
     if (stateCharacters.length > 0) {
       totalHeight = calculateHeights(stateCharacters);
     }
-    const items = [
-      { title: 'ALL' },
-      { title: 'MALE' },
-      { title: 'FEMALE' },
-      { title: 'HERMAPHODITE' },
-      { title: 'N/A' }
-    ];
 
     if (genderValue !== 'Filter Gender' && stateCharacters.length === 0) {
       return (
