@@ -28,9 +28,9 @@ export const MovieList = () => {
       })
       .catch(err => {
         if (err.response) {
-          alert(err.response.data.detail);
+          setError(err.response.data.detail);
         } else {
-          alert(err.message);
+          setError(err.message);
         }
       });
   }, []);
