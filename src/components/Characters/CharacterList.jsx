@@ -84,15 +84,15 @@ export const CharacterList = ({ movie, characters, loading }) => {
     if (heightOrder === 0 || heightOrder === undefined) {
       sorted = sortHeight(array, 'asc');
       setHeightOrder(1);
-      setGenderOrder(undefined)
-      setNameOrder(undefined)
+      setGenderOrder(undefined);
+      setNameOrder(undefined);
     }
 
     if (heightOrder === 1) {
       sorted = sortHeight(array, 'dsc');
       setHeightOrder(0);
-      setGenderOrder(undefined)
-      setNameOrder(undefined)
+      setGenderOrder(undefined);
+      setNameOrder(undefined);
     }
 
     setStateCharacters(sorted);
@@ -103,15 +103,15 @@ export const CharacterList = ({ movie, characters, loading }) => {
     if (genderOrder === 0 || genderOrder === undefined) {
       sorted = sortGender(array, 'asc');
       setGenderOrder(1);
-      setNameOrder(undefined)
-      setHeightOrder(undefined)
+      setNameOrder(undefined);
+      setHeightOrder(undefined);
     }
 
     if (genderOrder === 1) {
       sorted = sortGender(array, 'dsc');
       setGenderOrder(0);
-      setNameOrder(undefined)
-      setHeightOrder(undefined)
+      setNameOrder(undefined);
+      setHeightOrder(undefined);
     }
 
     setStateCharacters(sorted);
