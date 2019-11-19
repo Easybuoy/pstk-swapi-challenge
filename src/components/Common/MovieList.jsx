@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import CharacterList from '../Characters/CharacterList';
 import PreLoader from './PreLoader';
-
+import Alert from './Alert';
 import { MovieListDropdown as StyledMovieListDropdown } from '../../styles';
 import Select from './Select';
 import {
@@ -18,6 +18,7 @@ export const MovieList = () => {
   const [movie, setMovie] = useState({});
   const [characterLoading, setCharacterLoading] = useState(false);
   const [disableSelect, setdisableSelect] = useState(false);
+  const [error, setError] = useState('');
 
   useEffect(() => {
     setMovieValue('Select Star Wars Movie');
@@ -27,9 +28,9 @@ export const MovieList = () => {
       })
       .catch(err => {
         if (err.response) {
-          alert(err.response.data.detail);
+          setError(err.response.data.detail);
         } else {
-          alert(err.message);
+          setError(err.message);
         }
       });
   }, []);
@@ -67,23 +68,27 @@ export const MovieList = () => {
             })
             .catch(err => {
               if (err.response) {
-                alert(err.response.data.detail);
+                setError(err.response.data.detail);
               } else {
-                alert(err.message);
+                setError(err.message);
               }
             });
         })
         .catch(err => {
           if (err.response) {
-            alert(err.response.data.detail);
+            setError(err.response.data.detail);
           } else {
-            alert(err.message);
+            setError(err.message);
           }
         });
     }
   };
 
   let dropDownItems = '';
+
+  if (error) {
+    return <Alert message={error} />
+  }
 
   if (movies.length > 0) {
     dropDownItems = (

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import MovieDetails from '../Common/MovieDetails';
@@ -36,6 +36,15 @@ export const CharacterList = ({ movie, characters, loading }) => {
   const [genderOrder, setGenderOrder] = useState(undefined);
   const [genderValue, setGenderValue] = useState('Filter Gender');
   const [stateCharacters, setStateCharacters] = useState([]);
+  const [movieInState, setMovieInState] = useState({});
+
+  useEffect(() => {
+    if (characters.length > 0 && movieInState.title !== movie.title) {
+      setStateCharacters([]);
+      setMovieInState(movie);
+      setGenderValue('Filter Gender');
+    }
+  }, [characters, movie, movieInState.title, stateCharacters.length]);
 
   if (loading) {
     return <PreLoader />;
@@ -117,6 +126,22 @@ export const CharacterList = ({ movie, characters, loading }) => {
       { title: 'N/A' }
     ];
 
+    if (genderValue !== 'Filter Gender' && stateCharacters.length === 0) {
+      return (
+        <StyledCharacterList>
+          <MovieDetails movie={movie} />
+
+          <Select
+            defaultValue="Filter Gender"
+            value={genderValue}
+            onChange={onSelectChange}
+            items={items}
+            disabled={false}
+          />
+          <h2>No character ound with search criteria</h2>
+        </StyledCharacterList>
+      );
+    }
     return (
       <StyledCharacterList>
         <MovieDetails movie={movie} />

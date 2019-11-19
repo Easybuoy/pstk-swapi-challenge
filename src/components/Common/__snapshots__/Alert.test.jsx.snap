@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Alert /> renders the Alert component correctly 1`] = `
+<styled.div>
+  <div
+    className="toast"
+    style={
+      Object {
+        "display": false,
+      }
+    }
+  >
+    <p>
+      Error
+    </p>
+  </div>
+</styled.div>
+`;
