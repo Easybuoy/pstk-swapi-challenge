@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 const StyledAlert = styled.div`
@@ -10,9 +10,9 @@ const StyledAlert = styled.div`
     border-radius: 4px;
     box-shadow: #310808 1px 1px 5px;
     background-color: rgba(177, 7, 15, 0.78);
-    padding: 10px;
-    color: #f5bfbf;
-
+    padding: 0.3rem;
+    color: #ffffff;
+    font-family: 'Open Sans', sans-serif;
     opacity: 1;
     animation: toast 500ms cubic-bezier(0.23, 0.82, 0.16, 1.46);
     animation-iteration-count: 1;
@@ -31,20 +31,24 @@ const StyledAlert = styled.div`
   }
 `;
 
-function Alert() {
-  let hideMessage = false;
-
-  setTimeout(() => {
-    hideMessage = true;
-  }, 4000);
+const Alert = ({ message }) => {
+  const [hideMessage, setHideMessage] = useState(false);
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setHideMessage('none');
+    }, 3000);
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, []);
 
   return (
     <StyledAlert>
-      <div class="toast" style={{ display: hideMessage }}>
-        <p>Your message</p>
+      <div className="toast" style={{ display: hideMessage }}>
+        <p>{message}</p>
       </div>
     </StyledAlert>
   );
-}
+};
 
 export default Alert;
