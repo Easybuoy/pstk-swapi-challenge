@@ -15,7 +15,6 @@ Link to application: https://pstk-swapi-challenge.netlify.com/
 
 <ul>
 <li><a href="https://reactjs.org">React</a></li>
-<li><a href="https://redux.js.org/">Redux</a></li>
 <li><a href="https://www.styled-components.com/">Styled-Components</a></li>
 <li><a href="https://swapi.co/api/">Swapi API</a></li>
 </ul>
