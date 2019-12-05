@@ -1,11 +1,11 @@
-export const formatGender = gender => {
-  const genderLookup = {
-    male: 'M',
-    female: 'F',
-    hermaphrodite: 'H',
-    'n/a': 'N/A',
-    none: 'N'
-  };
+export const formatGender = (gender, characters = []) => {
+  let genderLookup = {};
+  characters.forEach(character => {
+    if (!genderLookup[character.gender]) {
+      genderLookup[character.gender] = character.gender[0].toUpperCase();
+    }
+  });
+
   return genderLookup[gender];
 };
 
@@ -59,20 +59,11 @@ export const sortGender = (array, order) => {
 };
 
 export const filterGender = (array, condition) => {
-  switch (condition) {
-    case 'MALE':
-      return array.filter(word => word.gender === 'male');
-    case 'FEMALE':
-      return array.filter(word => word.gender === 'female');
-    case 'HERMAPHRODITE':
-      return array.filter(word => word.gender === 'hermaphrodite');
-    case 'N/A':
-      return array.filter(word => word.gender === 'n/a');
-    case 'NONE':
-      return array.filter(word => word.gender === 'none');
-    default:
-      return array;
+  if (condition === 'ALL') {
+    return array;
   }
+
+  return array.filter(word => word.gender === condition.toLowerCase());
 };
 
 export const sortName = (array, order) => {
@@ -151,7 +142,7 @@ export const requestFromAPI = async (url, method = 'GET') => {
 
 export const genderFilterFromCharacters = (characters = []) => {
   let filter = [{ title: 'ALL' }];
-  
+
   characters.forEach(character => {
     const existingFilter = filter
       .map(e => {
