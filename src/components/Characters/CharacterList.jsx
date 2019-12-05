@@ -3,24 +3,17 @@ import PropTypes from 'prop-types';
 
 import MovieDetails from '../Common/MovieDetails';
 import PreLoader from '../Common/PreLoader';
-import SortArrow from '../Common/SortArrow';
+import Table from '../Common/Table';
 import StarWarsImage from '../../assets/images/star-wars.png';
 import { CharacterList as StyledCharacterList } from '../../styles';
-import Character from './Character';
 import Select from '../Common/Select';
 import {
-  formatGender,
-  calculateHeights,
-  formatHeight,
   sortHeight,
   sortName,
-  calculateFeet,
-  calculateInches,
   filterGender,
   sortGender,
   genderFilterFromCharacters
 } from '../../utils';
-
 
 export const CharacterList = ({ movie, characters, loading }) => {
   const [heightOrder, setHeightOrder] = useState(undefined);
@@ -44,7 +37,7 @@ export const CharacterList = ({ movie, characters, loading }) => {
   if (loading) {
     return <PreLoader />;
   }
-  
+
   if (characters.length === 0) {
     return (
       <StyledCharacterList>
@@ -122,10 +115,7 @@ export const CharacterList = ({ movie, characters, loading }) => {
   };
 
   if (characters) {
-    let totalHeight = calculateHeights(characters);
-    if (stateCharacters.length > 0) {
-      totalHeight = calculateHeights(stateCharacters);
-    }
+    
 
     if (genderValue !== 'Filter Gender' && stateCharacters.length === 0) {
       return (
@@ -154,73 +144,16 @@ export const CharacterList = ({ movie, characters, loading }) => {
           items={genderFilter}
           disabled={false}
         />
-
-        <table className="fl-table">
-          <thead>
-            <tr>
-              <th
-                onClick={() => sortNameField(characters)}
-                className="toggle name"
-              >
-                Name{' '}
-                {nameOrder !== undefined ? <SortArrow order={nameOrder} /> : ''}
-              </th>
-              <th
-                onClick={() => sortGenderField(characters)}
-                className="toggle gender"
-              >
-                Gender{' '}
-                {genderOrder !== undefined ? (
-                  <SortArrow order={genderOrder} />
-                ) : (
-                  ''
-                )}
-              </th>
-              <th
-                onClick={() => sortHeightField(characters)}
-                className="toggle height"
-              >
-                Height (cm){' '}
-                {heightOrder !== undefined ? (
-                  <SortArrow order={heightOrder} />
-                ) : (
-                  ''
-                )}
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {stateCharacters.length > 0
-              ? stateCharacters.map(character => {
-                  return (
-                    <Character
-                      key={character.name}
-                      name={character.name}
-                      gender={formatGender(character.gender, stateCharacters)}
-                      height={formatHeight(character.height)}
-                    />
-                  );
-                })
-              : '' ||
-                characters.map(character => {
-                  return (
-                    <Character
-                      key={character.name}
-                      name={character.name}
-                      gender={formatGender(character.gender, characters)}
-                      height={formatHeight(character.height)}
-                    />
-                  );
-                })}
-            <tr>
-              <td></td>
-              <td></td>
-              <td className="total">{`Total: ${totalHeight}cm (${calculateFeet(
-                totalHeight
-              )}ft/${calculateInches(totalHeight)}in)`}</td>
-            </tr>
-          </tbody>
-        </table>
+        <Table
+          characters={characters}
+          sortNameField={sortNameField}
+          sortHeightField={sortHeightField}
+          sortGenderField={sortGenderField}
+          stateCharacters={stateCharacters}
+          genderOrder={genderOrder}
+          nameOrder={nameOrder}
+          heightOrder={heightOrder}
+        />
       </StyledCharacterList>
     );
   }
