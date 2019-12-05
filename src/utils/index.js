@@ -1,11 +1,11 @@
-export const formatGender = gender => {
-  const genderLookup = {
-    male: 'M',
-    female: 'F',
-    hermaphrodite: 'H',
-    'n/a': 'N/A',
-    none: 'N'
-  };
+export const formatGender = (gender, characters = []) => {
+  let genderLookup = {};
+  characters.forEach(character => {
+    if (!genderLookup[character.gender]) {
+      genderLookup[character.gender] = character.gender[0].toUpperCase();
+    }
+  });
+
   return genderLookup[gender];
 };
 

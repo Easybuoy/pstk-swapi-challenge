@@ -18,17 +18,20 @@ const { getMovieDataMock } = mock;
 
 describe('Util', () => {
   it('test male case Format Gender', () => {
-    const response = formatGender('male');
+    const testArray = [{ gender: 'male' }, { gender: 'female' }];
+    const response = formatGender('male', testArray);
     expect(response).toEqual('M');
   });
 
   it('test female case for Format Gender', () => {
-    const response = formatGender('female');
+    const testArray = [{ gender: 'male' }, { gender: 'female' }];
+    const response = formatGender('female', testArray);
     expect(response).toEqual('F');
   });
 
   it('test hermaphrodite case for Format Gender', () => {
-    const response = formatGender('hermaphrodite');
+    const testArray = [{ gender: 'hermaphrodite' }, { gender: 'female' }];
+    const response = formatGender('hermaphrodite', testArray);
     expect(response).toEqual('H');
   });
 

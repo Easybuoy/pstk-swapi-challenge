@@ -194,7 +194,7 @@ export const CharacterList = ({ movie, characters, loading }) => {
                     <Character
                       key={character.name}
                       name={character.name}
-                      gender={formatGender(character.gender)}
+                      gender={formatGender(character.gender, stateCharacters)}
                       height={formatHeight(character.height)}
                     />
                   );
@@ -205,7 +205,7 @@ export const CharacterList = ({ movie, characters, loading }) => {
                     <Character
                       key={character.name}
                       name={character.name}
-                      gender={formatGender(character.gender)}
+                      gender={formatGender(character.gender, characters)}
                       height={formatHeight(character.height)}
                     />
                   );
