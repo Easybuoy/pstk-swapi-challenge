@@ -138,7 +138,7 @@ describe('Util', () => {
       { name: 'John', height: 20, gender: 'male' },
       { name: 'Ezekiel', height: 10, gender: 'female' }
     ];
-    const response = filterGender(testArray, 'asc');
+    const response = filterGender(testArray, 'ALL');
     expect(response).toEqual([
       { name: 'John', height: 20, gender: 'male' },
       { name: 'Ezekiel', height: 10, gender: 'female' }
