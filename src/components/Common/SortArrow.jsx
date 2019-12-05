@@ -1,7 +1,6 @@
 import React from 'react';
 
 const SortArrow = ({ order }) => {
-  console.log(order);
   if (order === 1) {
     return <span>&uarr;</span>;
   } else if (order === 0) {

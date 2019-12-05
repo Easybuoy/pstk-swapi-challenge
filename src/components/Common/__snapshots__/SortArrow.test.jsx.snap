@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SortArrow /> renders the SortArrow component correctly 1`] = `
+<span>
+  ↓
+</span>
+`;
+
+exports[`<SortArrow /> renders the SortArrow component correctly 2`] = `
+<span>
+  ↑
+</span>
+`;
+
+exports[`<SortArrow /> renders the SortArrow component correctly 3`] = `""`;
