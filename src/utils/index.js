@@ -147,16 +147,14 @@ export const requestFromAPI = async (url, method = 'GET') => {
 export const genderFilterFromCharacters = (characters = []) => {
   let filter = [{ title: 'ALL' }];
 
-  characters.forEach(character => {
-    const existingFilter = filter
-      .map(e => {
-        return e.title;
-      })
-      .indexOf(character.gender.toUpperCase());
-    if (existingFilter === -1) {
-      filter = filter.concat({ title: character.gender.toUpperCase() });
-    }
-    return character;
-  });
+  if (characters.length > 0) {
+    characters.reduce((prev, curr) => {
+      if (filter.findIndex(x => x.title.toLowerCase() === curr.gender) === -1) {
+        filter = filter.concat({ title: curr.gender.toUpperCase() });
+      }
+      return prev;
+    }, []);
+  }
+  
   return filter.sort((a, b) => a.title.localeCompare(b.title));
 };
