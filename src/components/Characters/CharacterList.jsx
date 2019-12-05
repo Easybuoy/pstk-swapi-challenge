@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import MovieDetails from '../Common/MovieDetails';
 import PreLoader from '../Common/PreLoader';
+import SortArrow from '../Common/SortArrow';
 import StarWarsImage from '../../assets/images/star-wars.png';
 import { CharacterList as StyledCharacterList } from '../../styles';
 import Character from './Character';
@@ -20,16 +21,6 @@ import {
   genderFilterFromCharacters
 } from '../../utils';
 
-export const sortArrow = order => {
-  switch (order) {
-    case 0:
-      return <span>&darr;</span>;
-    case 1:
-      return <span>&uarr;</span>;
-    default:
-      return '';
-  }
-};
 
 export const CharacterList = ({ movie, characters, loading }) => {
   const [heightOrder, setHeightOrder] = useState(undefined);
@@ -170,20 +161,30 @@ export const CharacterList = ({ movie, characters, loading }) => {
                 onClick={() => sortNameField(characters)}
                 className="toggle name"
               >
-                Name {nameOrder !== undefined ? sortArrow(nameOrder) : ''}
+                Name{' '}
+                {nameOrder !== undefined ? <SortArrow order={nameOrder} /> : ''}
               </th>
               <th
                 onClick={() => sortGenderField(characters)}
                 className="toggle gender"
               >
-                Gender {genderOrder !== undefined ? sortArrow(genderOrder) : ''}
+                Gender{' '}
+                {genderOrder !== undefined ? (
+                  <SortArrow order={genderOrder} />
+                ) : (
+                  ''
+                )}
               </th>
               <th
                 onClick={() => sortHeightField(characters)}
                 className="toggle height"
               >
                 Height (cm){' '}
-                {heightOrder !== undefined ? sortArrow(heightOrder) : ''}
+                {heightOrder !== undefined ? (
+                  <SortArrow order={heightOrder} />
+                ) : (
+                  ''
+                )}
               </th>
             </tr>
           </thead>
