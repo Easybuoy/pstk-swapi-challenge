@@ -99,16 +99,20 @@ export const addMovieDataToLocalStorage = (movie, characters) => {
 
 export const getMovieFromLocalStorage = title => {
   initializeLocalStorage();
-  const movieData = JSON.parse(localStorage.getItem('movieData'));
-  return movieData.filter(movie => {
-    if (movie.title === title) {
-      if (!oneDayAgo(movie.created_at)) {
-        // movie found, but less than a day
-        return movie;
+  try {
+    const movieData = JSON.parse(localStorage.getItem('movieData'));
+    return movieData.filter(movie => {
+      if (movie.title === title) {
+        if (!oneDayAgo(movie.created_at)) {
+          // movie found, but less than a day
+          return movie;
+        }
       }
-    }
+      return null;
+    });
+  } catch (error) {
     return null;
-  });
+  }
 };
 
 export const initializeLocalStorage = () => {
