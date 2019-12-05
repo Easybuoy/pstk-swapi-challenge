@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const SortArrow = ({ order }) => {
   if (order === 1) {
@@ -11,3 +12,7 @@ const SortArrow = ({ order }) => {
 };
 
 export default SortArrow;
+
+SortArrow.propTypes = {
+  order: PropTypes.number.isRequired
+};

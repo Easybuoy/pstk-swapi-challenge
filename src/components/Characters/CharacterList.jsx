@@ -44,6 +44,7 @@ export const CharacterList = ({ movie, characters, loading }) => {
   if (loading) {
     return <PreLoader />;
   }
+  
   if (characters.length === 0) {
     return (
       <StyledCharacterList>
