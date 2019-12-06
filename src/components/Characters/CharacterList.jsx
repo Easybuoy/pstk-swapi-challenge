@@ -8,11 +8,11 @@ import StarWarsImage from '../../assets/images/star-wars.png';
 import { CharacterList as StyledCharacterList } from '../../styles';
 import Select from '../Common/Select';
 import {
-  filterGender,
   genderFilterFromCharacters,
   sortNameField,
   sortHeightField,
-  sortGenderField
+  sortGenderField,
+  filterGenderField
 } from '../../utils';
 
 export const CharacterList = ({ movie, characters, loading }) => {
@@ -46,16 +46,11 @@ export const CharacterList = ({ movie, characters, loading }) => {
     );
   }
 
-  const filterGenderField = (array, letter) => {
-    const sorted = filterGender(array, letter);
-    setStateCharacters(sorted);
-  };
-
   const onSelectChange = e => {
     const { title } = JSON.parse(e.target.value);
 
     setGenderValue(e.target.value);
-    filterGenderField(characters, title);
+    filterGenderField(characters, title, setStateCharacters);
   };
 
   if (characters) {

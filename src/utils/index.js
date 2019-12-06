@@ -235,3 +235,8 @@ export const sortGenderField = (
 
   setStateCharacters(sorted);
 };
+
+export const filterGenderField = (array, letter, setStateCharacters) => {
+  const sorted = filterGender(array, letter);
+  setStateCharacters(sorted);
+};
