@@ -1,0 +1,176 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Table /> renders the Table component correctly 1`] = `
+<table
+  className="fl-table"
+>
+  <thead>
+    <tr>
+      <th
+        className="toggle name"
+        onClick={[Function]}
+      >
+        Name
+         
+        <SortArrow
+          order={
+            Object {
+              "addMatchers": [Function],
+              "advanceTimersByTime": [Function],
+              "advanceTimersToNextTimer": [Function],
+              "autoMockOff": [Function],
+              "autoMockOn": [Function],
+              "clearAllMocks": [Function],
+              "clearAllTimers": [Function],
+              "deepUnmock": [Function],
+              "disableAutomock": [Function],
+              "doMock": [Function],
+              "dontMock": [Function],
+              "enableAutomock": [Function],
+              "fn": [Function],
+              "genMockFromModule": [Function],
+              "getTimerCount": [Function],
+              "isMockFunction": [Function],
+              "isolateModules": [Function],
+              "mock": [Function],
+              "requireActual": [Function],
+              "requireMock": [Function],
+              "resetAllMocks": [Function],
+              "resetModuleRegistry": [Function],
+              "resetModules": [Function],
+              "restoreAllMocks": [Function],
+              "retryTimes": [Function],
+              "runAllImmediates": [Function],
+              "runAllTicks": [Function],
+              "runAllTimers": [Function],
+              "runOnlyPendingTimers": [Function],
+              "runTimersToTime": [Function],
+              "setMock": [Function],
+              "setTimeout": [Function],
+              "spyOn": [Function],
+              "unmock": [Function],
+              "useFakeTimers": [Function],
+              "useRealTimers": [Function],
+            }
+          }
+        />
+      </th>
+      <th
+        className="toggle gender"
+        onClick={[Function]}
+      >
+        Gender
+         
+        <SortArrow
+          order={
+            Object {
+              "addMatchers": [Function],
+              "advanceTimersByTime": [Function],
+              "advanceTimersToNextTimer": [Function],
+              "autoMockOff": [Function],
+              "autoMockOn": [Function],
+              "clearAllMocks": [Function],
+              "clearAllTimers": [Function],
+              "deepUnmock": [Function],
+              "disableAutomock": [Function],
+              "doMock": [Function],
+              "dontMock": [Function],
+              "enableAutomock": [Function],
+              "fn": [Function],
+              "genMockFromModule": [Function],
+              "getTimerCount": [Function],
+              "isMockFunction": [Function],
+              "isolateModules": [Function],
+              "mock": [Function],
+              "requireActual": [Function],
+              "requireMock": [Function],
+              "resetAllMocks": [Function],
+              "resetModuleRegistry": [Function],
+              "resetModules": [Function],
+              "restoreAllMocks": [Function],
+              "retryTimes": [Function],
+              "runAllImmediates": [Function],
+              "runAllTicks": [Function],
+              "runAllTimers": [Function],
+              "runOnlyPendingTimers": [Function],
+              "runTimersToTime": [Function],
+              "setMock": [Function],
+              "setTimeout": [Function],
+              "spyOn": [Function],
+              "unmock": [Function],
+              "useFakeTimers": [Function],
+              "useRealTimers": [Function],
+            }
+          }
+        />
+      </th>
+      <th
+        className="toggle height"
+        onClick={[Function]}
+      >
+        Height (cm)
+         
+        <SortArrow
+          order={
+            Object {
+              "addMatchers": [Function],
+              "advanceTimersByTime": [Function],
+              "advanceTimersToNextTimer": [Function],
+              "autoMockOff": [Function],
+              "autoMockOn": [Function],
+              "clearAllMocks": [Function],
+              "clearAllTimers": [Function],
+              "deepUnmock": [Function],
+              "disableAutomock": [Function],
+              "doMock": [Function],
+              "dontMock": [Function],
+              "enableAutomock": [Function],
+              "fn": [Function],
+              "genMockFromModule": [Function],
+              "getTimerCount": [Function],
+              "isMockFunction": [Function],
+              "isolateModules": [Function],
+              "mock": [Function],
+              "requireActual": [Function],
+              "requireMock": [Function],
+              "resetAllMocks": [Function],
+              "resetModuleRegistry": [Function],
+              "resetModules": [Function],
+              "restoreAllMocks": [Function],
+              "retryTimes": [Function],
+              "runAllImmediates": [Function],
+              "runAllTicks": [Function],
+              "runAllTimers": [Function],
+              "runOnlyPendingTimers": [Function],
+              "runTimersToTime": [Function],
+              "setMock": [Function],
+              "setTimeout": [Function],
+              "spyOn": [Function],
+              "unmock": [Function],
+              "useFakeTimers": [Function],
+              "useRealTimers": [Function],
+            }
+          }
+        />
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <Character
+      gender="M"
+      height="300"
+      key="Eze"
+      name="Eze"
+    />
+    <tr>
+      <td />
+      <td />
+      <td
+        className="total"
+      >
+        Total: 300cm (9ft/118.00in)
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;
