@@ -155,6 +155,83 @@ export const genderFilterFromCharacters = (characters = []) => {
       return prev;
     }, []);
   }
-  
+
   return filter.sort((a, b) => a.title.localeCompare(b.title));
+};
+
+export const sortNameField = (
+  nameOrder,
+  setNameOrder,
+  setGenderOrder,
+  setHeightOrder,
+  setStateCharacters,
+  array
+) => {
+  let sorted = [];
+  if (nameOrder === 0 || nameOrder === undefined) {
+    sorted = sortName(array, 'asc');
+    setNameOrder(1);
+    setGenderOrder(undefined);
+    setHeightOrder(undefined);
+  }
+
+  if (nameOrder === 1) {
+    sorted = sortName(array, 'dsc');
+    setNameOrder(0);
+    setGenderOrder(undefined);
+    setHeightOrder(undefined);
+  }
+  setStateCharacters(sorted);
+};
+
+export const sortHeightField = (
+  heightOrder,
+  setHeightOrder,
+  setGenderOrder,
+  setNameOrder,
+  setStateCharacters,
+  array
+) => {
+  let sorted = [];
+  if (heightOrder === 0 || heightOrder === undefined) {
+    sorted = sortHeight(array, 'asc');
+    setHeightOrder(1);
+    setGenderOrder(undefined);
+    setNameOrder(undefined);
+  }
+
+  if (heightOrder === 1) {
+    sorted = sortHeight(array, 'dsc');
+    setHeightOrder(0);
+    setGenderOrder(undefined);
+    setNameOrder(undefined);
+  }
+
+  setStateCharacters(sorted);
+};
+
+export const sortGenderField = (
+  genderOrder,
+  setGenderOrder,
+  setNameOrder,
+  setHeightOrder,
+  setStateCharacters,
+  array
+) => {
+  let sorted = [];
+  if (genderOrder === 0 || genderOrder === undefined) {
+    sorted = sortGender(array, 'asc');
+    setGenderOrder(1);
+    setNameOrder(undefined);
+    setHeightOrder(undefined);
+  }
+
+  if (genderOrder === 1) {
+    sorted = sortGender(array, 'dsc');
+    setGenderOrder(0);
+    setNameOrder(undefined);
+    setHeightOrder(undefined);
+  }
+
+  setStateCharacters(sorted);
 };

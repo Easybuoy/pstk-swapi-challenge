@@ -18,7 +18,11 @@ const Table = props => {
     stateCharacters,
     sortNameField,
     sortGenderField,
-    sortHeightField
+    sortHeightField,
+    setNameOrder,
+    setGenderOrder,
+    setHeightOrder,
+    setStateCharacters
   } = props;
 
   let totalHeight = calculateHeights(characters);
@@ -30,19 +34,49 @@ const Table = props => {
     <table className="fl-table">
       <thead>
         <tr>
-          <th onClick={() => sortNameField(characters)} className="toggle name">
+          <th
+            onClick={() =>
+              sortNameField(
+                nameOrder,
+                setNameOrder,
+                setGenderOrder,
+                setHeightOrder,
+                setStateCharacters,
+                characters
+              )
+            }
+            className="toggle name"
+          >
             Name{' '}
             {nameOrder !== undefined ? <SortArrow order={nameOrder} /> : ''}
           </th>
           <th
-            onClick={() => sortGenderField(characters)}
+            onClick={() =>
+              sortGenderField(
+                genderOrder,
+                setGenderOrder,
+                setNameOrder,
+                setHeightOrder,
+                setStateCharacters,
+                characters
+              )
+            }
             className="toggle gender"
           >
             Gender{' '}
             {genderOrder !== undefined ? <SortArrow order={genderOrder} /> : ''}
           </th>
           <th
-            onClick={() => sortHeightField(characters)}
+            onClick={() =>
+              sortHeightField(
+                heightOrder,
+                setHeightOrder,
+                setGenderOrder,
+                setNameOrder,
+                setStateCharacters,
+                characters
+              )
+            }
             className="toggle height"
           >
             Height (cm){' '}

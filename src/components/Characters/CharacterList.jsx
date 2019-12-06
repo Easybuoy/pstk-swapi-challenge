@@ -8,11 +8,11 @@ import StarWarsImage from '../../assets/images/star-wars.png';
 import { CharacterList as StyledCharacterList } from '../../styles';
 import Select from '../Common/Select';
 import {
-  sortHeight,
-  sortName,
   filterGender,
-  sortGender,
-  genderFilterFromCharacters
+  genderFilterFromCharacters,
+  sortNameField,
+  sortHeightField,
+  sortGenderField
 } from '../../utils';
 
 export const CharacterList = ({ movie, characters, loading }) => {
@@ -46,62 +46,6 @@ export const CharacterList = ({ movie, characters, loading }) => {
     );
   }
 
-  const sortNameField = array => {
-    let sorted = [];
-    if (nameOrder === 0 || nameOrder === undefined) {
-      sorted = sortName(array, 'asc');
-      setNameOrder(1);
-      setGenderOrder(undefined);
-      setHeightOrder(undefined);
-    }
-
-    if (nameOrder === 1) {
-      sorted = sortName(array, 'dsc');
-      setNameOrder(0);
-      setGenderOrder(undefined);
-      setHeightOrder(undefined);
-    }
-    setStateCharacters(sorted);
-  };
-
-  const sortHeightField = array => {
-    let sorted = [];
-    if (heightOrder === 0 || heightOrder === undefined) {
-      sorted = sortHeight(array, 'asc');
-      setHeightOrder(1);
-      setGenderOrder(undefined);
-      setNameOrder(undefined);
-    }
-
-    if (heightOrder === 1) {
-      sorted = sortHeight(array, 'dsc');
-      setHeightOrder(0);
-      setGenderOrder(undefined);
-      setNameOrder(undefined);
-    }
-
-    setStateCharacters(sorted);
-  };
-
-  const sortGenderField = array => {
-    let sorted = [];
-    if (genderOrder === 0 || genderOrder === undefined) {
-      sorted = sortGender(array, 'asc');
-      setGenderOrder(1);
-      setNameOrder(undefined);
-      setHeightOrder(undefined);
-    }
-
-    if (genderOrder === 1) {
-      sorted = sortGender(array, 'dsc');
-      setGenderOrder(0);
-      setNameOrder(undefined);
-      setHeightOrder(undefined);
-    }
-
-    setStateCharacters(sorted);
-  };
-
   const filterGenderField = (array, letter) => {
     const sorted = filterGender(array, letter);
     setStateCharacters(sorted);
@@ -115,13 +59,10 @@ export const CharacterList = ({ movie, characters, loading }) => {
   };
 
   if (characters) {
-    
-
     if (genderValue !== 'Filter Gender' && stateCharacters.length === 0) {
       return (
         <StyledCharacterList>
           <MovieDetails movie={movie} />
-
           <Select
             defaultValue="Filter Gender"
             value={genderValue}
@@ -136,7 +77,6 @@ export const CharacterList = ({ movie, characters, loading }) => {
     return (
       <StyledCharacterList>
         <MovieDetails movie={movie} />
-
         <Select
           defaultValue="Filter Gender"
           value={genderValue}
@@ -153,6 +93,10 @@ export const CharacterList = ({ movie, characters, loading }) => {
           genderOrder={genderOrder}
           nameOrder={nameOrder}
           heightOrder={heightOrder}
+          setNameOrder={setNameOrder}
+          setGenderOrder={setGenderOrder}
+          setHeightOrder={setHeightOrder}
+          setStateCharacters={setStateCharacters}
         />
       </StyledCharacterList>
     );
