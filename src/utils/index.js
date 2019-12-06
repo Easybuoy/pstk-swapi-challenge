@@ -1,11 +1,11 @@
-export const formatGender = gender => {
-  const genderLookup = {
-    male: 'M',
-    female: 'F',
-    hermaphrodite: 'H',
-    'n/a': 'N/A',
-    none: 'N'
-  };
+export const formatGender = (gender, characters = []) => {
+  let genderLookup = {};
+  characters.forEach(character => {
+    if (!genderLookup[character.gender]) {
+      genderLookup[character.gender] = character.gender[0].toUpperCase();
+    }
+  });
+
   return genderLookup[gender];
 };
 
@@ -59,20 +59,11 @@ export const sortGender = (array, order) => {
 };
 
 export const filterGender = (array, condition) => {
-  switch (condition) {
-    case 'MALE':
-      return array.filter(word => word.gender === 'male');
-    case 'FEMALE':
-      return array.filter(word => word.gender === 'female');
-    case 'HERMAPHRODITE':
-      return array.filter(word => word.gender === 'hermaphrodite');
-    case 'N/A':
-      return array.filter(word => word.gender === 'n/a');
-    case 'NONE':
-      return array.filter(word => word.gender === 'none');
-    default:
-      return array;
+  if (condition === 'ALL') {
+    return array;
   }
+
+  return array.filter(word => word.gender === condition.toLowerCase());
 };
 
 export const sortName = (array, order) => {
@@ -108,16 +99,20 @@ export const addMovieDataToLocalStorage = (movie, characters) => {
 
 export const getMovieFromLocalStorage = title => {
   initializeLocalStorage();
-  const movieData = JSON.parse(localStorage.getItem('movieData'));
-  return movieData.filter(movie => {
-    if (movie.title === title) {
-      if (!oneDayAgo(movie.created_at)) {
-        // movie found, but less than a day
-        return movie;
+  try {
+    const movieData = JSON.parse(localStorage.getItem('movieData'));
+    return movieData.filter(movie => {
+      if (movie.title === title) {
+        if (!oneDayAgo(movie.created_at)) {
+          // movie found, but less than a day
+          return movie;
+        }
       }
-    }
+      return null;
+    });
+  } catch (error) {
     return null;
-  });
+  }
 };
 
 export const initializeLocalStorage = () => {
@@ -151,17 +146,97 @@ export const requestFromAPI = async (url, method = 'GET') => {
 
 export const genderFilterFromCharacters = (characters = []) => {
   let filter = [{ title: 'ALL' }];
-  
-  characters.forEach(character => {
-    const existingFilter = filter
-      .map(e => {
-        return e.title;
-      })
-      .indexOf(character.gender.toUpperCase());
-    if (existingFilter === -1) {
-      filter = filter.concat({ title: character.gender.toUpperCase() });
-    }
-    return character;
-  });
+
+  if (characters.length > 0) {
+    characters.reduce((prev, curr) => {
+      if (filter.findIndex(x => x.title.toLowerCase() === curr.gender) === -1) {
+        filter = filter.concat({ title: curr.gender.toUpperCase() });
+      }
+      return prev;
+    }, []);
+  }
+
   return filter.sort((a, b) => a.title.localeCompare(b.title));
+};
+
+export const sortNameField = (
+  nameOrder,
+  setNameOrder,
+  setGenderOrder,
+  setHeightOrder,
+  setStateCharacters,
+  array
+) => {
+  let sorted = [];
+  if (nameOrder === 0 || nameOrder === undefined) {
+    sorted = sortName(array, 'asc');
+    setNameOrder(1);
+    setGenderOrder(undefined);
+    setHeightOrder(undefined);
+  }
+
+  if (nameOrder === 1) {
+    sorted = sortName(array, 'dsc');
+    setNameOrder(0);
+    setGenderOrder(undefined);
+    setHeightOrder(undefined);
+  }
+  setStateCharacters(sorted);
+};
+
+export const sortHeightField = (
+  heightOrder,
+  setHeightOrder,
+  setGenderOrder,
+  setNameOrder,
+  setStateCharacters,
+  array
+) => {
+  let sorted = [];
+  if (heightOrder === 0 || heightOrder === undefined) {
+    sorted = sortHeight(array, 'asc');
+    setHeightOrder(1);
+    setGenderOrder(undefined);
+    setNameOrder(undefined);
+  }
+
+  if (heightOrder === 1) {
+    sorted = sortHeight(array, 'dsc');
+    setHeightOrder(0);
+    setGenderOrder(undefined);
+    setNameOrder(undefined);
+  }
+
+  setStateCharacters(sorted);
+};
+
+export const sortGenderField = (
+  genderOrder,
+  setGenderOrder,
+  setNameOrder,
+  setHeightOrder,
+  setStateCharacters,
+  array
+) => {
+  let sorted = [];
+  if (genderOrder === 0 || genderOrder === undefined) {
+    sorted = sortGender(array, 'asc');
+    setGenderOrder(1);
+    setNameOrder(undefined);
+    setHeightOrder(undefined);
+  }
+
+  if (genderOrder === 1) {
+    sorted = sortGender(array, 'dsc');
+    setGenderOrder(0);
+    setNameOrder(undefined);
+    setHeightOrder(undefined);
+  }
+
+  setStateCharacters(sorted);
+};
+
+export const filterGenderField = (array, letter, setStateCharacters) => {
+  const sorted = filterGender(array, letter);
+  setStateCharacters(sorted);
 };
