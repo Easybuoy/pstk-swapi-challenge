@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import SortArrow from './SortArrow';
 import Character from '../Characters/Character';
 import {
@@ -120,3 +122,18 @@ const Table = props => {
 };
 
 export default Table;
+
+Table.propTypes = {
+  characters: PropTypes.array.isRequired,
+  nameOrder: PropTypes.number,
+  genderOrder: PropTypes.number,
+  heightOrder: PropTypes.number,
+  stateCharacters: PropTypes.array.isRequired,
+  sortNameField: PropTypes.func.isRequired,
+  sortGenderField: PropTypes.func.isRequired,
+  sortHeightField: PropTypes.func.isRequired,
+  setNameOrder: PropTypes.func.isRequired,
+  setGenderOrder: PropTypes.func.isRequired,
+  setHeightOrder: PropTypes.func.isRequired,
+  setStateCharacters: PropTypes.func.isRequired
+};
